@@ -1,0 +1,1506 @@
+# Formidable accept.blue Payment Gateway - Translation Template
+# Copyright (C) 2026 RyanPlugins
+# This file is distributed under the GPL-2.0-or-later license.
+# RyanPlugins <https://codecanyon.net/user/ryanplugins>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: Formidable accept.blue Payment Gateway 1.0.0\n"
+"Report-Msgid-Bugs-To: https://codecanyon.net/user/ryanplugins\n"
+"POT-Creation-Date: 2026-05-08 23:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: formidable-acceptblue.php:47 formidable-acceptblue.php:122
+msgid "Permission denied."
+msgstr ""
+
+#: formidable-acceptblue.php:53
+msgid "Invalid purchase code format. Expected: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+msgstr ""
+
+#: formidable-acceptblue.php:84
+#, php-format
+msgid "Verification failed (HTTP %s)."
+msgstr ""
+
+#: formidable-acceptblue.php:112
+#, php-format
+msgid "&#10004; License verified! Welcome, %s. The page will refresh shortly&hellip;"
+msgstr ""
+
+#: formidable-acceptblue.php:145
+msgid "License deactivated successfully."
+msgstr ""
+
+#: formidable-acceptblue.php:176
+msgid "Almost there! Activate your Accept.Blue for Formidable Forms plugin license."
+msgstr ""
+
+#: formidable-acceptblue.php:179
+msgid "Enter your Envato purchase code to unlock full support and future updates. It only takes a few seconds."
+msgstr ""
+
+#: formidable-acceptblue.php:184
+msgid "Activate Now →"
+msgstr ""
+
+#: formidable-acceptblue.php:201
+msgid "Accept.Blue for Formidable Forms"
+msgstr ""
+
+#: formidable-acceptblue.php:202
+msgid "requires Formidable Forms to be installed and active."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:39
+msgid "Webhook token regenerated. Copy the new URL from the Accept.Blue settings and update it in your accept.blue portal."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:51 includes/class-frm-ab-lite-admin-panel.php:97
+msgid "Accept.Blue Transactions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:52 includes/class-frm-ab-lite-settings.php:37
+msgid "Accept.Blue"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:59 includes/class-frm-ab-lite-admin-panel.php:1304
+msgid "Accept.Blue Schedules"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:60
+msgid "AB Schedules"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:101
+msgid "Open Merchant Portal ↗"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:106 includes/class-frm-ab-lite-dashboard.php:329
+msgid "Export CSV"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:120 includes/class-frm-ab-lite-admin-panel.php:1253
+msgid "Log cleared."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:127
+msgid "No payment records found yet. Payments will appear here after your first successful transaction. Upgrade to Pro to track payments here. Charges submitted via your forms are still processed by accept.blue — you can view them in your <a href=\"https://accept.blue\" target=\"_blank\">accept.blue merchant portal</a>."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:231
+msgid "Successful (30d)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:235
+msgid "Revenue (30d)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:239
+msgid "Failed (30d)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:243
+msgid "Refunded (30d)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:251 includes/class-frm-ab-lite-dashboard.php:322
+msgid "All statuses"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:257
+msgid "All forms"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:262
+msgid "Charge ID or entry #"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:263
+msgid "Filter"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:270 includes/class-frm-ab-lite-admin-panel.php:1349
+msgid "ID"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:271 includes/class-frm-ab-lite-dashboard.php:183 includes/class-frm-ab-lite-dashboard.php:357
+msgid "Date"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:272 includes/class-frm-ab-lite-dashboard.php:359
+msgid "Entry"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:273
+msgid "Form"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:274 includes/class-frm-ab-lite-admin-panel.php:1352 includes/class-frm-ab-lite-dashboard.php:360 includes/class-frm-ab-lite-field.php:320 includes/class-frm-ab-lite-field.php:400
+msgid "Amount"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:275 includes/class-frm-ab-lite-admin-panel.php:1356 includes/class-frm-ab-lite-dashboard.php:361
+msgid "Status"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:276 includes/class-frm-ab-lite-dashboard.php:184 includes/class-frm-ab-lite-dashboard.php:358
+msgid "Charge ID"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:277 includes/class-frm-ab-lite-dashboard.php:362
+msgid "Actions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:282 includes/class-frm-ab-lite-dashboard.php:350
+msgid "No transactions found."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:340
+msgid "Sync"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:346
+msgid "Capture full auth amount"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:346 includes/class-frm-ab-lite-dashboard.php:392 includes/class-frm-ab-lite-form-action.php:175
+msgid "Capture"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:351
+msgid "Adjust amount and capture"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:351
+msgid "Adj+Cap"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:354 includes/class-frm-ab-lite-dashboard.php:400
+msgid "Void"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:360 includes/class-frm-ab-lite-dashboard.php:405
+msgid "Refund"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:426
+msgid "Refund amount (leave blank for full refund):"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:427
+msgid "Capture the full authorised amount?"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:428
+msgid "Enter new amount to adjust and capture (required):"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:429
+msgid "Void this transaction? This cannot be undone."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:430
+msgid "Refreshing\\xe2\\x80\\xa6"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:456
+msgid "Testing\\xe2\\x80\\xa6"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:457
+msgid "Connection failed."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:466
+msgid "Please enter your purchase code."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:467
+msgid "Verifying\\xe2\\x80\\xa6"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:468 includes/class-frm-ab-lite-settings.php:385
+msgid "Verify License"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:469 includes/class-frm-ab-lite-settings.php:370
+msgid "Verify"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:470
+msgid "Network error. Please check your connection and try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:471
+msgid "Verification failed. Please check your purchase code and try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:472
+msgid "Deactivating\\xe2\\x80\\xa6"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:473 includes/class-frm-ab-lite-settings.php:363
+msgid "Deactivate License"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:474
+msgid "Are you sure you want to deactivate this license?"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:999 includes/class-frm-ab-lite-admin-panel.php:1120 includes/class-frm-ab-lite-admin-panel.php:1145 includes/class-frm-ab-lite-admin-panel.php:1179 includes/class-frm-ab-lite-admin-panel.php:1204 includes/class-frm-ab-lite-admin-panel.php:1416
+msgid "Invalid nonce"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1002 includes/class-frm-ab-lite-admin-panel.php:1121 includes/class-frm-ab-lite-admin-panel.php:1146 includes/class-frm-ab-lite-admin-panel.php:1180 includes/class-frm-ab-lite-admin-panel.php:1205 includes/class-frm-ab-lite-admin-panel.php:1419 includes/class-frm-ab-lite-dashboard.php:425 includes/class-frm-ab-lite-dashboard.php:441 includes/class-frm-ab-lite-dashboard.php:457 includes/class-frm-ab-lite-dashboard.php:475 includes/class-frm-ab-lite-gateway.php:71
+msgid "Unauthorized"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1005
+msgid "No charge ID — sync requires a transaction to have been recorded first."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1036
+#, php-format
+msgid "Status synced: %s"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1045
+msgid "Invalid nonce. Please refresh and try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1048 includes/class-frm-ab-lite-settings.php:478
+msgid "Unauthorized."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1122
+msgid "No charge ID — cannot capture."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1133
+msgid "Transaction captured successfully."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1147
+msgid "No charge ID."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1148
+msgid "A valid amount is required for Adjust + Capture."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1167
+#, php-format
+msgid "Transaction adjusted to $%s and captured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1181
+msgid "No charge ID — cannot void."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1192
+msgid "Transaction voided."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1206
+msgid "No charge ID — cannot refund."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1218
+#, php-format
+msgid "Partial refund of $%s processed."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1219
+msgid "Full refund processed."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1251
+msgid "Accept.Blue Log Viewer"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1256
+msgid "Back to Transactions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1261
+msgid "Clear this log file?"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1261
+msgid "Clear Log"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1268 includes/class-frm-ab-lite-settings.php:137
+msgid "Log file:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1291
+msgid "Log is empty. Enable Debug Logging in Settings > Accept.Blue to start capturing logs."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1305
+msgid "API not configured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1336
+msgid "accept.blue — Recurring Schedules"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1338
+msgid "Refresh"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1342
+#, php-format
+msgid "%d recurring schedule(s) from accept.blue."
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1350 includes/class-frm-ab-lite-form-action.php:580
+msgid "Title"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1351
+msgid "Customer"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1353 includes/class-frm-ab-lite-dashboard.php:193 includes/class-frm-ab-lite-field.php:365 includes/class-frm-ab-lite-field.php:404 includes/class-frm-ab-lite-form-action.php:592 includes/class-frm-ab-lite-recurring.php:76
+msgid "Frequency"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1354 includes/class-frm-ab-lite-dashboard.php:196
+msgid "Next Run"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1355
+msgid "Remaining"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1357
+msgid "Created"
+msgstr ""
+
+#: includes/class-frm-ab-lite-admin-panel.php:1364
+msgid "No recurring schedules found."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:153
+msgid "accept.blue Payment"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:171
+msgid "One-time charge"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:185
+msgid "Ref #"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:186
+msgid "Type"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:190
+msgid "Schedule ID"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:199
+msgid "Installments"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:202
+msgid "Customer ID"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:205
+msgid "Payment Method"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:223
+msgid "View in Transactions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:227
+msgid "View Schedule"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:248
+msgid "Accept.Blue — Dashboard"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:253
+#, php-format
+msgid "⚠ API credentials not configured. <a href=\"%s\">Go to settings</a>."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:263
+msgid "All-Time Revenue"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:264
+msgid "Revenue This Week"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:265
+msgid "Revenue This Month"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:266
+msgid "Total Captured"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:267
+msgid "Auth-Only (Pending)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:268
+msgid "Voided"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:269
+msgid "Refunded"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:270
+msgid "Failed"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:286
+msgid "Pending Auth-Only Transactions (Awaiting Capture)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:291
+msgid "Recent Transactions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:297
+msgid "View All Transactions →"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:316
+msgid "Accept.Blue — Transactions"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:396
+msgid "Adjust & Capture"
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:435
+msgid "Captured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:451
+msgid "Voided."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:469
+msgid "Refunded."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:481
+msgid "Invalid amount."
+msgstr ""
+
+#: includes/class-frm-ab-lite-dashboard.php:494
+msgid "Adjusted and captured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:48
+msgid "Accept.Blue — Card Payment"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:217
+msgid "Accept.Blue: Hosted Tokenization Key not configured. Go to Formidable → Global Settings → Accept.Blue."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:237
+msgid "SANDBOX / TEST MODE — No real charges will be made"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:240
+msgid "3DS Test Cards:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:248
+msgid "Test cards:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:265
+msgid "Verifying your card…"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:268
+msgid "Your bank is being contacted. Please wait."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:278
+msgid "Processing payment…"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:279
+msgid "Please wait and do not close this page."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:310
+msgid "Confirm Payment"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:315 includes/class-frm-ab-lite-field.php:506
+msgid "Card details secured by accept.blue"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:331
+msgid "Total"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:351
+msgid "INSTALLMENT PLAN"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:361
+msgid "Payments"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:369
+msgid "Per payment"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:374 includes/class-frm-ab-lite-field.php:419
+msgid "Trial"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:375 includes/class-frm-ab-lite-field.php:420
+#, php-format
+msgid "%d days free"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:379
+msgid "Total charged"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:390
+msgid "RECURRING PAYMENT"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:408
+msgid "Duration"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:411
+#, php-format
+msgid "%d payment"
+msgid_plural "%d payments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-frm-ab-lite-field.php:413
+msgid "Until cancelled"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:429
+msgid "By clicking Pay Now, you authorise this charge and the recurring schedule shown above."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:431
+msgid "By clicking Pay Now, you authorise this charge to your card. This action cannot be undone."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:437
+msgid "🔒 Pay Now"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:441
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:500
+msgid "Payment form failed to load. Please refresh the page."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:501
+msgid "Payment form not ready. Please refresh the page."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:502
+msgid "Could not connect to payment processor. Please check your API key in Accept.Blue settings."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:503
+msgid "Card validation failed. Please check your card details and try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:504
+msgid "Payment form error. Please refresh and try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-field.php:505
+msgid "Payment script blocked. Please disable your ad blocker and refresh."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:22
+msgid "Accept.Blue Payment"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:160
+msgid "Payment Field"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:163
+msgid "— Select Accept.Blue card field —"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:183
+msgid "Capture payment immediately (debit the card)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:186
+msgid "When enabled (default): authorise AND capture — the card is charged immediately. When disabled: authorise only — the card is held but not charged. You must manually capture later in the accept.blue portal."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:193
+msgid "3-D Secure (3DS)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:202
+msgid "Enable 3-D Secure authentication"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:205
+msgid "Enables EMV 3DS2 browser-based authentication. Recommended for SCA compliance. Requires a Paay API key in Global Settings for full 3DS2 support."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:210
+msgid "Frictionless Mode"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:218
+msgid "Request frictionless authentication (no customer challenge)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:221
+msgid "When enabled, asks the issuer to authenticate silently using risk-based analysis — no OTP or redirect shown to the customer. The issuer may still force a challenge if it deems the transaction risky."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:228
+msgid "Show Surcharge"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:237
+msgid "Display surcharge amount below the card field"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:240
+msgid "Calls getSurcharge() from the accept.blue iFrame and shows the applicable surcharge to the customer. Only applicable if your merchant account has surcharging configured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:247
+msgid "Surcharge Label"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:253
+msgid "Surcharge"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:255
+msgid "Label shown next to the surcharge amount in the confirmation modal and below the card field."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:262
+msgid "Show Card Details"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:270
+msgid "Show card details (card number, brand, expiry) in the payment confirmation modal"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:273
+msgid "When checked, the confirmation modal will display the masked card number and expiry date retrieved from the accept.blue iFrame via getData(). Uncheck to show only the amount."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:280
+msgid "Charge Amount"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:282 includes/class-frm-ab-lite-form-action.php:495 includes/class-frm-ab-lite-form-action.php:526
+msgid "Fixed:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:283
+msgid "25.00"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:285 includes/class-frm-ab-lite-form-action.php:506 includes/class-frm-ab-lite-form-action.php:538
+msgid "From field:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:287 includes/class-frm-ab-lite-form-action.php:312 includes/class-frm-ab-lite-form-action.php:326 includes/class-frm-ab-lite-form-action.php:340 includes/class-frm-ab-lite-form-action.php:354 includes/class-frm-ab-lite-form-action.php:368 includes/class-frm-ab-lite-form-action.php:382 includes/class-frm-ab-lite-form-action.php:509 includes/class-frm-ab-lite-form-action.php:541
+msgid "— Select field —"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:297
+msgid "Currency"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:309
+msgid "Name on Card / Account"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:317
+msgid "Maps to the accept.blue \"name\" field."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:323
+msgid "Email"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:331
+msgid "Customer email sent to accept.blue with the charge."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:337
+msgid "Customer Identifier"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:345
+msgid "Something that identifies the customer, e.g. their name or company. Recommended: map to a \"Full Name\" or \"Company\" field."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:351
+msgid "Customer Number"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:359
+msgid "A custom identifier for this customer. Recommended: map to an \"Account Number\", \"Member ID\", or hidden auto-ID field."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:365
+msgid "AVS Street Address"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:373
+msgid "Billing street address for Address Verification (AVS). Recommended for fraud prevention."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:379
+msgid "AVS ZIP / Postal Code"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:387
+msgid "Billing ZIP/postal code for Address Verification (AVS). Strongly recommended for fraud prevention and best interchange rates."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:393
+msgid "iFrame Style"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:396
+msgid "Default (accept.blue)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:397
+msgid "Light"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:398
+msgid "Dark"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:399
+msgid "Custom CSS"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:404
+msgid "Enter CSS for the card iFrame container. Supported keys: card, input, label, number, expiry, cvv, zip, error."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:410
+msgid "card: background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 12px;"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:413
+msgid "Format: key: css-value; — one rule per line. Example:"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:420
+msgid "Billing Information"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:423
+msgid "First Name"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:424
+msgid "Last Name"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:425
+msgid "Street"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:426
+msgid "Street 2"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:427
+msgid "City"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:428
+msgid "State"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:429
+msgid "ZIP / Postal"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:430
+msgid "Country"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:431
+msgid "Phone"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:438
+msgid "— None —"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:449
+msgid "Line Items (Level 3)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:457
+msgid "Send Level 3 line item data with the charge"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:459
+msgid "Level 3 data (SKU, quantity, tax) qualifies for lower interchange rates on B2B/corporate cards."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:466
+msgid "SKU"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:471
+msgid "e.g. PROD-001 or [field_key]"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:472
+msgid "Product SKU / commodity code. Supports Formidable shortcodes."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:478 includes/class-frm-ab-lite-form-action.php:699
+msgid "Description"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:483
+msgid "e.g. Annual subscription or [product_name]"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:484
+msgid "Line item description. Supports Formidable shortcodes."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:490
+msgid "Unit Cost"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:500
+msgid "0.00"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:515
+msgid "Unit cost per item. If blank, calculated as amount / quantity."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:521
+msgid "Quantity"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:531
+msgid "1"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:547
+msgid "Number of units. Fixed value or mapped to a form field."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:553
+#, php-format
+msgid "Tax Rate (%)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:558
+msgid "e.g. 8.5"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:559
+#, php-format
+msgid "Tax rate as a percentage (e.g. 8.5 = 8.5%). Leave blank if not applicable."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:566
+msgid "Recurring Schedule"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:568 includes/class-frm-ab-lite-recurring.php:65
+msgid "Enable Recurring"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:575 includes/class-frm-ab-lite-recurring.php:71
+msgid "Create a recurring payment schedule in accept.blue"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:587
+msgid "e.g. Monthly Membership"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:588
+msgid "Label for this schedule in accept.blue."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:597 includes/class-frm-ab-lite-recurring.php:682
+msgid "Daily"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:598 includes/class-frm-ab-lite-recurring.php:683
+msgid "Weekly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:599
+msgid "Bi-Weekly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:600 includes/class-frm-ab-lite-recurring.php:684
+msgid "Monthly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:601
+msgid "Bi-Monthly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:602
+msgid "Quarterly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:603
+msgid "Bi-Annually"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:604
+msgid "Annually"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:614
+msgid "Schedule Type"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:620
+msgid "Subscription — charge until cancelled"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:623
+msgid "Installment — split total into equal payments"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:632
+msgid "Number of Installments"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:640
+msgid "Total amount will be split equally. E.g. $300 in 3 monthly payments = $100/payment."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:648 includes/class-frm-ab-lite-recurring.php:98
+msgid "Number of Payments"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:654 includes/class-frm-ab-lite-recurring.php:104
+msgid "0 = charge indefinitely until cancelled."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:658
+msgid "Trial Period"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:662
+msgid "No trial — first charge runs tomorrow"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:663
+msgid "Free trial (days)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:668
+msgid "Trial Days"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:680
+msgid "days before first charge"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:681
+msgid "Customer is not charged during the trial. First payment runs the day after the trial ends."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:687
+msgid "Save Card / Account"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:694
+msgid "Save payment method to accept.blue vault"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:704
+msgid "Payment for order #[id]"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:705
+msgid "Supports Formidable shortcodes like [id]."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:710
+msgid "API Credential Override (Optional)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:713
+msgid "Leave blank to use the credentials from Global Settings → Accept.Blue. Fill in only if this form should charge a different accept.blue merchant account."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:717 includes/class-frm-ab-lite-settings.php:154
+msgid "API Key"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:725
+msgid "Overrides global API key for this form only"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:729 includes/class-frm-ab-lite-settings.php:171
+msgid "PIN"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:737
+msgid "Overrides global PIN for this form only"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:741 includes/class-frm-ab-lite-settings.php:188
+msgid "Hosted Tokenization Key"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:749
+msgid "Overrides global Hosted Tokenization Key for this form only"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:786
+msgid "No payment token received. Please try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:789
+msgid "Payment amount must be greater than zero."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:879 includes/class-frm-ab-lite-form-action.php:1118
+msgid "Payment gateway not configured. Contact site admin."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:914
+msgid "Could not create vault customer. Please try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:928
+msgid "Could not vault payment method. Please try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:1104 includes/class-frm-ab-lite-form-action.php:1210
+msgid "Accept.Blue: Amount must be greater than zero."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:1139 includes/class-frm-ab-lite-form-action.php:1530 includes/class-frm-ab-lite-form-action.php:1569 includes/class-frm-ab-lite-form-action.php:1606 includes/class-frm-ab-lite-form-action.php:2181 includes/class-frm-ab-lite-form-action.php:2214 includes/class-frm-ab-lite-form-action.php:2271
+#, php-format
+msgid "Payment failed: %s"
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:1189
+msgid "Accept.Blue: No payment token received. Please try again."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:1232
+msgid "Accept.Blue: Gateway not configured. Contact site admin."
+msgstr ""
+
+#: includes/class-frm-ab-lite-form-action.php:1587
+#, php-format
+msgid "Payment %s (code: %s)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:52
+msgid "This transaction amount exceeds the allowed limit. Please contact support."
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:63
+msgid "Too many payment attempts. Please try again later."
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:72
+msgid "Too many payment attempts from this email. Please try again later."
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:83
+msgid "Payments from your country are not accepted."
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:102
+msgid "🛡 Fraud Shield"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:104
+msgid "Enable Fraud Shield"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:107
+msgid "Enable server-side fraud prevention rules"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:111
+msgid "Max Amount ($)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:116
+msgid "0 = unlimited"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:118
+msgid "Block (uncheck to log-only)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:122
+msgid "Max Transactions / IP / Hour"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:127
+msgid "Block an IP after this many transaction attempts per hour."
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:131
+msgid "Max Transactions / Email / Hour"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:139
+msgid "Blocked Countries (ISO 2-letter)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:144
+msgid "e.g. RU,KP,IR,CN (comma-separated)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-fraud.php:145
+msgid "Comma-separated ISO 3166-1 alpha-2 country codes to block."
+msgstr ""
+
+#: includes/class-frm-ab-lite-gateway.php:54
+msgid "Amount (blank = full)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-gateway.php:58
+msgid "Refund via Accept.Blue"
+msgstr ""
+
+#: includes/class-frm-ab-lite-gateway.php:79
+msgid "Missing charge ID"
+msgstr ""
+
+#: includes/class-frm-ab-lite-gateway.php:108
+msgid "Refund processed successfully."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:45
+msgid "Recurring"
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:88
+msgid "Every N intervals"
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:94
+msgid "E.g. 2 + Monthly = charge every 2 months."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:108
+msgid "Start Date"
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:113
+msgid "Leave blank to start today."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:388
+msgid "Invalid schedule."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:400
+msgid "You do not have permission to cancel this subscription."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:409
+msgid "Invalid or expired cancellation token. Please use the cancellation link from your confirmation email."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:428
+msgid "Subscription cancelled successfully."
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:645
+msgid "Cancel Subscription"
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:659
+msgid "Schedule"
+msgstr ""
+
+#: includes/class-frm-ab-lite-recurring.php:685
+msgid "Yearly"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:69
+msgid "Accept.Blue Payment Gateway"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:75
+#, php-format
+msgid "Enter your <a href=\"%s\" target=\"_blank\" rel=\"noopener\">accept.blue</a> credentials. Find your API key and Hosted Tokenization key in your accept.blue merchant portal."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:85
+msgid "Test / Sandbox Mode"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:94
+msgid "Enable sandbox/test mode (no real charges)"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:98
+msgid "Test Mode ON"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:100
+#, php-format
+msgid "Requests go to <code>%s</code>. Use a <strong>Sandbox API key</strong> from your accept.blue portal."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:104
+msgid "Live Mode ON"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:106
+#, php-format
+msgid "Requests go to <code>%s</code>. Use a <strong>Production API key</strong>."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:117
+msgid "Debug Logging"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:126
+msgid "Enable debug logging for Accept.Blue API requests and responses"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:134
+msgid "Debug logging is ON."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:135
+msgid "All API requests and responses are written to the Accept.Blue log file. Disable when not actively debugging."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:138
+msgid "Not yet created"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:140
+msgid "View Log"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:143
+msgid "When enabled, all Accept.Blue API requests and responses are written to a dedicated log file (separate from debug.log)."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:164
+msgid "Used as the HTTP Basic Auth username when calling the accept.blue API."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:181
+msgid "HTTP Basic Auth password. Leave blank if your key does not use a PIN."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:197
+msgid "Public key for the accept.blue Hosted Tokenization iFrame. Found in your accept.blue portal → Hosted Tokenization."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:206
+msgid "Warning: Sandbox mode is ON but this key does not look like a sandbox Hosted Tokenization key (sandbox keys start with \"pk_\"). Please check your accept.blue portal → Hosted Tokenization and use the sandbox key."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:210
+msgid "Warning: Live mode is ON but this looks like a sandbox Hosted Tokenization key (starts with \"pk_\"). Please use your live key for production."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:214
+msgid "Required: Enter your Hosted Tokenization key or the card payment field will show a 401 error."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:222
+msgid "3DS (Paay) API Key"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:232
+msgid "API key for Paay 3-D Secure authentication. Leave blank to use accept.blue native 3DS handling only."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:234
+msgid "Not configured — 3DS will rely on accept.blue native challenge flow."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:236
+msgid "Paay 3DS active."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:243
+msgid "Connection Test"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:247
+msgid "Test Connection"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:251
+msgid "Enter your API key and save to test the connection."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:258
+msgid "Webhook URL"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:283
+msgid "Copy URL"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:287
+msgid "Paste this URL into the Webhook URL field in your accept.blue portal (Control Panel → Webhooks). The token in the URL authenticates incoming webhook requests."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:293
+msgid "Generate a new token? You will need to update the webhook URL in your accept.blue portal."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:294
+msgid "Regenerate Token"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:322
+msgid "Plugin License"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:323
+msgid "Verify your Envato purchase code to unlock plugin support and future updates."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:327
+msgid "License Status"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:329
+msgid "Active"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:331
+msgid "Invalid"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:333
+msgid "Not Verified"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:340
+msgid "Buyer"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:343
+msgid "Item"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:346
+msgid "License Type"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:349
+msgid "Purchase Date"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:352
+msgid "Support Until"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:355
+msgid "Purchase Code"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:358
+msgid "Verified On"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:362
+msgid "Re-verify"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:367
+msgid "Enter a purchase code to re-verify."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:369 includes/class-frm-ab-lite-settings.php:384
+msgid "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:379
+#, php-format
+msgid "Find your purchase code in your <a href=\"%s\" target=\"_blank\">Envato Downloads</a> or in the purchase confirmation email."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:484
+msgid "API key is not configured."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:510
+msgid "Network error: "
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:518
+msgid "Sandbox"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:518
+msgid "Production"
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:522
+#, php-format
+msgid "Connected to accept.blue %1$s successfully (HTTP %2$d)."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:532
+msgid " Tip: Test Mode is ON — make sure you are using a Sandbox API key."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:533
+msgid " Tip: Test Mode is OFF — make sure you are using a Production API key."
+msgstr ""
+
+#: includes/class-frm-ab-lite-settings.php:535
+#, php-format
+msgid "Authentication failed (HTTP %d): %s"
+msgstr ""

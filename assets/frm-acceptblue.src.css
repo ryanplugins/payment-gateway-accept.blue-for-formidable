@@ -1,0 +1,268 @@
+/* =========================================================
+   Formidable x Accept.Blue -- Front-end Styles
+   ========================================================= */
+
+.frm_ab_lite_payment_wrap {
+	margin: 8px 0;
+}
+
+.frm_ab_lite_iframe_container {
+	min-height: 200px;
+	border: 1px solid #d0d0d0;
+	border-radius: 6px;
+	padding: 12px;
+	background: #fff;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.frm_ab_lite_iframe_container iframe {
+	width: 100% !important;
+	border: none !important;
+}
+
+/* ---- Error message ----------------------------------------- */
+/* High-specificity selectors to beat Formidable's .frm_error stylesheet overrides */
+div.frm_ab_lite_error_msg,
+.frm_ab_lite_payment_wrap .frm_ab_lite_error_msg,
+.frm_ab_lite_card_wrap .frm_ab_lite_error_msg {
+	display: none;
+	flex-wrap: wrap !important;
+	align-items: center !important;
+	gap: 6px !important;
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	background: #fff5f5 !important;
+	color: #991b1b !important;
+	border: 1px solid #fca5a5 !important;
+	border-left: 5px solid #dc2626 !important;
+	padding: 10px 14px !important;
+	border-radius: 6px !important;
+	margin: 0 0 12px 0 !important;
+	line-height: 1.45 !important;
+	box-sizing: border-box !important;
+}
+
+div.frm_ab_lite_error_msg.frm_error,
+.frm_ab_lite_payment_wrap .frm_ab_lite_error_msg.frm_error {
+	font-size: 13px !important;
+	font-weight: 600 !important;
+	color: #991b1b !important;
+	padding: 10px 14px !important;
+	margin: 0 0 12px 0 !important;
+}
+
+div.frm_ab_lite_error_msg code,
+.frm_ab_lite_payment_wrap .frm_ab_lite_error_msg code {
+	font-size: 12px !important;
+	font-family: monospace !important;
+	background: rgba(0,0,0,.08) !important;
+	padding: 2px 6px !important;
+	border-radius: 3px !important;
+	letter-spacing: 0.03em !important;
+}
+
+/* ---- Sandbox / Test mode badge ----------------------------- */
+.frm_ab_lite_test_badge {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	font-weight: 600;
+	background: #fffbeb;
+	color: #92400e;
+	border: 1px solid #fbbf24;
+	border-left: 5px solid #f59e0b;
+	padding: 10px 14px;
+	border-radius: 6px;
+	margin-bottom: 12px;
+	line-height: 1.45;
+}
+
+.frm_ab_lite_test_badge code {
+	font-size: 12px;
+	font-family: monospace;
+	background: rgba(0,0,0,.08);
+	padding: 2px 6px;
+	border-radius: 3px;
+	letter-spacing: 0.03em;
+}
+
+/* ---- 3DS loading spinner ----------------------------------- */
+@keyframes frm_ab_lite_spin {
+	to { transform: rotate(360deg); }
+}
+.frm_ab_lite_spinner {
+	width: 44px;
+	height: 44px;
+	border: 4px solid #e5e7eb;
+	border-top-color: #1a4a7a;
+	border-radius: 50%;
+	animation: frm_ab_lite_spin 0.75s linear infinite;
+	margin: 0 auto;
+}
+.frm_ab_lite_spinner--lg {
+	width: 56px;
+	height: 56px;
+	border-width: 5px;
+}
+
+/* ---- Submit processing overlay ----------------------------- */
+.frm-ab-lite-submit-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 999999;
+	background: rgba(0, 0, 0, 0.6);
+	align-items: center;
+	justify-content: center;
+	/* display:none by default; JS sets display:flex to show */
+}
+.frm-ab-lite-submit-overlay__card {
+	background: #ffffff;
+	border-radius: 16px;
+	padding: 40px 48px;
+	text-align: center;
+	box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+	min-width: 260px;
+	max-width: 340px;
+	animation: frm_ab_lite_overlay_in 0.2s ease;
+}
+@keyframes frm_ab_lite_overlay_in {
+	from { opacity: 0; transform: scale(0.94); }
+	to   { opacity: 1; transform: scale(1); }
+}
+.frm-ab-lite-submit-overlay__title {
+	margin: 18px 0 6px;
+	font-weight: 700;
+	font-size: 1em;
+	color: #1a3a5c;
+	letter-spacing: 0.01em;
+}
+.frm-ab-lite-submit-overlay__sub {
+	margin: 0;
+	font-size: 0.82em;
+	color: #6b7280;
+	line-height: 1.5;
+}
+
+/* ---- Surcharge inline display ------------------------------ */
+.frm_ab_lite_surcharge_info {
+	display: none;
+	margin-top: 10px;
+	padding: 9px 13px;
+	background: #fffbeb;
+	border: 1px solid #fbbf24;
+	border-left: 4px solid #f59e0b;
+	border-radius: 5px;
+	font-size: 0.95em;
+	font-weight: 500;
+	color: #78350f;
+}
+
+/* ---- Payment error notice (shown above form on redirect after failure) --- */
+.frm_ab_lite_payment_error_notice {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	background: #fff5f5;
+	color: #7b1d1d;
+	border: 1px solid #fca5a5;
+	border-left: 5px solid #dc2626;
+	padding: 11px 16px;
+	margin: 0 0 16px;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.5;
+}
+
+.frm_ab_lite_payment_error_notice .frm_ab_lite_notice_icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	width: 22px;
+	height: 22px;
+	background: #dc2626;
+	color: #fff;
+	border-radius: 50%;
+	font-size: 13px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+/* --- Action picker circle: set our blue color ----------------------- */
+
+/* --- Action picker circle: white icon mark via mask ---------------- */
+
+/* --- Active action row circle (the smaller inline circle) ----------- */
+
+/* --- Settings nav icon ---------------------------------------------- */
+/* Formidable renders settings nav items as <span class="{icon}">     */
+.frm-ab-lite-settings-icon {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M200 18A182 182 0 1 1 355 305L382 382 305 355A182 182 0 0 1 200 18Z'/%3E%3Crect x='82' y='120' width='58' height='58' rx='9'/%3E%3Crect x='150' y='120' width='58' height='58' rx='9'/%3E%3Crect x='82' y='190' width='58' height='58' rx='9'/%3E%3Crect x='150' y='190' width='58' height='58' rx='9'/%3E%3Crect x='225' y='120' width='120' height='28' rx='8'/%3E%3Crect x='225' y='162' width='90' height='28' rx='8'/%3E%3Crect x='225' y='204' width='120' height='28' rx='8'/%3E%3Crect x='225' y='246' width='90' height='28' rx='8'/%3E%3C/svg%3E");
+	        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cpath d='M200 18A182 182 0 1 1 355 305L382 382 305 355A182 182 0 0 1 200 18Z'/%3E%3Crect x='82' y='120' width='58' height='58' rx='9'/%3E%3Crect x='150' y='120' width='58' height='58' rx='9'/%3E%3Crect x='82' y='190' width='58' height='58' rx='9'/%3E%3Crect x='150' y='190' width='58' height='58' rx='9'/%3E%3Crect x='225' y='120' width='120' height='28' rx='8'/%3E%3Crect x='225' y='162' width='90' height='28' rx='8'/%3E%3Crect x='225' y='204' width='120' height='28' rx='8'/%3E%3Crect x='225' y='246' width='90' height='28' rx='8'/%3E%3C/svg%3E");
+	-webkit-mask-size: contain;
+	        mask-size: contain;
+	-webkit-mask-repeat: no-repeat;
+	        mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	        mask-position: center;
+	background-color: currentColor;
+	vertical-align: middle;
+}
+
+/* Blue background on picker circle */
+
+/* Hide any empty <i> Formidable puts inside */
+
+/* White credit card via ::before on the inner circle */
+
+/* Row circle: blue background */
+
+/* Row circle: white credit card via ::before */
+
+
+/* Hide the empty <i> Formidable injects */
+
+/* =========================================================
+   Accept.Blue — Action Icon
+   Two contexts:
+   1. Picker list  : li[data-actiontype="acceptblue"] .frm-outer-circle
+   2. Widget title : .frm_acceptblue_action .frm-outer-circle > span (.frm-inner-circle)
+   ========================================================= */
+
+/* Picker circle (top action list) */
+li[data-actiontype="acceptblue"] .frm-outer-circle {
+	background-color: #279EDA !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: 65% auto !important;
+}
+li[data-actiontype="acceptblue"] .frm-outer-circle i {
+	display: none !important;
+}
+li[data-actiontype="acceptblue"] .frm-inner-circle {
+	background-color: #279EDA !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: 65% auto !important;
+}
+li[data-actiontype="acceptblue"] .frm-inner-circle i {
+	display: none !important;
+}
+
+/* Widget title circle (active action row in bottom list) */
+.frm_acceptblue_action .frm-outer-circle > span {
+	background-color: #279EDA !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: 65% auto !important;
+}
+.frm_acceptblue_action .frm-outer-circle > span i {
+	display: none !important;
+}
+
