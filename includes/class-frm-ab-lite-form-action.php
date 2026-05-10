@@ -889,7 +889,7 @@ function frm_ab_lite_precheck_payment_handler() {
 	$form_id      = absint( $_POST['form_id']  ?? 0 );
 	$action_id    = absint( $_POST['action_id'] ?? 0 );
 	$currency     = sanitize_text_field( wp_unslash( $_POST['ab_currency'] ?? 'USD' ) );
-	$capture      = ! empty( $_POST['ab_capture'] );
+	$capture      = ! empty( $_POST['ab_capture'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Missing
 
 	$amount = floatval( preg_replace( '/[^0-9.]/', '', $amount_raw ) );
 
@@ -1488,10 +1488,10 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		// Quantity: fixed value or mapped field
 		$qty = 1;
 		$li_qty_type = isset( $s['li_qty_type'] ) ? $s['li_qty_type'] : 'fixed';
-		if ( $li_qty_type === 'field' ) {
+		if ( 'field' === $li_qty_type ) {
 			$qty_field_id = isset( $s['li_quantity'] ) ? $s['li_quantity'] : '';
 			$qty_val      = $qty_field_id ? $meta( $qty_field_id ) : '';
-			if ( $qty_val !== '' && floatval( $qty_val ) > 0 ) {
+			if ( '' !== $qty_val && floatval( $qty_val ) > 0 ) {
 				$qty = floatval( $qty_val );
 			}
 		} else {
@@ -1502,11 +1502,11 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 		// Unit cost: fixed, from field, or calculated as amount / quantity
 		$li_cost_type = isset( $s['li_cost_type'] ) ? $s['li_cost_type'] : 'fixed';
-		if ( $li_cost_type === 'field' ) {
+		if ( 'field' === $li_cost_type ) {
 			$cost_field_id = isset( $s['li_cost_field'] ) ? $s['li_cost_field'] : '';
 			$cost_val      = $cost_field_id ? floatval( preg_replace( '/[^0-9.]/', '', $meta( $cost_field_id ) ) ) : 0;
 			$li['unit_cost'] = $cost_val > 0 ? round( $cost_val, 4 ) : round( $amount / $qty, 4 );
-		} elseif ( $li_cost_type === 'fixed' && ! empty( $s['li_cost_fixed'] ) ) {
+		} elseif ( 'fixed' === $li_cost_type && ! empty( $s['li_cost_fixed'] ) ) {
 			$li['unit_cost'] = round( floatval( $s['li_cost_fixed'] ), 4 );
 		} else {
 			// Auto-calculate: amount / quantity
@@ -1515,7 +1515,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 		// Tax rate
 		$li_tax = isset( $s['li_tax_rate'] ) ? trim( $s['li_tax_rate'] ) : '';
-		if ( $li_tax !== '' && floatval( $li_tax ) > 0 ) {
+		if ( '' !== $li_tax && floatval( $li_tax ) > 0 ) {
 			$li['tax_rate']   = floatval( $li_tax );
 			$li['tax_amount'] = round( $li['unit_cost'] * $qty * floatval( $li_tax ) / 100, 2 );
 		}
@@ -1782,7 +1782,7 @@ function frm_ab_lite_setup_recurring_then_charge( $api, $nonce, $amount, $settin
 			number_format( $amount, 2 ),
 			$installment_count,
 			number_format( $installment_amount, 2 ),
-			$remainder != 0 ? sprintf( ' (last: $%s)', number_format( $installment_amount + $remainder, 2 ) ) : '',
+			0 !== (int) $remainder ? sprintf( ' (last: $%s)', number_format( $installment_amount + $remainder, 2 ) ) : '',
 			$settings['recurring_frequency'] ?? 'monthly',
 			$trial_info
 		) );
@@ -1866,7 +1866,7 @@ function frm_ab_lite_setup_recurring_then_charge( $api, $nonce, $amount, $settin
 	// a date >= today.
 	// accept.blue requires next_run_date to be AFTER today (in EST).
 	// Minimum is always tomorrow. "No trial" = tomorrow. Trial = tomorrow + N days.
-	if ( $trial_type === 'days' && $trial_days > 0 ) {
+	if ( 'days' === $trial_type && $trial_days > 0 ) {
 		// +1 for tomorrow baseline, then add trial days on top
 		$next_run_date = gmdate( 'Y-m-d', strtotime( '+' . ( $trial_days + 1 ) . ' days' ) );
 		Frm_AB_Lite_Logger::info( sprintf(
@@ -2048,7 +2048,7 @@ function frm_ab_lite_map_status( array $result ): string {
 	$detail    = strtolower( $sd_top !== '' ? $sd_top : $sd_nested );
 
 	// ── Priority 1: status_details is the most reliable source ───────────
-	if ( $detail !== '' ) {
+	if ( '' !== $detail ) {
 		switch ( $detail ) {
 			case 'captured':
 			case 'settled':
@@ -2078,13 +2078,13 @@ function frm_ab_lite_map_status( array $result ): string {
 	}
 
 	// ── Priority 2: POST top-level status (charge creation response) ─────
-	if ( $top !== '' && $top !== 'unknown' ) {
+	if ( '' !== $top && 'unknown' !== $top ) {
 		// Explicit failures
 		if ( in_array( $top, [ 'declined', 'error', 'failed' ], true )
 			|| $status_code === 'D' || $status_code === 'E' ) {
 			return 'failed';
 		}
-		if ( $top === 'voided' ) return 'voided';
+		if ( 'voided' === $top ) return 'voided';
 
 		// Approved — distinguish auth vs captured by capture flag
 		if ( in_array( $top, [ 'approved', 'partially approved', 'submitted' ], true )
@@ -2096,10 +2096,10 @@ function frm_ab_lite_map_status( array $result ): string {
 		}
 
 		// Already-mapped internal status values (from stored transient fallback)
-		if ( $top === 'auth' )     return 'auth';
-		if ( $top === 'complete' ) return 'complete';
-		if ( $top === 'refunded' ) return 'refunded';
-		if ( $top === 'voided' )   return 'voided';
+		if ( 'auth' === $top )     return 'auth';
+		if ( 'complete' === $top ) return 'complete';
+		if ( 'refunded' === $top ) return 'refunded';
+		if ( 'voided' === $top )   return 'voided';
 	}
 
 	// ── Fallback ─────────────────────────────────────────────────────────
@@ -2122,7 +2122,7 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 
 	// For auth-only transactions accept.blue returns auth_amount which includes any surcharge.
 	// Use it as the authorised amount so the stored amount reflects what was actually reserved.
-	if ( $frm_status === 'auth' && ! empty( $result['auth_amount'] ) ) {
+	if ( 'auth' === $frm_status && ! empty( $result['auth_amount'] ) ) {
 		$amount = floatval( $result['auth_amount'] );
 	}
 
@@ -2169,10 +2169,10 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 		}
 	}
 
-	if ( $frm_status === 'complete' ) {
+	if ( 'complete' === $frm_status ) {
 		$data['id'] = $payment_id;
 		do_action( 'frm_payment_status_complete', array( 'payment' => (object) $data, 'entry' => $entry ) );
-	} elseif ( $frm_status === 'auth' ) {
+	} elseif ( 'auth' === $frm_status ) {
 		// Auth-only: fire a dedicated hook so developers can act on it,
 		// but do NOT fire frm_payment_status_complete (no money captured yet).
 		$data['id'] = $payment_id;
@@ -2248,7 +2248,7 @@ add_filter( 'frm_before_trigger_action', function( $action, $entry, $form, $even
 	if ( empty( $frm_ab_lite_payment_error ) ) return $action;
 	// Block everything except our own payment action type
 	$action_type = isset( $action->post_excerpt ) ? $action->post_excerpt : '';
-	if ( $action_type !== 'acceptblue' ) {
+	if ( 'acceptblue' !== $action_type ) {
 		Frm_AB_Lite_Logger::info( '[Accept.Blue] Blocked action type "' . $action_type . '" — payment failed.' );
 		return false; // returning false skips this action
 	}
@@ -2344,7 +2344,7 @@ function frm_ab_lite_maybe_override_ajax_response() {
  */
 add_filter( 'frm_validate_entry', function( $errors, $values ) {
 	$msg = '';
-	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) {
+	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Recommended
 		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) );
 	}
 	if ( ! $msg ) {
@@ -2366,7 +2366,7 @@ add_filter( 'frm_validate_entry', function( $errors, $values ) {
  */
 add_action( 'frm_display_form_action', function( $atts ) {
 	$msg = '';
-	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) {
+	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Recommended
 		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) );
 	}
 	if ( ! $msg ) {

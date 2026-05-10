@@ -22,18 +22,22 @@ class Frm_AB_Lite_Dashboard {
 	// ── Pro stubs — return friendly error for all action AJAX calls ───────────
 
 	public static function ajax_capture(): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub, returns immediately.
 		wp_send_json_error( __( 'Capture is available in the Pro version.', 'frm-acceptblue-lite' ) );
 	}
 
 	public static function ajax_void(): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub, returns immediately.
 		wp_send_json_error( __( 'Void is available in the Pro version.', 'frm-acceptblue-lite' ) );
 	}
 
 	public static function ajax_refund(): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub, returns immediately.
 		wp_send_json_error( __( 'Refunds are available in the Pro version.', 'frm-acceptblue-lite' ) );
 	}
 
 	public static function ajax_adjust_capture(): void {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub, returns immediately.
 		wp_send_json_error( __( 'Adjust & Capture is available in the Pro version.', 'frm-acceptblue-lite' ) );
 	}
 

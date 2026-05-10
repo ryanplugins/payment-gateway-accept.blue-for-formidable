@@ -66,6 +66,7 @@ class Frm_AB_Lite_Gateway {
 	// -------------------------------------------------------------------------
 
 	public static function ajax_refund() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub.
 		wp_send_json_error( 'Refunds are available in the Pro version.' );
 	}
 

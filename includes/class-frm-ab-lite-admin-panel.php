@@ -113,7 +113,7 @@ class Frm_AB_Lite_Admin_Panel {
 </style>
 		<div class="wrap frm-ab-lite-admin-panel">
 			<h1 style="display:inline-flex;align-items:center;gap:10px;">
-				<img src="<?php echo $icon; ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
+				<img src="<?php echo esc_url( $icon ); ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
 				<?php esc_html_e( 'Accept.Blue Transactions', 'frm-acceptblue-lite' ); ?>
 			</h1>
 			<hr class="wp-header-end">
@@ -149,13 +149,13 @@ class Frm_AB_Lite_Admin_Panel {
 						<tbody>
 						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 						<tr>
-							<td><?php echo $i; ?></td>
-							<td>2026-05-0<?php echo $i; ?></td>
+							<td><?php echo esc_html( $i ); ?></td>
+							<td>2026-05-0<?php echo esc_html( $i ); ?></td>
 							<td>#<?php echo 1000 + $i; ?></td>
 							<td>Payment Form</td>
-							<td>$<?php echo $i * 10; ?>.00</td>
+							<td>$<?php echo esc_html( $i * 10 ); ?>.00</td>
 							<td><span style="background:#dcfce7;color:#166534;border-radius:99px;padding:2px 10px;font-size:12px;">complete</span></td>
-							<td>ch_xxxxx<?php echo $i; ?></td>
+							<td>ch_xxxxx<?php echo esc_html( $i ); ?></td>
 							<td><button class="button button-small">Refund</button></td>
 						</tr>
 						<?php endfor; ?>
@@ -865,7 +865,7 @@ private static function admin_css() {
 </style>
 		<div class="wrap frm-ab-lite-schedules-page">
 			<h1>
-				<img src="<?php echo $icon; ?>" alt="" style="width:28px;height:28px;border-radius:5px;vertical-align:middle;margin-right:6px;">
+				<img src="<?php echo esc_url( $icon ); ?>" alt="" style="width:28px;height:28px;border-radius:5px;vertical-align:middle;margin-right:6px;">
 				<?php esc_html_e( 'accept.blue — Recurring Schedules', 'frm-acceptblue-lite' ); ?>
 			</h1>
 			<hr class="wp-header-end">
@@ -950,7 +950,7 @@ private static function admin_css() {
 
 	public static function maybe_show_pro_notice() {
 		// Never show on any Formidable page — avoids overlap with form editor UI
-		$page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : '';
+		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		if ( str_starts_with( $page, 'formidable' ) || str_starts_with( $page, 'frm-' ) || str_starts_with( $page, 'frm_' ) ) {
 			return;
 		}

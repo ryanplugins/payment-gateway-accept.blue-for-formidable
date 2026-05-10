@@ -66,71 +66,71 @@ class Frm_AB_Lite_Settings {
 /* ── Pro-blur overlay system ────────────────────────────── */
 .frm-ab-lite-pro-section tr td,
 .frm-ab-lite-pro-section tr th {
-    filter: blur(3.5px);
-    opacity: 0.55;
-    pointer-events: none;
-    user-select: none;
+	filter: blur(3.5px);
+	opacity: 0.55;
+	pointer-events: none;
+	user-select: none;
 }
 .frm-ab-lite-pro-badge-row td {
-    text-align: center !important;
-    padding: 10px 12px !important;
-    background: transparent !important;
-    border: none !important;
-    vertical-align: middle !important;
+	text-align: center !important;
+	padding: 10px 12px !important;
+	background: transparent !important;
+	border: none !important;
+	vertical-align: middle !important;
 }
 .frm-ab-lite-pro-badge-row + tr td,
 .frm-ab-lite-pro-badge-row + tr th { border-top: none !important; }
 .frm-ab-lite-inline-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
-    color:#fff;
-    padding: 6px 18px 6px 14px;
-    border-radius: 22px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .4px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.22);
-    text-shadow: 0 1px 2px rgba(0,0,0,.3);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
+	color:#fff;
+	padding: 6px 18px 6px 14px;
+	border-radius: 22px;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .4px;
+	box-shadow: 0 2px 10px rgba(0,0,0,.22);
+	text-shadow: 0 1px 2px rgba(0,0,0,.3);
 }
 .frm-ab-lite-inline-badge::before { content:"\1F512"; font-style:normal; }
 
 /* full-panel pro overlay */
 .frm-ab-lite-pro-panel { position: relative; }
 .frm-ab-lite-pro-panel-blur {
-    filter: blur(4px);
-    opacity: 0.55;
-    pointer-events: none;
-    user-select: none;
+	filter: blur(4px);
+	opacity: 0.55;
+	pointer-events: none;
+	user-select: none;
 }
 .frm-ab-lite-pro-panel-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 99;
-    background: rgba(255,255,255,.35);
-    border-radius: 4px;
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 99;
+	background: rgba(255,255,255,.35);
+	border-radius: 4px;
 }
 .frm-ab-lite-pro-panel-badge {
-    background: linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
-    color: #fff;
-    padding: 14px 34px;
-    border-radius: 32px;
-    font-weight: 700;
-    font-size: 15px;
-    box-shadow: 0 6px 24px rgba(0,0,0,.28);
-    text-align: center;
-    line-height: 1.4;
+	background: linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
+	color: #fff;
+	padding: 14px 34px;
+	border-radius: 32px;
+	font-weight: 700;
+	font-size: 15px;
+	box-shadow: 0 6px 24px rgba(0,0,0,.28);
+	text-align: center;
+	line-height: 1.4;
 }
 .frm-ab-lite-pro-panel-badge small {
-    display: block;
-    font-size: 11px;
-    font-weight: 400;
-    opacity: .8;
-    margin-top: 3px;
+	display: block;
+	font-size: 11px;
+	font-weight: 400;
+	opacity: .8;
+	margin-top: 3px;
 }
 </style>
 		<div class="frm_ab_lite_settings_wrap">
