@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     Formidable Accept.Blue Lite
+ * Plugin Name:     Payment gateway: accept.blue for Formidable
  * Plugin URI:      https://ryanplugins.net
  * Description:     Lite version — integrates accept.blue Hosted Tokenization payments and debug logging with Formidable Forms. Upgrade to Pro for recurring subscriptions, refunds, admin panel, webhooks, fraud shield, and more.
  * Version:         1.0.0

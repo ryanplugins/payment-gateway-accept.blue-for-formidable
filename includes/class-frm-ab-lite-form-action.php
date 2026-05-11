@@ -178,7 +178,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		">
 			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
 			<span>
-				<strong style="font-size:14px;">Formidable Accept.Blue Lite</strong><br>
+				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
 				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
 				<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
@@ -194,7 +194,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 			<th><label><?php esc_html_e( 'Payment Field', 'frm-acceptblue-lite' ); ?></label></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'payment_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select Accept.Blue card field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select accept.blue card field —', 'frm-acceptblue-lite' ); ?></option>
 					<?php foreach ( $fields as $f ) :
 						if ( ! in_array( $f->type, $ab_field_types, true ) ) continue;
 						?>
@@ -1212,7 +1212,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 				: floatval( preg_replace( '/[^0-9.]/', '', $meta( $s['amount_field'] ?? '' ) ) );
 			if ( $amount <= 0 ) {
 				Frm_AB_Lite_Logger::error( '[Recurring] Precheck vault: amount <= 0 — aborting.' );
-				frm_ab_lite_add_error( __( 'Accept.Blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
+				frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
 				return;
 			}
 
@@ -1297,7 +1297,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 	if ( empty( $nonce ) ) {
 		Frm_AB_Lite_Logger::error( 'Charge FAILED: No nonce — aborting payment.' );
-		frm_ab_lite_add_error( __( 'Accept.Blue: No payment token received. Please try again.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: No payment token received. Please try again.', 'frm-acceptblue-lite' ) );
 		return;
 	}
 
@@ -1318,7 +1318,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 	if ( $amount <= 0 ) {
 		Frm_AB_Lite_Logger::error( 'Charge FAILED: Amount <= 0 — aborting.' );
-		frm_ab_lite_add_error( __( 'Accept.Blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
 		return;
 	}
 
@@ -1340,7 +1340,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		Frm_AB_Lite_Logger::info( '[Accept.Blue] ℹ️ process_payment: using GLOBAL API credentials.' );
 	}
 	if ( ! $api ) {
-		frm_ab_lite_add_error( __( 'Accept.Blue: Gateway not configured. Contact site admin.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: Gateway not configured. Contact site admin.', 'frm-acceptblue-lite' ) );
 		return;
 	}
 

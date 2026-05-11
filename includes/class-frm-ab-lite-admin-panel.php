@@ -114,7 +114,7 @@ class Frm_AB_Lite_Admin_Panel {
 		<div class="wrap frm-ab-lite-admin-panel">
 			<h1 style="display:inline-flex;align-items:center;gap:10px;">
 				<img src="<?php echo esc_url( $icon ); ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
-				<?php esc_html_e( 'Accept.Blue Transactions', 'frm-acceptblue-lite' ); ?>
+				<?php esc_html_e( 'accept.blue — Transactions', 'frm-acceptblue-lite' ); ?>
 			</h1>
 			<hr class="wp-header-end">
 
@@ -963,7 +963,7 @@ private static function admin_css() {
 		<div class="notice frm-ab-lite-admin-notice" style="display:flex;align-items:center;gap:16px;padding:14px 16px;border-left:4px solid #1d2327;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative;">
 			<span style="font-size:26px;flex-shrink:0;">&#128274;</span>
 			<div style="flex:1;min-width:0;">
-				<strong style="font-size:13.5px;">Formidable Accept.Blue Lite</strong>
+				<strong style="font-size:13.5px;">Payment gateway: accept.blue for Formidable</strong>
 				<p style="margin:4px 0 0;font-size:13px;color:#3c434a;">
 					You&rsquo;re running the Lite version. Unlock <strong>recurring billing, refunds, webhooks, fraud shield, and an admin transactions panel</strong> by upgrading to Pro.
 					<a href="<?php echo esc_url( $pro_url ); ?>" target="_blank" rel="noopener" style="font-weight:700;color:#0073aa;margin-left:6px;">&#8599; Upgrade to Pro &rarr;</a>

@@ -1,4 +1,4 @@
-=== Formidable Accept.Blue Lite ===
+=== Payment gateway: accept.blue for Formidable ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Accept credit card payments through accept.blue directly inside your Formidable 
 
 == Description ==
 
-**Formidable Accept.Blue Lite** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
+**Payment gateway: accept.blue for Formidable** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
 
 This is the **free Lite version**. Pro features are visible in the admin UI but locked behind an upgrade prompt.
 
@@ -27,7 +27,7 @@ This is the **free Lite version**. Pro features are visible in the admin UI but 
 
 = Pro Version Features =
 
-Upgrade to **Formidable Accept.Blue Pro** to unlock:
+Upgrade to **Payment gateway: accept.blue for Formidable Pro** to unlock:
 
 * Recurring subscriptions — daily, weekly, bi-weekly, monthly, bi-monthly, quarterly, bi-annually, and annually
 * Installment plans — split a total into a fixed number of automatic charges
@@ -85,7 +85,7 @@ Lite handles one-time credit card payments and debug logging. Pro adds recurring
 
 = Where do I upgrade to Pro? =
 
-Visit https://ryanplugins.net for Pro version details and pricing.
+Visit https://www.patreon.com/posts/formidable-blue-157799373?source=lite for Pro version details and pricing.
 
 = What statuses does the plugin use? =
 

@@ -150,7 +150,7 @@ class Frm_AB_Lite_Settings {
 		">
 			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
 			<span>
-				<strong style="font-size:14px;">Formidable Accept.Blue Lite</strong><br>
+				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
 				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
 				<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
@@ -161,7 +161,7 @@ class Frm_AB_Lite_Settings {
 			<h3 style="display:flex;align-items:center;gap:10px;">
 				<img src="<?php echo esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ); ?>"
 					 style="width:28px;height:28px;border-radius:5px;flex-shrink:0;" alt="">
-				<?php esc_html_e( 'Accept.Blue Payment Gateway', 'frm-acceptblue-lite' ); ?>
+				<?php esc_html_e( 'accept.blue Payment Gateway', 'frm-acceptblue-lite' ); ?>
 			</h3>
 			<p>
 				<?php printf(
