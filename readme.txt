@@ -49,6 +49,10 @@ Upgrade to **Payment gateway: accept.blue for Formidable Pro** to unlock:
 * Formidable Forms Pro (required for payment fields)
 * An active accept.blue merchant account (sign up at https://accept.blue)
 
+== Source code ==
+
+The unminified source files for all JavaScript and CSS are included in the plugin's assets/ directory alongside the minified production files. No separate build step is required to review the source.
+
 == Installation ==
 
 1. Upload the plugin folder to /wp-content/plugins/ or install via Plugins > Add New > Upload Plugin.
@@ -115,15 +119,16 @@ This plugin transmits payment data to **accept.blue**, a third-party payment pro
 No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
 
 == Screenshots ==
-== Screenshots ==
 
 1. Plugin settings page showing API credentials, test/sandbox mode, and debug logging options.
-2. Accept.Blue Payment form action added to a Formidable form.
-3. Pro upgrade notice shown on the form action with blurred Pro features.
+2. Sandbox/test mode enabled in the Accept.Blue settings.
+3. Transaction debug log viewer showing request and response entries.
+4. Formidable form with the Accept.Blue card field at checkout.
+5. Recurring payment settings panel on the Accept.Blue form action.
 
 == Changelog ==
 
-= 1.0.0-lite =
+= 1.0.0 =
 * Initial Lite release based on Pro v1.0.0
 * Core credit card payments via accept.blue Hosted Tokenization iFrame (PCI-minimised)
 * Debug logging with in-admin log viewer and Clear Log function

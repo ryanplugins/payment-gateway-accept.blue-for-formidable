@@ -20,16 +20,13 @@ class Frm_AB_Lite_Admin_Panel {
 		add_filter( 'plugin_row_meta',       array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_token_notice' ) );
-		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_pro_notice' ) );
 		add_action( 'wp_ajax_frm_ab_lite_sync_transaction',           array( __CLASS__, 'ajax_sync_transaction' ) );
 		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token',   array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
-		add_action( 'wp_ajax_frm_ab_lite_refresh_schedules',          array( __CLASS__, 'ajax_refresh_schedules' ) );
 		add_action( 'wp_ajax_frm_ab_lite_capture_transaction',        array( __CLASS__, 'ajax_capture_transaction' ) );
 		add_action( 'wp_ajax_frm_ab_lite_adjust_capture_transaction', array( __CLASS__, 'ajax_adjust_capture_transaction' ) );
 		add_action( 'wp_ajax_frm_ab_lite_void_transaction',           array( __CLASS__, 'ajax_void_transaction' ) );
 		add_action( 'wp_ajax_frm_ab_lite_refund_transaction',         array( __CLASS__, 'ajax_refund_transaction' ) );
 		add_action( 'wp_ajax_frm_ab_lite_export_csv',                 array( __CLASS__, 'ajax_export_csv' ) );
-		add_action( 'wp_ajax_frm_ab_lite_dismiss_pro_notice',         array( __CLASS__, 'ajax_dismiss_pro_notice' ) );
 	}
 
 	/**
@@ -55,14 +52,6 @@ class Frm_AB_Lite_Admin_Panel {
 			'manage_options',
 			'frm-ab-lite-transactions',
 			array( __CLASS__, 'render_page' )
-		);
-		add_submenu_page(
-			'formidable',
-			__( 'Accept.Blue Schedules', 'frm-acceptblue-lite' ),
-			__( 'AB Schedules', 'frm-acceptblue-lite' ),
-			'manage_options',
-			'frm-ab-lite-schedules',
-			array( __CLASS__, 'render_schedules_page' )
 		);
 	}
 
@@ -93,7 +82,7 @@ class Frm_AB_Lite_Admin_Panel {
 	// -------------------------------------------------------------------------
 
 	public static function render_page() {
-		// Pro feature — show static overlay, no DB queries
+		// Log viewer — real Lite feature
 		if ( isset( $_GET['frm_ab_lite_view_log'] ) && class_exists( 'Frm_AB_Lite_Logger' ) ) {
 			echo '<div class="wrap frm-ab-lite-admin-panel">';
 			self::render_log_viewer();
@@ -101,82 +90,37 @@ class Frm_AB_Lite_Admin_Panel {
 			return;
 		}
 		$icon = esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' );
+		$pro_url = esc_url( 'https://ryanplugins.net' );
 		?>
-		<style>
-.frm-ab-lite-pro-page-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:14px 20px;border-radius:8px;margin:16px 0 20px;box-shadow:0 3px 12px rgba(0,0,0,.18);font-size:13.5px;line-height:1.5}
-.frm-ab-lite-pro-page-banner a{color:#7dd3fc;font-weight:700;text-decoration:none}
-.frm-ab-lite-mock-blur{filter:blur(4px);opacity:.5;pointer-events:none;user-select:none}
-.frm-ab-lite-pro-wrap{position:relative}
-.frm-ab-lite-pro-wrap-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,.3);border-radius:6px}
-.frm-ab-lite-pro-badge-lg{background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:14px 34px;border-radius:32px;font-weight:700;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.28);text-align:center;line-height:1.6}
-.frm-ab-lite-pro-badge-lg small{display:block;font-size:11px;font-weight:400;opacity:.8;margin-top:3px}
-</style>
 		<div class="wrap frm-ab-lite-admin-panel">
 			<h1 style="display:inline-flex;align-items:center;gap:10px;">
-				<img src="<?php echo esc_url( $icon ); ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
+				<img src="<?php echo $icon; ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
 				<?php esc_html_e( 'accept.blue — Transactions', 'frm-acceptblue-lite' ); ?>
 			</h1>
 			<hr class="wp-header-end">
 
-			<div class="frm-ab-lite-pro-page-banner">
-				<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
-				<span>
-					<strong>Transactions Panel — Pro Feature</strong><br>
-					View all payments, filter by status, export CSV, and sync transaction data.
-					<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener">&#8599; Upgrade to Pro</a> to unlock.
-				</span>
+			<div class="notice notice-info" style="margin:16px 0;padding:12px 16px;">
+				<p>
+					<strong><?php esc_html_e( 'Transactions Panel — Pro feature', 'frm-acceptblue-lite' ); ?></strong><br>
+					<?php esc_html_e( 'Upgrade to Pro to view all payments, filter by status, export CSV, issue refunds, capture authorisations, and sync with accept.blue in real time.', 'frm-acceptblue-lite' ); ?>
+					<a href="<?php echo $pro_url; ?>" target="_blank" rel="noopener">
+						<?php esc_html_e( 'Learn more about Pro &rarr;', 'frm-acceptblue-lite' ); ?>
+					</a>
+				</p>
 			</div>
-
-			<div class="frm-ab-lite-pro-wrap">
-				<div class="frm-ab-lite-pro-wrap-overlay">
-					<div class="frm-ab-lite-pro-badge-lg">&#128274; Pro Version<small>Upgrade to unlock the Transactions Panel</small></div>
-				</div>
-				<div class="frm-ab-lite-mock-blur">
-					<div style="display:flex;gap:16px;margin-bottom:18px;flex-wrap:wrap;">
-						<?php foreach ( ['Successful (30d)' => '12', 'Revenue (30d)' => '$1,240.00', 'Failed (30d)' => '1', 'Refunded (30d)' => '0'] as $label => $val ) : ?>
-						<div style="flex:1;min-width:140px;background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:18px;text-align:center;">
-							<div style="font-size:26px;font-weight:700;color:#1a4a7a;"><?php echo esc_html( $val ); ?></div>
-							<div style="font-size:12px;color:#6b7280;margin-top:4px;"><?php echo esc_html( $label ); ?></div>
-						</div>
-						<?php endforeach; ?>
-					</div>
-					<table class="wp-list-table widefat fixed striped">
-						<thead><tr>
-							<?php foreach ( ['ID','Date','Entry','Form','Amount','Status','Charge ID','Actions'] as $h ) : ?>
-								<th style="background:#1a4a7a;color:#fff;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;"><?php echo esc_html( $h ); ?></th>
-							<?php endforeach; ?>
-						</tr></thead>
-						<tbody>
-						<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
-						<tr>
-							<td><?php echo esc_html( $i ); ?></td>
-							<td>2026-05-0<?php echo esc_html( $i ); ?></td>
-							<td>#<?php echo 1000 + $i; ?></td>
-							<td>Payment Form</td>
-							<td>$<?php echo esc_html( $i * 10 ); ?>.00</td>
-							<td><span style="background:#dcfce7;color:#166534;border-radius:99px;padding:2px 10px;font-size:12px;">complete</span></td>
-							<td>ch_xxxxx<?php echo esc_html( $i ); ?></td>
-							<td><button class="button button-small">Refund</button></td>
-						</tr>
-						<?php endfor; ?>
-						</tbody>
-					</table>
-				</div><!-- /.mock-blur -->
-			</div><!-- /.pro-wrap -->
-		</div><!-- /.wrap -->
+		</div>
 		<?php
 	}
 
 	
 	public static function enqueue_scripts( $hook ) {
 		$is_panel     = strpos( $hook, 'frm-ab-lite-transactions' ) !== false;
-		$is_schedules = strpos( $hook, 'frm-ab-lite-schedules' ) !== false;
 		$is_formidable = strpos( $hook, 'formidable' ) !== false
 			|| strpos( $hook, 'frm_' ) !== false
 			|| $hook === 'toplevel_page_formidable'
 			|| strpos( $hook, 'page_formidable' ) !== false;
 
-		if ( ! $is_panel && ! $is_schedules && ! $is_formidable ) return;
+		if ( ! $is_panel && ! $is_formidable ) return;
 
 		// ── Register a shared admin handle for all plugin inline JS ──────────
 		wp_register_script(
@@ -195,7 +139,7 @@ class Frm_AB_Lite_Admin_Panel {
 		wp_add_inline_style( 'wp-admin', self::license_css() );
 
 		// ── Transactions panel JS ─────────────────────────────────────────────
-		if ( $is_panel || $is_schedules ) {
+		if ( $is_panel ) {
 			$panel_data = array(
 				'ajaxUrl'             => admin_url( 'admin-ajax.php' ),
 				'exportNonce'         => wp_create_nonce( 'frm_ab_lite_export' ),
@@ -216,9 +160,6 @@ class Frm_AB_Lite_Admin_Panel {
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::dash_export_js() );
 
 			// Schedules refresh script
-			if ( $is_schedules ) {
-				wp_add_inline_script( 'frm-acceptblue-lite-admin', self::schedules_refresh_js() );
-			}
 		}
 
 		// ── Settings/Formidable admin pages ───────────────────────────────────
@@ -407,19 +348,6 @@ JS;
 JS;
 	}
 
-	private static function schedules_refresh_js(): string {
-		return <<<'JS'
-( function() {
-	var btn = document.getElementById( 'frm-ab-lite-refresh-schedules' );
-	if ( ! btn ) return;
-	btn.addEventListener( 'click', function() {
-		btn.disabled = true;
-		btn.textContent = frmAbPanel.refreshing;
-		location.reload();
-	} );
-} )();
-JS;
-	}
 
 	private static function test_connection_js(): string {
 		return <<<'JS'
@@ -661,28 +589,9 @@ private static function admin_css() {
 
 		/* Pagination */
 		.frm-ab-lite-admin-panel .tablenav.bottom,
-		.frm-ab-lite-schedules-page .tablenav.bottom { margin-top:12px; }
 		.frm-ab-lite-admin-panel .tablenav-pages a,
 		.frm-ab-lite-admin-panel .tablenav-pages span.current,
-		.frm-ab-lite-schedules-page .tablenav-pages a,
-		.frm-ab-lite-schedules-page .tablenav-pages span.current { border-radius:5px; font-weight:600; font-size:12px; }
 
-		/* Schedules page */
-		.frm-ab-lite-schedules-page h1 { font-size:1.5em; font-weight:700; color:#1a4a7a; display:flex; align-items:center; gap:10px; margin-bottom:4px; }
-		.frm-ab-lite-schedules-page h1 img { width:28px; height:28px; border-radius:5px; }
-		.frm-ab-lite-schedules-page .frm-ab-lite-sched-subtitle { color:#6b7280; margin-top:0; margin-bottom:0; font-size:13px; }
-		.frm-ab-lite-sched-refresh { font-size:13px !important; font-weight:600 !important; border-radius:6px !important; height:32px !important; line-height:30px !important; padding:0 14px !important; margin-left:6px !important; }
-
-		/* Schedules table */
-		.frm-ab-lite-schedules-page .frm-ab-lite-table { margin-top:0; }
-		.frm-ab-lite-schedules-page .frm-ab-lite-table thead tr th { background:#1a4a7a; color:#fff; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; padding:12px 14px; border-bottom:none !important; }
-		.frm-ab-lite-schedules-page .frm-ab-lite-table tbody tr td { padding:11px 14px; vertical-align:middle; }
-		.frm-ab-lite-sched-id { font-family:monospace; font-size:12px; color:#6b7280; }
-		.frm-ab-lite-sched-title { font-weight:600; color:#111827; }
-		.frm-ab-lite-sched-amount { font-weight:700; color:#1a4a7a; }
-		.frm-ab-lite-sched-date { font-size:12px; color:#6b7280; }
-		.frm-ab-lite-sched-remaining { text-align:center; font-weight:600; color:#374151; }
-		.frm-ab-lite-sched-days { color:#6b7280; font-size:11px; margin-left:3px; }
 		';
 	}
 
@@ -850,91 +759,8 @@ private static function admin_css() {
 	// Recurring Schedules Page
 	// -------------------------------------------------------------------------
 
-	public static function render_schedules_page() {
-		// Pro feature — show static overlay, no live API calls
-		$icon = esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' );
-		?>
-		<style>
-.frm-ab-lite-pro-page-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:14px 20px;border-radius:8px;margin:16px 0 20px;box-shadow:0 3px 12px rgba(0,0,0,.18);font-size:13.5px;line-height:1.5}
-.frm-ab-lite-pro-page-banner a{color:#7dd3fc;font-weight:700;text-decoration:none}
-.frm-ab-lite-mock-blur{filter:blur(4px);opacity:.5;pointer-events:none;user-select:none}
-.frm-ab-lite-pro-wrap{position:relative}
-.frm-ab-lite-pro-wrap-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:10;background:rgba(255,255,255,.3);border-radius:6px}
-.frm-ab-lite-pro-badge-lg{background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:14px 34px;border-radius:32px;font-weight:700;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.28);text-align:center;line-height:1.6}
-.frm-ab-lite-pro-badge-lg small{display:block;font-size:11px;font-weight:400;opacity:.8;margin-top:3px}
-</style>
-		<div class="wrap frm-ab-lite-schedules-page">
-			<h1>
-				<img src="<?php echo esc_url( $icon ); ?>" alt="" style="width:28px;height:28px;border-radius:5px;vertical-align:middle;margin-right:6px;">
-				<?php esc_html_e( 'accept.blue — Recurring Schedules', 'frm-acceptblue-lite' ); ?>
-			</h1>
-			<hr class="wp-header-end">
-
-			<div class="frm-ab-lite-pro-page-banner">
-				<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
-				<span>
-					<strong>Recurring Schedules — Pro Feature</strong><br>
-					View, pause, resume, and cancel recurring billing schedules from accept.blue.
-					<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener">&#8599; Upgrade to Pro</a> to unlock.
-				</span>
-			</div>
-
-			<div class="frm-ab-lite-pro-wrap">
-				<div class="frm-ab-lite-pro-wrap-overlay">
-					<div class="frm-ab-lite-pro-badge-lg">&#128274; Pro Version<small>Upgrade to unlock Recurring Schedules</small></div>
-				</div>
-				<div class="frm-ab-lite-mock-blur">
-					<table class="wp-list-table widefat fixed striped frm-ab-lite-table">
-						<thead><tr>
-							<?php foreach ( ['ID','Title','Customer','Amount','Frequency','Next Run','Remaining','Status','Created'] as $h ) : ?>
-								<th style="background:#1a4a7a;color:#fff;padding:10px 14px;font-size:11px;text-transform:uppercase;letter-spacing:.05em;"><?php echo esc_html( $h ); ?></th>
-							<?php endforeach; ?>
-						</tr></thead>
-						<tbody>
-						<?php
-						$mock = [
-							['38984','Membership','ID 266807','$8.00','Monthly','2026-05-10','5'],
-							['38983','Membership','ID 266806','$10.00','Monthly','2026-05-10','∞'],
-							['38982','Membership','ID 266805','$10.00','Monthly','2026-05-10','∞'],
-							['38981','Membership','ID 266804','$8.00','Monthly','2026-05-10','5'],
-							['38980','Membership','ID 266803','$8.00','Monthly','2026-05-10','5'],
-						];
-						foreach ( $mock as $row ) : ?>
-						<tr>
-							<?php foreach ( $row as $cell ) : ?><td><?php echo esc_html( $cell ); ?></td><?php endforeach; ?>
-							<td><span style="background:#dcfce7;color:#166534;border-radius:99px;padding:2px 10px;font-size:12px;">Active</span></td>
-							<td>May 9, 2026</td>
-						</tr>
-						<?php endforeach; ?>
-						</tbody>
-					</table>
-				</div><!-- /.mock-blur -->
-			</div><!-- /.pro-wrap -->
-		</div><!-- /.wrap -->
-		<?php
-	}
 
 	
-	public static function ajax_refresh_schedules() {
-		if ( ! check_ajax_referer( 'frm_ab_lite_refresh_schedules', 'nonce', false ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid nonce', 'frm-acceptblue-lite' ) ) );
-		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Unauthorized', 'frm-acceptblue-lite' ) ) );
-		}
-
-		$api    = Frm_AB_Lite_Settings::get_api();
-		// list_recurring_schedules now paginates automatically and returns all schedules
-		// sorted newest first — no limit parameter needed.
-		$result = $api->list_recurring_schedules();
-
-		if ( is_wp_error( $result ) ) {
-			wp_send_json_error( array( 'message' => $result->get_error_message() ) );
-		}
-
-		$schedules = is_array( $result ) ? $result : [];
-		wp_send_json_success( array( 'count' => count( $schedules ), 'schedules' => $schedules ) );
-	}
 
 	/**
 	 * Add accept.blue icon to plugin row in WP Plugins list.
@@ -946,61 +772,6 @@ private static function admin_css() {
 		return $links;
 	}
 
-	// ── Pro upgrade admin notice ─────────────────────────────────────────────
-
-	public static function maybe_show_pro_notice() {
-		// Never show on any Formidable page — avoids overlap with form editor UI
-		$page = isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		if ( str_starts_with( $page, 'formidable' ) || str_starts_with( $page, 'frm-' ) || str_starts_with( $page, 'frm_' ) ) {
-			return;
-		}
-		$uid = get_current_user_id();
-		if ( get_transient( 'frm_ab_lite_pro_notice_dismissed_' . $uid ) ) {
-			return;
-		}
-		$pro_url = 'https://www.patreon.com/posts/formidable-blue-157799373?source=lite';
-		?>
-		<div class="notice frm-ab-lite-admin-notice" style="display:flex;align-items:center;gap:16px;padding:14px 16px;border-left:4px solid #1d2327;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative;">
-			<span style="font-size:26px;flex-shrink:0;">&#128274;</span>
-			<div style="flex:1;min-width:0;">
-				<strong style="font-size:13.5px;">Payment gateway: accept.blue for Formidable</strong>
-				<p style="margin:4px 0 0;font-size:13px;color:#3c434a;">
-					You&rsquo;re running the Lite version. Unlock <strong>recurring billing, refunds, webhooks, fraud shield, and an admin transactions panel</strong> by upgrading to Pro.
-					<a href="<?php echo esc_url( $pro_url ); ?>" target="_blank" rel="noopener" style="font-weight:700;color:#0073aa;margin-left:6px;">&#8599; Upgrade to Pro &rarr;</a>
-				</p>
-			</div>
-			<button type="button" class="frm-ab-lite-dismiss-btn"
-					data-nonce="<?php echo esc_attr( wp_create_nonce( 'frm_ab_lite_dismiss_notice' ) ); ?>"
-					style="flex-shrink:0;background:#1d2327;color:#fff;border:none;border-radius:20px;padding:7px 18px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;">
-				Dismiss for 30 days
-			</button>
-		</div>
-		<script>
-		(function(){
-			var btn = document.querySelector('.frm-ab-lite-dismiss-btn');
-			if (!btn) return;
-			btn.addEventListener('click', function(){
-				var notice = btn.closest('.frm-ab-lite-admin-notice');
-				notice.style.transition = 'opacity .3s';
-				notice.style.opacity = '0';
-				setTimeout(function(){ notice.remove(); }, 320);
-				fetch(ajaxurl, {
-					method: 'POST',
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-					body: 'action=frm_ab_lite_dismiss_pro_notice&nonce=' + encodeURIComponent(btn.dataset.nonce)
-				});
-			});
-		})();
-		</script>
-		<?php
-	}
-
-	public static function ajax_dismiss_pro_notice() {
-		check_ajax_referer( 'frm_ab_lite_dismiss_notice', 'nonce' );
-		$uid = get_current_user_id();
-		set_transient( 'frm_ab_lite_pro_notice_dismissed_' . $uid, 1, 30 * DAY_IN_SECONDS );
-		wp_send_json_success();
-	}
 
 
 }

@@ -20,36 +20,22 @@ class Frm_AB_Lite_Fraud {
 	const OPTION_KEY = 'frm_ab_lite_fraud_settings';
 
 	public static function init() {
-		// Hook into charge processing — runs before the API call
+		// Fraud Shield is a Pro feature. The filter is registered so Pro can
+		// override it; Lite passes all requests through unchanged.
 		add_filter( 'frm_ab_lite_charge_args', array( __CLASS__, 'check_fraud' ), 5, 4 );
 
-		// Settings section
-		add_action( 'frm_ab_lite_settings_extra_rows', array( __CLASS__, 'render_settings_rows' ) );
-		add_action( 'frm_update_settings',         array( __CLASS__, 'save_settings' ) );
 	}
 
-	// ─────────────────────────────────────────────────────────────────────────
-	// Main fraud check — runs via frm_ab_lite_charge_args filter
-	// Returns modified $charge_args or calls frm_ab_lite_add_error() and returns false
-	// ─────────────────────────────────────────────────────────────────────────
+
 
 	// ─────────────────────────────────────────────────────────────────────────
-	// Settings UI (injected into Global Settings → Accept.Blue tab)
+	// Fraud check — Pro feature, pass-through in Lite
 	// ─────────────────────────────────────────────────────────────────────────
 
-	public static function save_settings( $posted = array() ) {
-		if ( ! isset( $_POST['frm_ab_lite_settings']['fraud'] ) ) return;
-		$raw = isset( $_POST['frm_ab_lite_settings']['fraud'] ) ? wp_unslash( $_POST['frm_ab_lite_settings']['fraud'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
-		$existing = get_option( Frm_AB_Lite_Settings::OPTION_KEY, array() );
-		$existing['fraud'] = array(
-			'enabled'           => ! empty( $raw['enabled'] ) ? 1 : 0,
-			'max_amount'        => floatval( $raw['max_amount'] ?? 0 ),
-			'max_amount_block'  => ! empty( $raw['max_amount_block'] ) ? 1 : 0,
-			'max_per_ip'        => max( 1, intval( $raw['max_per_ip'] ?? 10 ) ),
-			'max_per_email'     => max( 1, intval( $raw['max_per_email'] ?? 5 ) ),
-			'blocked_countries' => sanitize_text_field( $raw['blocked_countries'] ?? '' ),
-		);
-		update_option( Frm_AB_Lite_Settings::OPTION_KEY, $existing );
+	public static function check_fraud( $charge_args, $amount = 0, $email = '', $form_id = 0 ) {
+		// Fraud Shield is available in the Pro version.
+		// Lite passes the charge args through unchanged.
+		return $charge_args;
 	}
 
 	// ─────────────────────────────────────────────────────────────────────────

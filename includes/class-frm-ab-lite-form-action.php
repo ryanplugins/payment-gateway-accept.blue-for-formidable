@@ -152,18 +152,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		// Field type filter for dropdown — card fields only
 		$ab_field_types = array( Frm_AB_Lite_Field::FIELD_TYPE );
 		?>
-		<style id="frm-ab-lite-pro-styles">
-.frm-ab-lite-pro-section tr td,.frm-ab-lite-pro-section tr th{filter:blur(3.5px);opacity:.55;pointer-events:none;user-select:none}
-.frm-ab-lite-pro-badge-row td{text-align:center!important;padding:10px 12px!important;background:transparent!important;border:none!important;vertical-align:middle!important}
-.frm-ab-lite-inline-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:6px 18px 6px 14px;border-radius:22px;font-size:12px;font-weight:700;letter-spacing:.4px;box-shadow:0 2px 10px rgba(0,0,0,.22)}
-.frm-ab-lite-inline-badge::before{content:"\1F512"}
-.frm-ab-lite-pro-panel{position:relative}
-.frm-ab-lite-pro-panel-blur{filter:blur(4px);opacity:.55;pointer-events:none;user-select:none}
-.frm-ab-lite-pro-panel-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:99;background:rgba(255,255,255,.35);border-radius:4px}
-.frm-ab-lite-pro-panel-badge{background:linear-gradient(135deg,#1d2327,#2c3a47);color:#fff;padding:14px 34px;border-radius:32px;font-weight:700;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.28);text-align:center;line-height:1.4}
-.frm-ab-lite-pro-panel-badge small{display:block;font-size:11px;font-weight:400;opacity:.8;margin-top:3px}
-</style>
-		<div class="frm-ab-lite-pro-notice" style="
+				<div class="frm-ab-lite-pro-notice" style="
 			display:flex;
 			align-items:center;
 			gap:14px;
@@ -205,65 +194,21 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		</tr>
 
 </tbody>
-<tbody class="frm-ab-lite-pro-section">
-<tr class="frm-ab-lite-pro-badge-row"><td colspan="2"><div class="frm-ab-lite-inline-badge">Auth-Only / Capture (Pro)</div></td></tr>
-		<!-- ════ CAPTURE ════ -->
-		<tr>
-			<th><?php esc_html_e( 'Capture', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'capture' ) ); ?>" value="0" />
-				<label>
-					<input type="checkbox"
-						name="<?php echo esc_attr( $ac->get_field_name( 'capture' ) ); ?>"
-						value="1"
-						<?php checked( 1, $g( 'capture', 1 ) ); ?> />
-					<?php esc_html_e( 'Capture payment immediately (debit the card)', 'frm-acceptblue-lite' ); ?>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'When enabled (default): authorise AND capture — the card is charged immediately. When disabled: authorise only — the card is held but not charged. You must manually capture later in the accept.blue portal.', 'frm-acceptblue-lite' ); ?>
-				</p>
-			</td>
-		</tr>
+<tbody>
+<tr>
+		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
+			<strong><?php esc_html_e( 'Auth-Only / Capture', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable authorise-only payments and manual capture.', 'frm-acceptblue-lite' ); ?>
+		</td>
+</tr>
 </tbody>
 <tbody>
-
-</tbody>
-<tbody class="frm-ab-lite-pro-section">
-<tr class="frm-ab-lite-pro-badge-row"><td colspan="2"><div class="frm-ab-lite-inline-badge">3-D Secure 2 / 3DS2 (Pro)</div></td></tr>
-		<!-- ════ 3-D SECURE ════ -->
-		<tr>
-			<th><?php esc_html_e( '3-D Secure (3DS)', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'three_ds_enabled' ) ); ?>" value="0" />
-				<label>
-					<input type="checkbox" id="frm_ab_lite_three_ds_enabled"
-						name="<?php echo esc_attr( $ac->get_field_name( 'three_ds_enabled' ) ); ?>"
-						value="1"
-						<?php checked( 1, $g( 'three_ds_enabled', 0 ) ); ?>
-						/>
-					<?php esc_html_e( 'Enable 3-D Secure authentication', 'frm-acceptblue-lite' ); ?>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'Enables EMV 3DS2 browser-based authentication. Recommended for SCA compliance. Requires a Paay API key in Global Settings for full 3DS2 support.', 'frm-acceptblue-lite' ); ?>
-				</p>
-			</td>
-		</tr>
-		<tr id="frm_ab_lite_row_3ds_options" <?php echo $g('three_ds_enabled') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Frictionless Mode', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'three_ds_frictionless' ) ); ?>" value="0" />
-				<label>
-					<input type="checkbox"
-						name="<?php echo esc_attr( $ac->get_field_name( 'three_ds_frictionless' ) ); ?>"
-						value="1"
-						<?php checked( 1, $g( 'three_ds_frictionless', 0 ) ); ?> />
-					<?php esc_html_e( 'Request frictionless authentication (no customer challenge)', 'frm-acceptblue-lite' ); ?>
-				</label>
-				<p class="description">
-					<?php esc_html_e( 'When enabled, asks the issuer to authenticate silently using risk-based analysis — no OTP or redirect shown to the customer. The issuer may still force a challenge if it deems the transaction risky.', 'frm-acceptblue-lite' ); ?>
-				</p>
-			</td>
-		</tr>
+<tr>
+		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
+			<strong><?php esc_html_e( '3-D Secure 2 (3DS2)', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable EMV 3DS2 strong customer authentication.', 'frm-acceptblue-lite' ); ?>
+		</td>
+</tr>
 </tbody>
 <tbody>
 
@@ -607,128 +552,13 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		</tbody><!-- /frm_ab_lite_li_rows -->
 
 </tbody>
-<tbody class="frm-ab-lite-pro-section">
-<tr class="frm-ab-lite-pro-badge-row"><td colspan="2"><div class="frm-ab-lite-inline-badge">Recurring Subscriptions &amp; Installments (Pro)</div></td></tr>
-		<!-- ════ RECURRING ════ -->
-		<tr><th colspan="2"><strong><?php esc_html_e( 'Recurring Schedule', 'frm-acceptblue-lite' ); ?></strong></th></tr>
-		<tr>
-			<th><?php esc_html_e( 'Enable Recurring', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'recurring_enabled' ) ); ?>" value="0" />
-				<label>
-					<input type="checkbox" id="frm_ab_lite_rec_enabled"
-						name="<?php echo esc_attr( $ac->get_field_name( 'recurring_enabled' ) ); ?>"
-						value="1" <?php checked( 1, $g('recurring_enabled', 0) ); ?> />
-					<?php esc_html_e( 'Create a recurring payment schedule in accept.blue', 'frm-acceptblue-lite' ); ?>
-				</label>
-			</td>
-		</tr>
-		<tr class="frm-ab-lite-rec-row" <?php echo $g('recurring_enabled') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_rec_title"><?php esc_html_e( 'Title', 'frm-acceptblue-lite' ); ?></label></th>
-			<td>
-				<input type="text"
-					id="frm_ab_lite_rec_title"
-					class="large-text"
-					name="<?php echo esc_attr( $ac->get_field_name( 'recurring_title' ) ); ?>"
-					value="<?php echo esc_attr( $g('recurring_title') ); ?>"
-					placeholder="<?php esc_attr_e( 'e.g. Monthly Membership', 'frm-acceptblue-lite' ); ?>" />
-				<p class="description"><?php esc_html_e( 'Label for this schedule in accept.blue.', 'frm-acceptblue-lite' ); ?></p>
-			</td>
-		</tr>
-		<tr class="frm-ab-lite-rec-row" <?php echo $g('recurring_enabled') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_rec_freq"><?php esc_html_e( 'Frequency', 'frm-acceptblue-lite' ); ?></label></th>
-			<td>
-				<select id="frm_ab_lite_rec_freq" name="<?php echo esc_attr( $ac->get_field_name( 'recurring_frequency' ) ); ?>">
-					<?php
-					$freqs = array(
-						'daily'      => __( 'Daily',       'frm-acceptblue-lite' ),
-						'weekly'     => __( 'Weekly',      'frm-acceptblue-lite' ),
-						'biweekly'   => __( 'Bi-Weekly',   'frm-acceptblue-lite' ),
-						'monthly'    => __( 'Monthly',     'frm-acceptblue-lite' ),
-						'bimonthly'  => __( 'Bi-Monthly',  'frm-acceptblue-lite' ),
-						'quarterly'  => __( 'Quarterly',   'frm-acceptblue-lite' ),
-						'biannually' => __( 'Bi-Annually', 'frm-acceptblue-lite' ),
-						'annually'   => __( 'Annually',    'frm-acceptblue-lite' ),
-					);
-					foreach ( $freqs as $val => $lbl ) :
-						?>
-						<option value="<?php echo esc_attr( $val ); ?>" <?php selected( $g('recurring_frequency','monthly'), $val ); ?>><?php echo esc_html( $lbl ); ?></option>
-					<?php endforeach; ?>
-				</select>
-			</td>
-		</tr>
-		<tr class="frm-ab-lite-rec-row" <?php echo $g('recurring_enabled') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Schedule Type', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<select id="frm_ab_lite_schedule_type"
-					name="<?php echo esc_attr( $ac->get_field_name( 'schedule_type' ) ); ?>"
->
-					<option value="subscription" <?php selected($g('schedule_type','subscription'),'subscription'); ?>>
-						<?php esc_html_e( 'Subscription — charge until cancelled', 'frm-acceptblue-lite' ); ?>
-					</option>
-					<option value="installment" <?php selected($g('schedule_type','subscription'),'installment'); ?>>
-						<?php esc_html_e( 'Installment — split total into equal payments', 'frm-acceptblue-lite' ); ?>
-					</option>
-				</select>
-			</td>
-		</tr>
-
-		<?php /* ── Installment fields ── */ ?>
-		<tr id="frm_ab_lite_row_installment_count" class="frm-ab-lite-rec-row"
-			<?php echo ($g('recurring_enabled') && $g('schedule_type') === 'installment') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Number of Installments', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<?php $_install_active = ( $g('recurring_enabled') && $g('schedule_type') === 'installment' ); ?>
-				<input type="number" step="1" style="width:80px;" id="frm_ab_lite_installment_count"
-					name="<?php echo esc_attr( $ac->get_field_name( 'installment_count' ) ); ?>"
-					value="<?php echo esc_attr( max( 2, intval( $g('installment_count', 3) ) ) ); ?>"
-					<?php echo $_install_active ? 'min="2"' : 'disabled'; ?> />
-				<p class="description">
-					<?php esc_html_e( 'Total amount will be split equally. E.g. $300 in 3 monthly payments = $100/payment.', 'frm-acceptblue-lite' ); ?>
-				</p>
-			</td>
-		</tr>
-
-		<?php /* ── Subscription: optional fixed number of charges ── */ ?>
-		<tr id="frm_ab_lite_row_sub_duration" class="frm-ab-lite-rec-row"
-			<?php echo ($g('recurring_enabled') && $g('schedule_type') !== 'installment') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Number of Payments', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<input type="number" step="1" style="width:80px;" id="frm_ab_lite_recurring_duration"
-					name="<?php echo esc_attr( $ac->get_field_name( 'recurring_duration' ) ); ?>"
-					value="<?php echo esc_attr( $g('recurring_duration', 0) ); ?>"
-					<?php echo ($g('schedule_type','subscription') !== 'installment') ? 'min="0"' : 'disabled'; ?> />
-				<p class="description"><?php esc_html_e( '0 = charge indefinitely until cancelled.', 'frm-acceptblue-lite' ); ?></p>
-			</td>
-		</tr>
-		<tr class="frm-ab-lite-rec-row" <?php echo $g('recurring_enabled') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Trial Period', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<select id="frm_ab_lite_trial_period_type" name="<?php echo esc_attr( $ac->get_field_name( 'trial_period_type' ) ); ?>"
->
-					<option value="none" <?php selected($g('trial_period_type','none'),'none'); ?>><?php esc_html_e('No trial — first charge runs tomorrow', 'frm-acceptblue-lite'); ?></option>
-					<option value="days" <?php selected($g('trial_period_type','none'),'days'); ?>><?php esc_html_e('Free trial (days)', 'frm-acceptblue-lite'); ?></option>
-				</select>
-			</td>
-		</tr>
-		<tr id="frm_ab_lite_trial_days_row" class="frm-ab-lite-rec-row" <?php echo ($g('recurring_enabled') && $g('trial_period_type') === 'days') ? '' : 'style="display:none"'; ?>>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Trial Days', 'frm-acceptblue-lite' ); ?></th>
-			<td>
-				<?php
-				$_trial_days_val    = intval( $g( 'trial_days', 7 ) );
-				$_trial_days_val    = $_trial_days_val > 0 ? $_trial_days_val : 7; // never allow 0 — min=1
-				$_trial_days_active = ( $g('recurring_enabled') && $g('trial_period_type') === 'days' );
-				?>
-				<input type="number" step="1" style="width:80px;" id="frm_ab_lite_trial_days"
-					name="<?php echo esc_attr( $ac->get_field_name( 'trial_days' ) ); ?>"
-					value="<?php echo esc_attr( $_trial_days_val ); ?>"
-					min="1"
-					<?php echo $_trial_days_active ? '' : 'disabled'; ?> />
-				<span><?php esc_html_e( 'days before first charge', 'frm-acceptblue-lite' ); ?></span>
-				<p class="description"><?php esc_html_e( 'Customer is not charged during the trial. First payment runs the day after the trial ends.', 'frm-acceptblue-lite' ); ?></p>
-			</td>
-		</tr>
-
+<tbody>
+<tr>
+		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
+			<strong><?php esc_html_e( 'Recurring Subscriptions & Installments', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable recurring billing, subscriptions, and instalment plans.', 'frm-acceptblue-lite' ); ?>
+		</td>
+</tr>
 </tbody>
 <tbody>
 		<!-- ════ OTHER OPTIONS ════ -->
@@ -756,52 +586,13 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		</tr>
 
 </tbody>
-<tbody class="frm-ab-lite-pro-section">
-<tr class="frm-ab-lite-pro-badge-row"><td colspan="2"><div class="frm-ab-lite-inline-badge">Per-Form API Credential Override (Pro)</div></td></tr>
-		<!-- ════ API CREDENTIAL OVERRIDE ════ -->
-		<tr><th colspan="2"><strong><?php esc_html_e( 'API Credential Override (Optional)', 'frm-acceptblue-lite' ); ?></strong></th></tr>
-		<tr>
-			<th colspan="2" style="padding:0 8px 6px;font-weight:400;color:#666;">
-				<?php esc_html_e( 'Leave blank to use the credentials from Global Settings → Accept.Blue. Fill in only if this form should charge a different accept.blue merchant account.', 'frm-acceptblue-lite' ); ?>
-			</th>
-		</tr>
-		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_override_api_key"><?php esc_html_e( 'API Key', 'frm-acceptblue-lite' ); ?></label></th>
-			<td>
-				<input type="password"
-					id="frm_ab_lite_override_api_key"
-					class="large-text"
-					autocomplete="new-password"
-					name="<?php echo esc_attr( $ac->get_field_name( 'override_api_key' ) ); ?>"
-					value="<?php echo esc_attr( $g('override_api_key') ); ?>"
-					placeholder="<?php esc_attr_e( 'Overrides global API key for this form only', 'frm-acceptblue-lite' ); ?>" />
-			</td>
-		</tr>
-		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_override_pin"><?php esc_html_e( 'PIN', 'frm-acceptblue-lite' ); ?></label></th>
-			<td>
-				<input type="password"
-					id="frm_ab_lite_override_pin"
-					class="regular-text"
-					autocomplete="new-password"
-					name="<?php echo esc_attr( $ac->get_field_name( 'override_pin' ) ); ?>"
-					value="<?php echo esc_attr( $g('override_pin') ); ?>"
-					placeholder="<?php esc_attr_e( 'Overrides global PIN for this form only', 'frm-acceptblue-lite' ); ?>" />
-			</td>
-		</tr>
-		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_override_tokenization_key"><?php esc_html_e( 'Hosted Tokenization Key', 'frm-acceptblue-lite' ); ?></label></th>
-			<td>
-				<input type="password"
-					id="frm_ab_lite_override_tokenization_key"
-					class="large-text"
-					autocomplete="new-password"
-					name="<?php echo esc_attr( $ac->get_field_name( 'override_tokenization_key' ) ); ?>"
-					value="<?php echo esc_attr( $g('override_tokenization_key') ); ?>"
-					placeholder="<?php esc_attr_e( 'Overrides global Hosted Tokenization Key for this form only', 'frm-acceptblue-lite' ); ?>" />
-			</td>
-		</tr>
-
+<tbody>
+<tr>
+		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
+			<strong><?php esc_html_e( 'Per-Form API Credential Override', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable per-form accept.blue API key and PIN override.', 'frm-acceptblue-lite' ); ?>
+		</td>
+</tr>
 </tbody>
 <tbody>
 		<script>
