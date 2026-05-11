@@ -4,7 +4,7 @@ Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.0.0-lite
+Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -85,7 +85,7 @@ Lite handles one-time credit card payments and debug logging. Pro adds recurring
 
 = Where do I upgrade to Pro? =
 
-Visit https://www.patreon.com/posts/formidable-blue-157799373?source=lite for Pro version details and pricing.
+Visit https://ryanplugins.net for Pro version details and pricing.
 
 = What statuses does the plugin use? =
 
@@ -94,6 +94,32 @@ complete — charge captured and settled; auth — authorised but not yet captur
 = Does debug logging store sensitive data? =
 
 API request and response bodies are logged when debug logging is enabled. Card numbers are never present (they are handled by the accept.blue iFrame and never reach your server), but disable debug logging once you have finished troubleshooting.
+
+
+== Third-party services ==
+
+This plugin transmits payment data to **accept.blue**, a third-party payment processor. By using this plugin you agree to accept.blue's terms of service and privacy policy.
+
+* **accept.blue Payment API** — used to tokenise and charge credit cards.
+  * Service: https://accept.blue
+  * Terms of Service: https://accept.blue/terms
+  * Privacy Policy: https://accept.blue/privacy
+
+* **accept.blue Hosted Tokenization** — a PCI-compliant iFrame embedded on your form that captures card details without them passing through your server.
+  * Documentation: https://docs.accept.blue/tokenization/hosted
+
+* **Paay 3DS (Pro only)** — optional EMV 3-D Secure 2 browser-based authentication service.
+  * Service: https://www.paay.co
+  * Privacy Policy: https://www.paay.co/privacy-policy
+
+No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
+
+== Screenshots ==
+== Screenshots ==
+
+1. Plugin settings page showing API credentials, test/sandbox mode, and debug logging options.
+2. Accept.Blue Payment form action added to a Formidable form.
+3. Pro upgrade notice shown on the form action with blurred Pro features.
 
 == Changelog ==
 

@@ -6,14 +6,18 @@
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://www.patreon.com/RyanPlugins
- * Text Domain:     frm-acceptblue
+ * Text Domain:     frm-acceptblue-lite
+ * Domain Path:     /languages
+ * License:         GPL-2.0-or-later
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Requires PHP:    7.4
  * Requires at least: 6.0
+ * @package         Formidable_AcceptBlue_Lite
  */
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FRM_AB_LITE_VERSION', '1.0.0-lite' );
+define( 'FRM_AB_LITE_VERSION', '1.0.0' );
 define( 'FRM_AB_LITE_FILE',    __FILE__ );
 define( 'FRM_AB_LITE_PATH',    plugin_dir_path( __FILE__ ) );
 define( 'FRM_AB_LITE_URL',     plugin_dir_url( __FILE__ ) );
