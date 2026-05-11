@@ -245,23 +245,11 @@ class Frm_AB_Lite_Settings {
 				</tr>
 
 				<tr>
-					<th scope="row">
-						<label for="frm_ab_lite_paay_api_key"><?php esc_html_e( '3DS (Paay) API Key', 'frm-acceptblue-lite' ); ?></label>
-					</th>
+					<th scope="row"><?php esc_html_e( '3DS (Paay) API Key', 'frm-acceptblue-lite' ); ?></th>
 					<td>
-						<input type="password"
-							id="frm_ab_lite_paay_api_key"
-							name="frm_ab_lite_settings[paay_api_key]"
-							value="<?php echo esc_attr( $settings['paay_api_key'] ); ?>"
-							class="regular-text"
-							autocomplete="new-password" />
 						<p class="description">
-							<?php esc_html_e( 'API key for Paay 3-D Secure authentication. Leave blank to use accept.blue native 3DS handling only.', 'frm-acceptblue-lite' ); ?>
-							<?php if ( empty( $settings['paay_api_key'] ) ) : ?>
-								<br /><span style="color:#b45309;">&#9888; <?php esc_html_e( 'Not configured — 3DS will rely on accept.blue native challenge flow.', 'frm-acceptblue-lite' ); ?></span>
-							<?php else : ?>
-								<br /><span style="color:#166534;">&#10003; <?php esc_html_e( 'Paay 3DS active.', 'frm-acceptblue-lite' ); ?></span>
-							<?php endif; ?>
+							<?php esc_html_e( 'Available in the Pro version.', 'frm-acceptblue-lite' ); ?>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'frm-acceptblue-lite' ); ?></a>
 						</p>
 					</td>
 				</tr>
@@ -283,45 +271,11 @@ class Frm_AB_Lite_Settings {
 
 				<?php echo '<tbody>'; ?>
 				<tr>
-					<th scope="row">
-						<label><?php esc_html_e( 'Webhook URL', 'frm-acceptblue-lite' ); ?></label>
-					</th>
+					<th scope="row"><?php esc_html_e( 'Webhook URL', 'frm-acceptblue-lite' ); ?></th>
 					<td>
-						<?php
-						// Auto-generate a token on first load if none exists
-						if ( empty( $settings['webhook_token'] ) && class_exists( 'Frm_AB_Lite_Recurring' ) ) {
-							Frm_AB_Lite_Recurring::generate_webhook_token();
-							// Reload settings to get the new token
-							$settings = Frm_AB_Lite_Settings::get_settings();
-						}
-						$webhook_url = class_exists( 'Frm_AB_Lite_Recurring' )
-							? Frm_AB_Lite_Recurring::get_webhook_url()
-							: rest_url( 'frm-ab-lite/v1/webhook' );
-						?>
-						<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-							<input type="text"
-								id="frm_ab_lite_webhook_url_display"
-								value="<?php echo esc_attr( $webhook_url ); ?>"
-								class="large-text"
-								readonly
-								style="background:#f6f7f7;font-family:monospace;font-size:12px;" />
-							<button type="button"
-								class="button"
-								id="frm_ab_lite_copy_webhook_url"
-								data-url="<?php echo esc_attr( $webhook_url ); ?>">
-								<?php esc_html_e( 'Copy URL', 'frm-acceptblue-lite' ); ?>
-							</button>
-						</div>
 						<p class="description">
-							<?php esc_html_e( 'Paste this URL into the Webhook URL field in your accept.blue portal (Control Panel → Webhooks). The token in the URL authenticates incoming webhook requests.', 'frm-acceptblue-lite' ); ?>
-						</p>
-						<p style="margin-top:8px;">
-							<a href="<?php echo esc_url( admin_url( 'admin-ajax.php?action=frm_ab_lite_regenerate_webhook_token&nonce=' . wp_create_nonce( 'frm_ab_lite_regenerate_token' ) ) ); ?>"
-								id="frm_ab_lite_regenerate_token"
-								class="button button-secondary"
-								onclick="return confirm('<?php esc_attr_e( 'Generate a new token? You will need to update the webhook URL in your accept.blue portal.', 'frm-acceptblue-lite' ); ?>');">
-								<?php esc_html_e( 'Regenerate Token', 'frm-acceptblue-lite' ); ?>
-							</a>
+							<?php esc_html_e( 'Available in the Pro version.', 'frm-acceptblue-lite' ); ?>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'frm-acceptblue-lite' ); ?></a>
 						</p>
 					</td>
 				</tr>
