@@ -90,7 +90,7 @@ class Frm_AB_Lite_Admin_Panel {
 			return;
 		}
 		$icon = esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' );
-		$pro_url = esc_url( 'https://ryanplugins.net' );
+		$pro_url = esc_url( 'https://www.patreon.com/posts/formidable-blue-157799373?source=lite' );
 		?>
 		<div class="wrap frm-ab-lite-admin-panel">
 			<h1 style="display:inline-flex;align-items:center;gap:10px;">
