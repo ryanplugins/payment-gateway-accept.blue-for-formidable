@@ -34,7 +34,7 @@ class Frm_AB_Lite_Settings {
 
 	public static function add_settings_section( $sections ) {
 		$sections['acceptblue_lite'] = array(
-			'name'     => __( 'Accept.Blue', 'accept-blue-for-formidable' ),
+			'name'     => __( 'Accept.Blue', 'payment-gateway-accept-blue-for-formidable' ),
 			'class'    => __CLASS__,
 			'function' => 'route',
 			'icon'     => 'frm_icon_font frm_credit_card_alt_icon',
@@ -93,13 +93,13 @@ class Frm_AB_Lite_Settings {
 			<h3 style="display:flex;align-items:center;gap:10px;">
 				<img src="<?php echo esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ); ?>"
 					 style="width:28px;height:28px;border-radius:5px;flex-shrink:0;" alt="">
-				<?php esc_html_e( 'accept.blue Payment Gateway', 'accept-blue-for-formidable' ); ?>
+				<?php esc_html_e( 'accept.blue Payment Gateway', 'payment-gateway-accept-blue-for-formidable' ); ?>
 			</h3>
 			<p>
 				<?php printf(
 					wp_kses(
 						/* translators: %s = URL */
-						__( 'Enter your <a href="%s" target="_blank" rel="noopener">accept.blue</a> credentials. Find your API key and Hosted Tokenization key in your accept.blue merchant portal.', 'accept-blue-for-formidable' ),
+						__( 'Enter your <a href="%s" target="_blank" rel="noopener">accept.blue</a> credentials. Find your API key and Hosted Tokenization key in your accept.blue merchant portal.', 'payment-gateway-accept-blue-for-formidable' ),
 						array( 'a' => array( 'href' => array(), 'target' => array(), 'rel' => array() ) )
 					),
 					'https://accept.blue'
@@ -109,7 +109,7 @@ class Frm_AB_Lite_Settings {
 			<table class="form-table">
 				<tr>
 					<th scope="row">
-						<label for="frm_ab_lite_test_mode"><?php esc_html_e( 'Test / Sandbox Mode', 'accept-blue-for-formidable' ); ?></label>
+						<label for="frm_ab_lite_test_mode"><?php esc_html_e( 'Test / Sandbox Mode', 'payment-gateway-accept-blue-for-formidable' ); ?></label>
 					</th>
 					<td>
 						<input type="checkbox"
@@ -118,23 +118,23 @@ class Frm_AB_Lite_Settings {
 							value="1"
 							<?php checked( 1, $settings['test_mode'] ); ?> />
 						<label for="frm_ab_lite_test_mode">
-							<?php esc_html_e( 'Enable sandbox/test mode (no real charges)', 'accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Enable sandbox/test mode (no real charges)', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</label>
 						<p class="description">
 							<?php if ( ! empty( $settings['test_mode'] ) ) : ?>
-								<strong style="color:#d63638;">⚠ <?php esc_html_e( 'Test Mode ON', 'accept-blue-for-formidable' ); ?></strong>
+								<strong style="color:#d63638;">⚠ <?php esc_html_e( 'Test Mode ON', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
 								— <?php
 								printf(
 									// translators: %s is the accept.blue sandbox API endpoint URL.
-									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Sandbox API key</strong> from your accept.blue portal.', 'accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
+									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Sandbox API key</strong> from your accept.blue portal.', 'payment-gateway-accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
 									esc_html( Frm_AB_Lite_API::SANDBOX_URL )
 								); ?>
 							<?php else : ?>
-								<strong style="color:#00a32a;">✓ <?php esc_html_e( 'Live Mode ON', 'accept-blue-for-formidable' ); ?></strong>
+								<strong style="color:#00a32a;">✓ <?php esc_html_e( 'Live Mode ON', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
 								— <?php
 								printf(
 									// translators: %s is the accept.blue live API endpoint URL.
-									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Production API key</strong>.', 'accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
+									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Production API key</strong>.', 'payment-gateway-accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
 									esc_html( Frm_AB_Lite_API::LIVE_URL )
 								); ?>
 							<?php endif; ?>
@@ -145,7 +145,7 @@ class Frm_AB_Lite_Settings {
 				<!-- ── DEBUG LOGGING ─────────────────────────────────────────────── -->
 				<tr>
 					<th scope="row">
-						<label for="frm_ab_lite_debug_log"><?php esc_html_e( 'Debug Logging', 'accept-blue-for-formidable' ); ?></label>
+						<label for="frm_ab_lite_debug_log"><?php esc_html_e( 'Debug Logging', 'payment-gateway-accept-blue-for-formidable' ); ?></label>
 					</th>
 					<td>
 						<input type="checkbox"
@@ -154,7 +154,7 @@ class Frm_AB_Lite_Settings {
 							value="1"
 							<?php checked( 1, $settings['debug_log'] ); ?> />
 						<label for="frm_ab_lite_debug_log">
-							<?php esc_html_e( 'Enable debug logging for Accept.Blue API requests and responses', 'accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Enable debug logging for Accept.Blue API requests and responses', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</label>
 						<p class="description">
 							<?php
@@ -162,16 +162,16 @@ class Frm_AB_Lite_Settings {
 							$_ab_log_files = class_exists('Frm_AB_Lite_Logger') ? Frm_AB_Lite_Logger::list_files() : [];
 							?>
 							<?php if ( ! empty( $settings['debug_log'] ) ) : ?>
-								<strong style="color:#d63638;">&#9888; <?php esc_html_e( 'Debug logging is ON.', 'accept-blue-for-formidable' ); ?></strong>
-								<?php esc_html_e( 'All API requests and responses are written to the Accept.Blue log file. Disable when not actively debugging.', 'accept-blue-for-formidable' ); ?>
+								<strong style="color:#d63638;">&#9888; <?php esc_html_e( 'Debug logging is ON.', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+								<?php esc_html_e( 'All API requests and responses are written to the Accept.Blue log file. Disable when not actively debugging.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 								<br />
-								<strong><?php esc_html_e( 'Log file:', 'accept-blue-for-formidable' ); ?></strong>
-								<code style="font-size:11px;"><?php echo esc_html( $_ab_log_file ?: __( 'Not yet created', 'accept-blue-for-formidable' ) ); ?></code>
+								<strong><?php esc_html_e( 'Log file:', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+								<code style="font-size:11px;"><?php echo esc_html( $_ab_log_file ?: __( 'Not yet created', 'payment-gateway-accept-blue-for-formidable' ) ); ?></code>
 								<?php if ( ! empty( $_ab_log_files ) ) : ?>
-									<br /><a href="<?php echo esc_url( admin_url('admin.php?page=frm-ab-lite-transactions&frm_ab_lite_view_log=1') ); ?>"><?php esc_html_e( 'View Log', 'accept-blue-for-formidable' ); ?></a>
+									<br /><a href="<?php echo esc_url( admin_url('admin.php?page=frm-ab-lite-transactions&frm_ab_lite_view_log=1') ); ?>"><?php esc_html_e( 'View Log', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
 								<?php endif; ?>
 							<?php else : ?>
-								<?php esc_html_e( 'When enabled, all Accept.Blue API requests and responses are written to a dedicated log file (separate from debug.log).', 'accept-blue-for-formidable' ); ?>
+								<?php esc_html_e( 'When enabled, all Accept.Blue API requests and responses are written to a dedicated log file (separate from debug.log).', 'payment-gateway-accept-blue-for-formidable' ); ?>
 								<?php if ( $_ab_log_file ) : ?>
 									<br /><code style="font-size:11px;color:#555;"><?php echo esc_html( dirname( $_ab_log_file ) ); ?>/accept-blue-YYYY-MM.log</code>
 								<?php endif; ?>
@@ -182,7 +182,7 @@ class Frm_AB_Lite_Settings {
 
 				<tr>
 					<th scope="row">
-						<label for="frm_ab_lite_api_key"><?php esc_html_e( 'API Key', 'accept-blue-for-formidable' ); ?></label>
+						<label for="frm_ab_lite_api_key"><?php esc_html_e( 'API Key', 'payment-gateway-accept-blue-for-formidable' ); ?></label>
 					</th>
 					<td>
 						<input type="text"
@@ -192,14 +192,14 @@ class Frm_AB_Lite_Settings {
 							class="regular-text"
 							autocomplete="off" />
 						<p class="description">
-							<?php esc_html_e( 'Used as the HTTP Basic Auth username when calling the accept.blue API.', 'accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Used as the HTTP Basic Auth username when calling the accept.blue API.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</p>
 					</td>
 				</tr>
 
 				<tr>
 					<th scope="row">
-						<label for="frm_ab_lite_pin"><?php esc_html_e( 'PIN', 'accept-blue-for-formidable' ); ?></label>
+						<label for="frm_ab_lite_pin"><?php esc_html_e( 'PIN', 'payment-gateway-accept-blue-for-formidable' ); ?></label>
 					</th>
 					<td>
 						<input type="password"
@@ -209,14 +209,14 @@ class Frm_AB_Lite_Settings {
 							class="regular-text"
 							autocomplete="new-password" />
 						<p class="description">
-							<?php esc_html_e( 'HTTP Basic Auth password. Leave blank if your key does not use a PIN.', 'accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'HTTP Basic Auth password. Leave blank if your key does not use a PIN.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</p>
 					</td>
 				</tr>
 
 				<tr>
 					<th scope="row">
-						<label for="frm_ab_lite_tokenization_key"><?php esc_html_e( 'Hosted Tokenization Key', 'accept-blue-for-formidable' ); ?></label>
+						<label for="frm_ab_lite_tokenization_key"><?php esc_html_e( 'Hosted Tokenization Key', 'payment-gateway-accept-blue-for-formidable' ); ?></label>
 					</th>
 					<td>
 						<input type="text"
@@ -225,7 +225,7 @@ class Frm_AB_Lite_Settings {
 							value="<?php echo esc_attr( $settings['tokenization_key'] ); ?>"
 							class="regular-text" />
 						<p class="description">
-							<?php esc_html_e( 'Public key for the accept.blue Hosted Tokenization iFrame. Found in your accept.blue portal → Hosted Tokenization.', 'accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Public key for the accept.blue Hosted Tokenization iFrame. Found in your accept.blue portal → Hosted Tokenization.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</p>
 						<?php
 						$tok_key   = $settings['tokenization_key'] ?? '';
@@ -234,52 +234,52 @@ class Frm_AB_Lite_Settings {
 						// Live keys do not. Warn if they appear mismatched.
 						if ( $tok_key && $is_sandbox && strpos( $tok_key, 'pk_' ) !== 0 ) : ?>
 							<p style="color:#b91c1c;font-weight:600;margin-top:6px;">
-								&#9888; <?php esc_html_e( 'Warning: Sandbox mode is ON but this key does not look like a sandbox Hosted Tokenization key (sandbox keys start with "pk_"). Please check your accept.blue portal → Hosted Tokenization and use the sandbox key.', 'accept-blue-for-formidable' ); ?>
+								&#9888; <?php esc_html_e( 'Warning: Sandbox mode is ON but this key does not look like a sandbox Hosted Tokenization key (sandbox keys start with "pk_"). Please check your accept.blue portal → Hosted Tokenization and use the sandbox key.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 							</p>
 						<?php elseif ( $tok_key && ! $is_sandbox && strpos( $tok_key, 'pk_' ) === 0 ) : ?>
 							<p style="color:#b45309;font-weight:600;margin-top:6px;">
-								&#9888; <?php esc_html_e( 'Warning: Live mode is ON but this looks like a sandbox Hosted Tokenization key (starts with "pk_"). Please use your live key for production.', 'accept-blue-for-formidable' ); ?>
+								&#9888; <?php esc_html_e( 'Warning: Live mode is ON but this looks like a sandbox Hosted Tokenization key (starts with "pk_"). Please use your live key for production.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 							</p>
 						<?php elseif ( ! $tok_key ) : ?>
 							<p style="color:#b91c1c;font-weight:600;margin-top:6px;">
-								&#9888; <?php esc_html_e( 'Required: Enter your Hosted Tokenization key or the card payment field will show a 401 error.', 'accept-blue-for-formidable' ); ?>
+								&#9888; <?php esc_html_e( 'Required: Enter your Hosted Tokenization key or the card payment field will show a 401 error.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 							</p>
 						<?php endif; ?>
 					</td>
 				</tr>
 
 				<tr>
-					<th scope="row"><?php esc_html_e( '3DS (Paay) API Key', 'accept-blue-for-formidable' ); ?></th>
+					<th scope="row"><?php esc_html_e( '3DS (Paay) API Key', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
 					<td>
 						<p class="description">
-							<?php esc_html_e( 'Available in the Pro version.', 'accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
+							<?php esc_html_e( 'Available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
 						</p>
 					</td>
 				</tr>
 				<?php echo '</tbody><tbody>'; ?>
 
 				<tr>
-					<th scope="row"><?php esc_html_e( 'Connection Test', 'accept-blue-for-formidable' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'Connection Test', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
 					<td>
 						<?php if ( ! empty( $settings['api_key'] ) ) : ?>
 							<button type="button" id="frm_ab_lite_test_connection" class="button button-secondary">
-								<?php esc_html_e( 'Test Connection', 'accept-blue-for-formidable' ); ?>
+								<?php esc_html_e( 'Test Connection', 'payment-gateway-accept-blue-for-formidable' ); ?>
 							</button>
 							<span id="frm_ab_lite_test_result" style="margin-left:10px;"></span>
 						<?php else : ?>
-							<span style="color:#999;"><?php esc_html_e( 'Enter your API key and save to test the connection.', 'accept-blue-for-formidable' ); ?></span>
+							<span style="color:#999;"><?php esc_html_e( 'Enter your API key and save to test the connection.', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
 						<?php endif; ?>
 					</td>
 				</tr>
 
 				<?php echo '<tbody>'; ?>
 				<tr>
-					<th scope="row"><?php esc_html_e( 'Webhook URL', 'accept-blue-for-formidable' ); ?></th>
+					<th scope="row"><?php esc_html_e( 'Webhook URL', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
 					<td>
 						<p class="description">
-							<?php esc_html_e( 'Available in the Pro version.', 'accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
+							<?php esc_html_e( 'Available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
 						</p>
 					</td>
 				</tr>
@@ -384,13 +384,13 @@ class Frm_AB_Lite_Settings {
 		check_ajax_referer( 'frm_ab_lite_test', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( __( 'Unauthorized.', 'accept-blue-for-formidable' ) );
+			wp_send_json_error( __( 'Unauthorized.', 'payment-gateway-accept-blue-for-formidable' ) );
 		}
 
 		$settings = self::get_settings();
 
 		if ( empty( $settings['api_key'] ) ) {
-			wp_send_json_error( __( 'API key is not configured.', 'accept-blue-for-formidable' ) );
+			wp_send_json_error( __( 'API key is not configured.', 'payment-gateway-accept-blue-for-formidable' ) );
 		}
 
 		$api_key   = trim( $settings['api_key'] );
@@ -416,7 +416,7 @@ class Frm_AB_Lite_Settings {
 		);
 
 		if ( is_wp_error( $response ) ) {
-			wp_send_json_error( __( 'Network error: ', 'accept-blue-for-formidable' ) . $response->get_error_message() );
+			wp_send_json_error( __( 'Network error: ', 'payment-gateway-accept-blue-for-formidable' ) . $response->get_error_message() );
 		}
 
 		$code = (int) wp_remote_retrieve_response_code( $response );
@@ -424,11 +424,11 @@ class Frm_AB_Lite_Settings {
 		$body = json_decode( $raw, true );
 
 		if ( $code === 200 || $code === 206 ) {
-			$mode_label = $test_mode ? __( 'Sandbox', 'accept-blue-for-formidable' ) : __( 'Production', 'accept-blue-for-formidable' );
+			$mode_label = $test_mode ? __( 'Sandbox', 'payment-gateway-accept-blue-for-formidable' ) : __( 'Production', 'payment-gateway-accept-blue-for-formidable' );
 			wp_send_json_success( array(
 				'message' => sprintf(
 					/* translators: 1: mode (Sandbox/Production), 2: HTTP status code */
-					__( 'Connected to accept.blue %1$s successfully (HTTP %2$d).', 'accept-blue-for-formidable' ),
+					__( 'Connected to accept.blue %1$s successfully (HTTP %2$d).', 'payment-gateway-accept-blue-for-formidable' ),
 					$mode_label,
 					$code
 				),
@@ -438,11 +438,11 @@ class Frm_AB_Lite_Settings {
 		if ( $code === 401 || $code === 403 ) {
 			$detail = isset( $body['message'] ) ? $body['message'] : $raw;
 			$hint   = $test_mode
-				? __( ' Tip: Test Mode is ON — make sure you are using a Sandbox API key.', 'accept-blue-for-formidable' )
-				: __( ' Tip: Test Mode is OFF — make sure you are using a Production API key.', 'accept-blue-for-formidable' );
+				? __( ' Tip: Test Mode is ON — make sure you are using a Sandbox API key.', 'payment-gateway-accept-blue-for-formidable' )
+				: __( ' Tip: Test Mode is OFF — make sure you are using a Production API key.', 'payment-gateway-accept-blue-for-formidable' );
 			wp_send_json_error(
 				// translators: %1$d is the HTTP status code, %2$s is the error detail.
-				sprintf( __( 'Authentication failed (HTTP %1$d): %2$s', 'accept-blue-for-formidable' ), $code, $detail ) . $hint
+				sprintf( __( 'Authentication failed (HTTP %1$d): %2$s', 'payment-gateway-accept-blue-for-formidable' ), $code, $detail ) . $hint
 			);
 		}
 

@@ -6,7 +6,7 @@
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://ryanplugins.net/
- * Text Domain:     accept-blue-for-formidable
+ * Text Domain:     payment-gateway-accept-blue-for-formidable
  * Domain Path:     /languages
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
@@ -48,8 +48,8 @@ function frm_ab_lite_boot() {
 	if ( ! class_exists( 'FrmHooksController' ) ) {
 		add_action( 'admin_notices', function () {
 			echo '<div class="error"><p>';
-			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'accept-blue-for-formidable' ) . '</strong> ';
-			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'accept-blue-for-formidable' );
+			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'payment-gateway-accept-blue-for-formidable' ) . '</strong> ';
+			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'payment-gateway-accept-blue-for-formidable' );
 			echo '</p></div>';
 		} );
 		return;

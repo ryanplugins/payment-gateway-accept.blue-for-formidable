@@ -51,11 +51,11 @@ class Frm_AB_Lite_Gateway {
 		<span class="frm_ab_lite_refund_wrap" style="margin-left:10px;">
 			<input type="number" step="0.01" min="0"
 				id="frm_ab_lite_refund_amount"
-				placeholder="<?php esc_attr_e( 'Amount (blank = full)', 'accept-blue-for-formidable' ); ?>"
+				placeholder="<?php esc_attr_e( 'Amount (blank = full)', 'payment-gateway-accept-blue-for-formidable' ); ?>"
 				style="width:160px;" />
 			<button type="button" class="button button-secondary"
 				onclick="frmAbRefund( <?php echo intval( $payment->id ); ?>, '<?php echo esc_js( $payment->receipt_id ); ?>' )">
-				<?php esc_html_e( 'Refund via Accept.Blue', 'accept-blue-for-formidable' ); ?>
+				<?php esc_html_e( 'Refund via Accept.Blue', 'payment-gateway-accept-blue-for-formidable' ); ?>
 			</button>
 		</span>
 		<?php
