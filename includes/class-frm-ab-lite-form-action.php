@@ -789,7 +789,7 @@ function frm_ab_lite_precheck_payment_handler() {
 	// charge — it is a single-use token and must be consumed by the vault
 	// (customer + payment-method) so that frm_ab_lite_process_payment can create
 	// the recurring schedule without re-using the nonce.
-	$recurring_enabled = ! empty( $action_settings['recurring_enabled'] );
+	$recurring_enabled = false; // Lite: recurring is a Pro-only feature.
 
 	if ( $recurring_enabled ) {
 
@@ -1413,7 +1413,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 	//
 	// No Step 4 charge. The schedule handles ALL payments including the first one.
 	// accept.blue fires the first charge automatically on next_run_date.
-	if ( ! empty( $s['recurring_enabled'] ) ) {
+	if ( false ) { // Lite: recurring disabled — Pro-only feature.
 		Frm_AB_Lite_Logger::info( sprintf(
 			'[Recurring] Mode active for entry #%d — running setup before charge.',
 			$entry->id ?? 0

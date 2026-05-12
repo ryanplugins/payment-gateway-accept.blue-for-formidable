@@ -185,7 +185,7 @@ class Frm_AB_Lite_Field {
 		}
 
 				// Recurring defaults
-		$recurring_enabled    = isset( $recurring_enabled )    ? $recurring_enabled    : false;
+		$recurring_enabled    = false; // Lite: recurring is a Pro-only feature.
 		$recurring_frequency  = isset( $recurring_frequency )  ? $recurring_frequency  : 'monthly';
 		$recurring_title      = isset( $recurring_title )      ? $recurring_title      : '';
 		$recurring_duration   = isset( $recurring_duration )   ? $recurring_duration   : 0;

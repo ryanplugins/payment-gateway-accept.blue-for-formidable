@@ -89,7 +89,7 @@ Lite handles one-time credit card payments and debug logging. Pro adds recurring
 
 = Where do I upgrade to Pro? =
 
-Visit https://www.patreon.com/posts/formidable-blue-157799373 for Pro version details and pricing.
+Visit https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/ for Pro version details and pricing.
 
 = What statuses does the plugin use? =
 
