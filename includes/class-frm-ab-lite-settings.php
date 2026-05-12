@@ -124,16 +124,16 @@ class Frm_AB_Lite_Settings {
 							<?php if ( ! empty( $settings['test_mode'] ) ) : ?>
 								<strong style="color:#d63638;">⚠ <?php esc_html_e( 'Test Mode ON', 'accept-blue-for-formidable' ); ?></strong>
 								— <?php
-								// translators: %s is the sandbox API endpoint URL.
 								printf(
+									// translators: %s is the accept.blue sandbox API endpoint URL.
 									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Sandbox API key</strong> from your accept.blue portal.', 'accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
 									esc_html( Frm_AB_Lite_API::SANDBOX_URL )
 								); ?>
 							<?php else : ?>
 								<strong style="color:#00a32a;">✓ <?php esc_html_e( 'Live Mode ON', 'accept-blue-for-formidable' ); ?></strong>
 								— <?php
-								// translators: %s is the live API endpoint URL.
 								printf(
+									// translators: %s is the accept.blue live API endpoint URL.
 									wp_kses( __( 'Requests go to <code>%s</code>. Use a <strong>Production API key</strong>.', 'accept-blue-for-formidable' ), array( 'code' => array(), 'strong' => array() ) ),
 									esc_html( Frm_AB_Lite_API::LIVE_URL )
 								); ?>
@@ -317,7 +317,7 @@ class Frm_AB_Lite_Settings {
 			return;
 		}
 
-		$raw = isset( $_POST['frm_ab_lite_settings'] ) ? wp_unslash( $_POST['frm_ab_lite_settings'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		$raw = isset( $_POST['frm_ab_lite_settings'] ) ? wp_unslash( $_POST['frm_ab_lite_settings'] ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput,WordPress.Security.NonceVerification.Missing -- nonce verified by Formidable before this hook fires
 
 		$settings = array(
 			'api_key'          => sanitize_text_field( isset( $raw['api_key'] )          ? $raw['api_key']          : '' ),

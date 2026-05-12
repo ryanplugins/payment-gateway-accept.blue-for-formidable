@@ -969,8 +969,8 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 	$meta = function( $field_id ) use ( $entry ) {
 		if ( ! $field_id ) return '';
 		$val = isset( $entry->metas[ $field_id ] ) ? $entry->metas[ $field_id ] : '';
-		if ( empty( $val ) && isset( $_POST['item_meta'][ $field_id ] ) ) {
-			$val = isset( $_POST['item_meta'][ $field_id ] ) ? $_POST['item_meta'][ $field_id ] : ''; // sanitized downstream by field mapper
+		if ( empty( $val ) && isset( $_POST['item_meta'][ $field_id ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$val = isset( $_POST['item_meta'][ $field_id ] ) ? sanitize_text_field( wp_unslash( $_POST['item_meta'][ $field_id ] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing,WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		}
 		return is_array( $val ) ? implode( ', ', $val ) : sanitize_text_field( $val );
 	};
@@ -981,7 +981,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 	// We must resolve this BEFORE the nonce guard so a recurring-vault precheck —
 	// which has no reference_number — isn't mistaken for a missing nonce.
 	$uid       = get_current_user_id() ?: session_id();
-	$trans_key = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_trans_key'] ?? '' ) );
+	$trans_key = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_trans_key'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 	$preauth   = $trans_key ? get_transient( $trans_key ) : false;
 
 	if ( is_array( $preauth ) ) {

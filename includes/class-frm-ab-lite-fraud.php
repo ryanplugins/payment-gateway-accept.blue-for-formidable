@@ -58,7 +58,7 @@ class Frm_AB_Lite_Fraud {
 	private static function get_client_ip(): string {
 		foreach ( array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'REMOTE_ADDR' ) as $key ) {
 			if ( ! empty( $_SERVER[ $key ] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-				return sanitize_text_field( wp_unslash( explode( ',', $_SERVER[ $key ] )[0] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				return sanitize_text_field( wp_unslash( explode( ',', $_SERVER[ $key ] )[0] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized,WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 			}
 		}
 		return '';
