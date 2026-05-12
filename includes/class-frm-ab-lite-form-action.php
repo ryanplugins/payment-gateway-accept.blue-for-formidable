@@ -19,7 +19,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 	public function __construct() {
 		$this->FrmFormAction(
 			self::ACTION_SLUG,
-			__( 'Accept.Blue Payment', 'frm-acceptblue-lite' ),
+			__( 'Accept.Blue Payment', 'accept-blue-for-formidable' ),
 			array(
 				'classes'  => 'frm_creditcard_icon',
 				'color'    => '#279EDA',  // accept.blue brand blue — Formidable 6.x uses this to colour the inner circle
@@ -180,10 +180,10 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 		<!-- ════ PAYMENT FIELD ════ -->
 		<tr>
-			<th><label><?php esc_html_e( 'Payment Field', 'frm-acceptblue-lite' ); ?></label></th>
+			<th><label><?php esc_html_e( 'Payment Field', 'accept-blue-for-formidable' ); ?></label></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'payment_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select accept.blue card field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select accept.blue card field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) :
 						if ( ! in_array( $f->type, $ab_field_types, true ) ) continue;
 						?>
@@ -197,16 +197,16 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 <tbody>
 <tr>
 		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Auth-Only / Capture', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable authorise-only payments and manual capture.', 'frm-acceptblue-lite' ); ?>
+			<strong><?php esc_html_e( 'Auth-Only / Capture', 'accept-blue-for-formidable' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable authorise-only payments and manual capture.', 'accept-blue-for-formidable' ); ?>
 		</td>
 </tr>
 </tbody>
 <tbody>
 <tr>
 		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( '3-D Secure 2 (3DS2)', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable EMV 3DS2 strong customer authentication.', 'frm-acceptblue-lite' ); ?>
+			<strong><?php esc_html_e( '3-D Secure 2 (3DS2)', 'accept-blue-for-formidable' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable EMV 3DS2 strong customer authentication.', 'accept-blue-for-formidable' ); ?>
 		</td>
 </tr>
 </tbody>
@@ -214,7 +214,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 		<!-- ════ SHOW SURCHARGE ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Show Surcharge', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Show Surcharge', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'show_surcharge' ) ); ?>" value="0" />
 				<label>
@@ -223,32 +223,32 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 						value="1"
 						<?php checked( 1, $g( 'show_surcharge', 0 ) ); ?>
 						onchange="document.getElementById('frm_ab_lite_surcharge_label_row').style.display=this.checked?'':'none';" />
-					<?php esc_html_e( 'Display surcharge amount below the card field', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Display surcharge amount below the card field', 'accept-blue-for-formidable' ); ?>
 				</label>
 				<p class="description">
-					<?php esc_html_e( 'Calls getSurcharge() from the accept.blue iFrame and shows the applicable surcharge to the customer. Only applicable if your merchant account has surcharging configured.', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Calls getSurcharge() from the accept.blue iFrame and shows the applicable surcharge to the customer. Only applicable if your merchant account has surcharging configured.', 'accept-blue-for-formidable' ); ?>
 				</p>
 			</td>
 		</tr>
 
 		<!-- ════ SURCHARGE LABEL ════ -->
 		<tr id="frm_ab_lite_surcharge_label_row" <?php echo empty( $g('show_surcharge') ) ? 'style="display:none;"' : ''; ?>>
-			<th><?php esc_html_e( 'Surcharge Label', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Surcharge Label', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="text"
 					name="<?php echo esc_attr( $ac->get_field_name( 'surcharge_label' ) ); ?>"
 					value="<?php echo esc_attr( $g( 'surcharge_label', 'Surcharge' ) ); ?>"
 					class="regular-text"
-					placeholder="<?php esc_attr_e( 'Surcharge', 'frm-acceptblue-lite' ); ?>" />
+					placeholder="<?php esc_attr_e( 'Surcharge', 'accept-blue-for-formidable' ); ?>" />
 				<p class="description">
-					<?php esc_html_e( 'Label shown next to the surcharge amount in the confirmation modal and below the card field.', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Label shown next to the surcharge amount in the confirmation modal and below the card field.', 'accept-blue-for-formidable' ); ?>
 				</p>
 			</td>
 		</tr>
 
 		<!-- ════ SHOW CARD DETAILS IN MODAL ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Show Card Details', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Show Card Details', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'show_card_details' ) ); ?>" value="0" />
 				<label>
@@ -256,24 +256,24 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 						name="<?php echo esc_attr( $ac->get_field_name( 'show_card_details' ) ); ?>"
 						value="1"
 						<?php checked( 1, $g( 'show_card_details', 1 ) ); ?> />
-					<?php esc_html_e( 'Show card details (card number, brand, expiry) in the payment confirmation modal', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Show card details (card number, brand, expiry) in the payment confirmation modal', 'accept-blue-for-formidable' ); ?>
 				</label>
 				<p class="description">
-					<?php esc_html_e( 'When checked, the confirmation modal will display the masked card number and expiry date retrieved from the accept.blue iFrame via getData(). Uncheck to show only the amount.', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'When checked, the confirmation modal will display the masked card number and expiry date retrieved from the accept.blue iFrame via getData(). Uncheck to show only the amount.', 'accept-blue-for-formidable' ); ?>
 				</p>
 			</td>
 		</tr>
 
 		<!-- ════ AMOUNT ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Charge Amount', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Charge Amount', 'accept-blue-for-formidable' ); ?></th>
 			<td>
-				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'amount_type' ) ); ?>" value="fixed" <?php checked( $g('amount_type','fixed'), 'fixed' ); ?> /> <?php esc_html_e( 'Fixed:', 'frm-acceptblue-lite' ); ?></label>
-				<input type="number" step="0.01" min="0.01" style="width:100px;" name="<?php echo esc_attr( $ac->get_field_name( 'amount_fixed' ) ); ?>" value="<?php echo esc_attr( $g('amount_fixed') ); ?>" placeholder="<?php esc_attr_e( '25.00', 'frm-acceptblue-lite' ); ?>" />
+				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'amount_type' ) ); ?>" value="fixed" <?php checked( $g('amount_type','fixed'), 'fixed' ); ?> /> <?php esc_html_e( 'Fixed:', 'accept-blue-for-formidable' ); ?></label>
+				<input type="number" step="0.01" min="0.01" style="width:100px;" name="<?php echo esc_attr( $ac->get_field_name( 'amount_fixed' ) ); ?>" value="<?php echo esc_attr( $g('amount_fixed') ); ?>" placeholder="<?php esc_attr_e( '25.00', 'accept-blue-for-formidable' ); ?>" />
 				<br /><br />
-				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'amount_type' ) ); ?>" value="field" <?php checked( $g('amount_type','fixed'), 'field' ); ?> /> <?php esc_html_e( 'From field:', 'frm-acceptblue-lite' ); ?></label>
+				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'amount_type' ) ); ?>" value="field" <?php checked( $g('amount_type','fixed'), 'field' ); ?> /> <?php esc_html_e( 'From field:', 'accept-blue-for-formidable' ); ?></label>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'amount_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('amount_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
@@ -283,7 +283,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 		<!-- ════ CURRENCY ════ -->
 		<tr>
-			<th><label><?php esc_html_e( 'Currency', 'frm-acceptblue-lite' ); ?></label></th>
+			<th><label><?php esc_html_e( 'Currency', 'accept-blue-for-formidable' ); ?></label></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'currency' ) ); ?>">
 					<?php foreach ( array( 'USD' => 'USD — US Dollar', 'CAD' => 'CAD — Canadian Dollar', 'GBP' => 'GBP — British Pound', 'EUR' => 'EUR — Euro', 'AUD' => 'AUD — Australian Dollar' ) as $code => $label ) : ?>
@@ -295,136 +295,136 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 		<!-- ════ NAME ON CARD ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Name on Card / Account', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Name on Card / Account', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'name_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('name_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'Maps to the accept.blue "name" field.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Maps to the accept.blue "name" field.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ EMAIL ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Email', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Email', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'email_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('email_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'Customer email sent to accept.blue with the charge.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Customer email sent to accept.blue with the charge.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ CUSTOMER IDENTIFIER ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Customer Identifier', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Customer Identifier', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'customer_identifier_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('customer_identifier_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'Something that identifies the customer, e.g. their name or company. Recommended: map to a "Full Name" or "Company" field.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Something that identifies the customer, e.g. their name or company. Recommended: map to a "Full Name" or "Company" field.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ CUSTOMER NUMBER ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Customer Number', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Customer Number', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'customer_number_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('customer_number_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'A custom identifier for this customer. Recommended: map to an "Account Number", "Member ID", or hidden auto-ID field.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'A custom identifier for this customer. Recommended: map to an "Account Number", "Member ID", or hidden auto-ID field.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ AVS ADDRESS ════ -->
 		<tr>
-			<th><?php esc_html_e( 'AVS Street Address', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'AVS Street Address', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'avs_address_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('avs_address_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'Billing street address for Address Verification (AVS). Recommended for fraud prevention.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Billing street address for Address Verification (AVS). Recommended for fraud prevention.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ AVS ZIP ════ -->
 		<tr>
-			<th><?php esc_html_e( 'AVS ZIP / Postal Code', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'AVS ZIP / Postal Code', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( 'avs_zip_field' ) ); ?>">
-					<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('avs_zip_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
 				</select>
-				<p class="description"><?php esc_html_e( 'Billing ZIP/postal code for Address Verification (AVS). Strongly recommended for fraud prevention and best interchange rates.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Billing ZIP/postal code for Address Verification (AVS). Strongly recommended for fraud prevention and best interchange rates.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- ════ IFRAME STYLE ════ -->
 		<tr>
-			<th><?php esc_html_e( 'iFrame Style', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'iFrame Style', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<select id="frm_ab_lite_iframe_style_select" name="<?php echo esc_attr( $ac->get_field_name( 'iframe_style' ) ); ?>">
-					<option value="default" <?php selected( $g('iframe_style','default'), 'default' ); ?>><?php esc_html_e( 'Default (accept.blue)', 'frm-acceptblue-lite' ); ?></option>
-					<option value="light"   <?php selected( $g('iframe_style','default'), 'light'   ); ?>><?php esc_html_e( 'Light',  'frm-acceptblue-lite' ); ?></option>
-					<option value="dark"    <?php selected( $g('iframe_style','default'), 'dark'    ); ?>><?php esc_html_e( 'Dark',   'frm-acceptblue-lite' ); ?></option>
-					<option value="custom"  <?php selected( $g('iframe_style','default'), 'custom'  ); ?>><?php esc_html_e( 'Custom CSS', 'frm-acceptblue-lite' ); ?></option>
+					<option value="default" <?php selected( $g('iframe_style','default'), 'default' ); ?>><?php esc_html_e( 'Default (accept.blue)', 'accept-blue-for-formidable' ); ?></option>
+					<option value="light"   <?php selected( $g('iframe_style','default'), 'light'   ); ?>><?php esc_html_e( 'Light',  'accept-blue-for-formidable' ); ?></option>
+					<option value="dark"    <?php selected( $g('iframe_style','default'), 'dark'    ); ?>><?php esc_html_e( 'Dark',   'accept-blue-for-formidable' ); ?></option>
+					<option value="custom"  <?php selected( $g('iframe_style','default'), 'custom'  ); ?>><?php esc_html_e( 'Custom CSS', 'accept-blue-for-formidable' ); ?></option>
 				</select>
 
 				<div id="frm_ab_lite_custom_style_wrap" style="margin-top:10px;<?php echo $g('iframe_style') === 'custom' ? '' : 'display:none;'; ?>">
 					<p class="description" style="margin-bottom:5px;">
-						<?php esc_html_e( 'Enter CSS for the card iFrame container. Supported keys: card, input, label, number, expiry, cvv, zip, error.', 'frm-acceptblue-lite' ); ?>
+						<?php esc_html_e( 'Enter CSS for the card iFrame container. Supported keys: card, input, label, number, expiry, cvv, zip, error.', 'accept-blue-for-formidable' ); ?>
 					</p>
 					<textarea
 						name="<?php echo esc_attr( $ac->get_field_name( 'iframe_custom_css' ) ); ?>"
 						rows="6"
 						class="large-text code"
-						placeholder="<?php esc_attr_e( 'card: background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 12px;', 'frm-acceptblue-lite' ); ?>"
+						placeholder="<?php esc_attr_e( 'card: background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 12px;', 'accept-blue-for-formidable' ); ?>"
 						><?php echo esc_textarea( $g('iframe_custom_css') ); ?></textarea>
 					<p class="description">
-						<?php esc_html_e( 'Format: key: css-value; — one rule per line. Example:', 'frm-acceptblue-lite' ); ?><br>
+						<?php esc_html_e( 'Format: key: css-value; — one rule per line. Example:', 'accept-blue-for-formidable' ); ?><br>
 						<code>card: background:#f9f9f9; border:1px solid #ddd; border-radius:8px;</code><br>
 						<code>input: border:1px solid #aaa; border-radius:4px; color:#333;</code>
 					</p>
 				</div>
 			</td>
 		</tr>
-		<tr><th colspan="2"><strong><?php esc_html_e( 'Billing Information', 'frm-acceptblue-lite' ); ?></strong></th></tr>
+		<tr><th colspan="2"><strong><?php esc_html_e( 'Billing Information', 'accept-blue-for-formidable' ); ?></strong></th></tr>
 		<?php
 		$billing_fields = array(
-			'billing_first_name' => __( 'First Name',   'frm-acceptblue-lite' ),
-			'billing_last_name'  => __( 'Last Name',    'frm-acceptblue-lite' ),
-			'billing_street'     => __( 'Street',       'frm-acceptblue-lite' ),
-			'billing_street2'    => __( 'Street 2',     'frm-acceptblue-lite' ),
-			'billing_city'       => __( 'City',         'frm-acceptblue-lite' ),
-			'billing_state'      => __( 'State',        'frm-acceptblue-lite' ),
-			'billing_zip'        => __( 'ZIP / Postal', 'frm-acceptblue-lite' ),
-			'billing_country'    => __( 'Country',      'frm-acceptblue-lite' ),
-			'billing_phone'      => __( 'Phone',        'frm-acceptblue-lite' ),
+			'billing_first_name' => __( 'First Name',   'accept-blue-for-formidable' ),
+			'billing_last_name'  => __( 'Last Name',    'accept-blue-for-formidable' ),
+			'billing_street'     => __( 'Street',       'accept-blue-for-formidable' ),
+			'billing_street2'    => __( 'Street 2',     'accept-blue-for-formidable' ),
+			'billing_city'       => __( 'City',         'accept-blue-for-formidable' ),
+			'billing_state'      => __( 'State',        'accept-blue-for-formidable' ),
+			'billing_zip'        => __( 'ZIP / Postal', 'accept-blue-for-formidable' ),
+			'billing_country'    => __( 'Country',      'accept-blue-for-formidable' ),
+			'billing_phone'      => __( 'Phone',        'accept-blue-for-formidable' ),
 		);
 		foreach ( $billing_fields as $key => $label ) : ?>
 		<tr>
 			<th style="padding-left:20px;"><label><?php echo esc_html( $label ); ?></label></th>
 			<td>
 				<select name="<?php echo esc_attr( $ac->get_field_name( $key ) ); ?>">
-					<option value=""><?php esc_html_e( '— None —', 'frm-acceptblue-lite' ); ?></option>
+					<option value=""><?php esc_html_e( '— None —', 'accept-blue-for-formidable' ); ?></option>
 					<?php foreach ( $fields as $f ) : ?>
 						<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g( $key ), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 					<?php endforeach; ?>
@@ -435,7 +435,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 		<!-- ════ LINE ITEMS (LEVEL 3) ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Line Items (Level 3)', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Line Items (Level 3)', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'li_enabled' ) ); ?>" value="0" />
 				<label>
@@ -443,109 +443,109 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 						name="<?php echo esc_attr( $ac->get_field_name( 'li_enabled' ) ); ?>"
 						value="1" <?php checked( 1, $g('li_enabled', 0) ); ?>
 						onchange="document.getElementById('frm_ab_lite_li_rows').style.display=this.checked?'':'none';" />
-					<?php esc_html_e( 'Send Level 3 line item data with the charge', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Send Level 3 line item data with the charge', 'accept-blue-for-formidable' ); ?>
 				</label>
-				<p class="description"><?php esc_html_e( 'Level 3 data (SKU, quantity, tax) qualifies for lower interchange rates on B2B/corporate cards.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Level 3 data (SKU, quantity, tax) qualifies for lower interchange rates on B2B/corporate cards.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 		<tbody id="frm_ab_lite_li_rows" <?php echo $g('li_enabled') ? '' : 'style="display:none;"'; ?>>
 
 		<!-- SKU -->
 		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_li_sku"><?php esc_html_e( 'SKU', 'frm-acceptblue-lite' ); ?></label></th>
+			<th style="padding-left:20px;"><label for="frm_ab_lite_li_sku"><?php esc_html_e( 'SKU', 'accept-blue-for-formidable' ); ?></label></th>
 			<td>
 				<input type="text" id="frm_ab_lite_li_sku" class="regular-text"
 					name="<?php echo esc_attr( $ac->get_field_name( 'li_sku' ) ); ?>"
 					value="<?php echo esc_attr( $g('li_sku') ); ?>"
-					placeholder="<?php esc_attr_e( 'e.g. PROD-001 or [field_key]', 'frm-acceptblue-lite' ); ?>" />
-				<p class="description"><?php esc_html_e( 'Product SKU / commodity code. Supports Formidable shortcodes.', 'frm-acceptblue-lite' ); ?></p>
+					placeholder="<?php esc_attr_e( 'e.g. PROD-001 or [field_key]', 'accept-blue-for-formidable' ); ?>" />
+				<p class="description"><?php esc_html_e( 'Product SKU / commodity code. Supports Formidable shortcodes.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- Description -->
 		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_li_desc"><?php esc_html_e( 'Description', 'frm-acceptblue-lite' ); ?></label></th>
+			<th style="padding-left:20px;"><label for="frm_ab_lite_li_desc"><?php esc_html_e( 'Description', 'accept-blue-for-formidable' ); ?></label></th>
 			<td>
 				<input type="text" id="frm_ab_lite_li_desc" class="large-text"
 					name="<?php echo esc_attr( $ac->get_field_name( 'li_description' ) ); ?>"
 					value="<?php echo esc_attr( $g('li_description') ); ?>"
-					placeholder="<?php esc_attr_e( 'e.g. Annual subscription or [product_name]', 'frm-acceptblue-lite' ); ?>" />
-				<p class="description"><?php esc_html_e( 'Line item description. Supports Formidable shortcodes.', 'frm-acceptblue-lite' ); ?></p>
+					placeholder="<?php esc_attr_e( 'e.g. Annual subscription or [product_name]', 'accept-blue-for-formidable' ); ?>" />
+				<p class="description"><?php esc_html_e( 'Line item description. Supports Formidable shortcodes.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- Unit Cost -->
 		<tr>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Unit Cost', 'frm-acceptblue-lite' ); ?></th>
+			<th style="padding-left:20px;"><?php esc_html_e( 'Unit Cost', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'li_cost_type' ) ); ?>" value="fixed"
 					<?php checked( $g('li_cost_type','fixed'), 'fixed' ); ?>
 					onchange="document.getElementById('frm_ab_lite_li_cost_fixed_wrap').style.display='';document.getElementById('frm_ab_lite_li_cost_field_wrap').style.display='none';" />
-				<?php esc_html_e( 'Fixed:', 'frm-acceptblue-lite' ); ?></label>
+				<?php esc_html_e( 'Fixed:', 'accept-blue-for-formidable' ); ?></label>
 				<span id="frm_ab_lite_li_cost_fixed_wrap" <?php echo $g('li_cost_type','fixed')==='fixed' ? '' : 'style="display:none;"'; ?>>
 					<input type="number" step="0.01" min="0" style="width:100px;"
 						name="<?php echo esc_attr( $ac->get_field_name( 'li_cost_fixed' ) ); ?>"
 						value="<?php echo esc_attr( $g('li_cost_fixed') ); ?>"
-						placeholder="<?php esc_attr_e( '0.00', 'frm-acceptblue-lite' ); ?>" />
+						placeholder="<?php esc_attr_e( '0.00', 'accept-blue-for-formidable' ); ?>" />
 				</span>
 				<br /><br />
 				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'li_cost_type' ) ); ?>" value="field"
 					<?php checked( $g('li_cost_type','fixed'), 'field' ); ?>
 					onchange="document.getElementById('frm_ab_lite_li_cost_field_wrap').style.display='';document.getElementById('frm_ab_lite_li_cost_fixed_wrap').style.display='none';" />
-				<?php esc_html_e( 'From field:', 'frm-acceptblue-lite' ); ?></label>
+				<?php esc_html_e( 'From field:', 'accept-blue-for-formidable' ); ?></label>
 				<span id="frm_ab_lite_li_cost_field_wrap" <?php echo $g('li_cost_type','fixed')==='field' ? '' : 'style="display:none;"'; ?>>
 					<select name="<?php echo esc_attr( $ac->get_field_name( 'li_cost_field' ) ); ?>">
-						<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+						<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 						<?php foreach ( $fields as $f ) : ?>
 							<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('li_cost_field'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</span>
-				<p class="description"><?php esc_html_e( 'Unit cost per item. If blank, calculated as amount / quantity.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Unit cost per item. If blank, calculated as amount / quantity.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- Quantity -->
 		<tr>
-			<th style="padding-left:20px;"><?php esc_html_e( 'Quantity', 'frm-acceptblue-lite' ); ?></th>
+			<th style="padding-left:20px;"><?php esc_html_e( 'Quantity', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'li_qty_type' ) ); ?>" value="fixed"
 					<?php checked( $g('li_qty_type','fixed'), 'fixed' ); ?>
 					onchange="document.getElementById('frm_ab_lite_li_qty_fixed_wrap').style.display='';document.getElementById('frm_ab_lite_li_qty_field_wrap').style.display='none';var qi=document.querySelector('#frm_ab_lite_li_qty_fixed_wrap input');if(qi)qi.disabled=false;" />
-				<?php esc_html_e( 'Fixed:', 'frm-acceptblue-lite' ); ?></label>
+				<?php esc_html_e( 'Fixed:', 'accept-blue-for-formidable' ); ?></label>
 				<span id="frm_ab_lite_li_qty_fixed_wrap" <?php echo $g('li_qty_type','fixed')==='fixed' ? '' : 'style="display:none;"'; ?>>
 					<input type="number" step="1" min="1" style="width:80px;"
 						name="<?php echo esc_attr( $ac->get_field_name( 'li_qty_fixed' ) ); ?>"
 						value="<?php echo esc_attr( max( 1, intval( $g('li_qty_fixed', 1) ) ) ); ?>"
-						placeholder="<?php esc_attr_e( '1', 'frm-acceptblue-lite' ); ?>"
+						placeholder="<?php esc_attr_e( '1', 'accept-blue-for-formidable' ); ?>"
 						<?php echo $g('li_qty_type','fixed') === 'fixed' ? '' : 'disabled'; ?> />
 				</span>
 				<br /><br />
 				<label><input type="radio" name="<?php echo esc_attr( $ac->get_field_name( 'li_qty_type' ) ); ?>" value="field"
 					<?php checked( $g('li_qty_type','fixed'), 'field' ); ?>
 					onchange="document.getElementById('frm_ab_lite_li_qty_field_wrap').style.display='';document.getElementById('frm_ab_lite_li_qty_fixed_wrap').style.display='none';var qi=document.querySelector('#frm_ab_lite_li_qty_fixed_wrap input');if(qi)qi.disabled=true;" />
-				<?php esc_html_e( 'From field:', 'frm-acceptblue-lite' ); ?></label>
+				<?php esc_html_e( 'From field:', 'accept-blue-for-formidable' ); ?></label>
 				<span id="frm_ab_lite_li_qty_field_wrap" <?php echo $g('li_qty_type','fixed')==='field' ? '' : 'style="display:none;"'; ?>>
 					<select name="<?php echo esc_attr( $ac->get_field_name( 'li_quantity' ) ); ?>">
-						<option value=""><?php esc_html_e( '— Select field —', 'frm-acceptblue-lite' ); ?></option>
+						<option value=""><?php esc_html_e( '— Select field —', 'accept-blue-for-formidable' ); ?></option>
 						<?php foreach ( $fields as $f ) : ?>
 							<option value="<?php echo esc_attr( $f->id ); ?>" <?php selected( $g('li_quantity'), $f->id ); ?>><?php echo esc_html( $f->name ); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</span>
-				<p class="description"><?php esc_html_e( 'Number of units. Fixed value or mapped to a form field.', 'frm-acceptblue-lite' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Number of units. Fixed value or mapped to a form field.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
 		<!-- Tax Rate -->
 		<tr>
-			<th style="padding-left:20px;"><label for="frm_ab_lite_li_tax"><?php esc_html_e( 'Tax Rate (%)', 'frm-acceptblue-lite' ); ?></label></th>
+			<th style="padding-left:20px;"><label for="frm_ab_lite_li_tax"><?php esc_html_e( 'Tax Rate (%)', 'accept-blue-for-formidable' ); ?></label></th>
 			<td>
 				<input type="number" id="frm_ab_lite_li_tax" step="0.001" min="0" max="100" style="width:100px;"
 					name="<?php echo esc_attr( $ac->get_field_name( 'li_tax_rate' ) ); ?>"
 					value="<?php echo esc_attr( $g('li_tax_rate') ); ?>"
-					placeholder="<?php esc_attr_e( 'e.g. 8.5', 'frm-acceptblue-lite' ); ?>" />
-				<p class="description"><?php esc_html_e( 'Tax rate as a percentage (e.g. 8.5 = 8.5%). Leave blank if not applicable.', 'frm-acceptblue-lite' ); ?></p>
+					placeholder="<?php esc_attr_e( 'e.g. 8.5', 'accept-blue-for-formidable' ); ?>" />
+				<p class="description"><?php esc_html_e( 'Tax rate as a percentage (e.g. 8.5 = 8.5%). Leave blank if not applicable.', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
@@ -555,33 +555,33 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 <tbody>
 <tr>
 		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Recurring Subscriptions & Installments', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable recurring billing, subscriptions, and instalment plans.', 'frm-acceptblue-lite' ); ?>
+			<strong><?php esc_html_e( 'Recurring Subscriptions & Installments', 'accept-blue-for-formidable' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable recurring billing, subscriptions, and instalment plans.', 'accept-blue-for-formidable' ); ?>
 		</td>
 </tr>
 </tbody>
 <tbody>
 		<!-- ════ OTHER OPTIONS ════ -->
 		<tr>
-			<th><?php esc_html_e( 'Save Card / Account', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Save Card / Account', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="hidden" name="<?php echo esc_attr( $ac->get_field_name( 'save_card' ) ); ?>" value="0" />
 				<label>
 					<input type="checkbox"
 						name="<?php echo esc_attr( $ac->get_field_name( 'save_card' ) ); ?>"
 						value="1" <?php checked( 1, $g('save_card', 0) ); ?> />
-					<?php esc_html_e( 'Save payment method to accept.blue vault', 'frm-acceptblue-lite' ); ?>
+					<?php esc_html_e( 'Save payment method to accept.blue vault', 'accept-blue-for-formidable' ); ?>
 				</label>
 			</td>
 		</tr>
 		<tr>
-			<th><?php esc_html_e( 'Description', 'frm-acceptblue-lite' ); ?></th>
+			<th><?php esc_html_e( 'Description', 'accept-blue-for-formidable' ); ?></th>
 			<td>
 				<input type="text" class="large-text"
 					name="<?php echo esc_attr( $ac->get_field_name( 'description' ) ); ?>"
 					value="<?php echo esc_attr( $g('description') ); ?>"
-					placeholder="<?php esc_attr_e( 'Payment for order #[id]', 'frm-acceptblue-lite' ); ?>" />
-				<p class="description"><?php esc_html_e( 'Supports Formidable shortcodes like [id].', 'frm-acceptblue-lite' ); ?></p>
+					placeholder="<?php esc_attr_e( 'Payment for order #[id]', 'accept-blue-for-formidable' ); ?>" />
+				<p class="description"><?php esc_html_e( 'Supports Formidable shortcodes like [id].', 'accept-blue-for-formidable' ); ?></p>
 			</td>
 		</tr>
 
@@ -589,8 +589,8 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 <tbody>
 <tr>
 		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Per-Form API Credential Override', 'frm-acceptblue-lite' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable per-form accept.blue API key and PIN override.', 'frm-acceptblue-lite' ); ?>
+			<strong><?php esc_html_e( 'Per-Form API Credential Override', 'accept-blue-for-formidable' ); ?></strong> &mdash; 
+			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable per-form accept.blue API key and PIN override.', 'accept-blue-for-formidable' ); ?>
 		</td>
 </tr>
 </tbody>
@@ -685,10 +685,10 @@ function frm_ab_lite_precheck_payment_handler() {
 	$amount = floatval( preg_replace( '/[^0-9.]/', '', $amount_raw ) );
 
 	if ( empty( $nonce ) ) {
-		wp_send_json_error( array( 'message' => __( 'No payment token received. Please try again.', 'frm-acceptblue-lite' ) ) );
+		wp_send_json_error( array( 'message' => __( 'No payment token received. Please try again.', 'accept-blue-for-formidable' ) ) );
 	}
 	if ( $amount <= 0 ) {
-		wp_send_json_error( array( 'message' => __( 'Payment amount must be greater than zero.', 'frm-acceptblue-lite' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Payment amount must be greater than zero.', 'accept-blue-for-formidable' ) ) );
 	}
 
 	// ── API: use per-action override credentials if configured ───────────
@@ -778,7 +778,7 @@ function frm_ab_lite_precheck_payment_handler() {
 	}
 
 	if ( ! $api ) {
-		wp_send_json_error( array( 'message' => __( 'Payment gateway not configured. Contact site admin.', 'frm-acceptblue-lite' ) ) );
+		wp_send_json_error( array( 'message' => __( 'Payment gateway not configured. Contact site admin.', 'accept-blue-for-formidable' ) ) );
 	}
 
 	$uid = get_current_user_id() ?: ( session_id() ?: uniqid( 'frm_ab_lite_', true ) );
@@ -813,7 +813,7 @@ function frm_ab_lite_precheck_payment_handler() {
 		$customer_id = intval( $customer['id'] ?? 0 );
 		if ( ! $customer_id ) {
 			Frm_AB_Lite_Logger::error( '[Recurring] Precheck Step 1: create_customer returned no ID.' );
-			wp_send_json_error( array( 'message' => __( 'Could not create vault customer. Please try again.', 'frm-acceptblue-lite' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Could not create vault customer. Please try again.', 'accept-blue-for-formidable' ) ) );
 		}
 		Frm_AB_Lite_Logger::info( '[Recurring] Precheck Step 1 ✓ customer_id=' . $customer_id );
 
@@ -827,7 +827,7 @@ function frm_ab_lite_precheck_payment_handler() {
 		$payment_method_id = intval( $pm_result['id'] ?? 0 );
 		if ( ! $payment_method_id ) {
 			Frm_AB_Lite_Logger::error( '[Recurring] Precheck Step 2: add_payment_method returned no ID.' );
-			wp_send_json_error( array( 'message' => __( 'Could not vault payment method. Please try again.', 'frm-acceptblue-lite' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Could not vault payment method. Please try again.', 'accept-blue-for-formidable' ) ) );
 		}
 		Frm_AB_Lite_Logger::info( '[Recurring] Precheck Step 2 ✓ payment_method_id=' . $payment_method_id );
 
@@ -1003,7 +1003,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 				: floatval( preg_replace( '/[^0-9.]/', '', $meta( $s['amount_field'] ?? '' ) ) );
 			if ( $amount <= 0 ) {
 				Frm_AB_Lite_Logger::error( '[Recurring] Precheck vault: amount <= 0 — aborting.' );
-				frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
+				frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'accept-blue-for-formidable' ) );
 				return;
 			}
 
@@ -1017,7 +1017,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 			}
 			if ( ! $api ) {
 				Frm_AB_Lite_Logger::error( '[Recurring] Precheck vault: API not configured.' );
-				frm_ab_lite_add_error( __( 'Payment gateway not configured. Contact site admin.', 'frm-acceptblue-lite' ) );
+				frm_ab_lite_add_error( __( 'Payment gateway not configured. Contact site admin.', 'accept-blue-for-formidable' ) );
 				return;
 			}
 
@@ -1038,7 +1038,9 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 				if ( $uid2 ) set_transient( 'frm_ab_lite_payment_error_' . $uid2, $error_msg, 60 );
 				if ( ! session_id() && ! headers_sent() ) { session_start(); }
 				$_SESSION['frm_ab_lite_error'] = $error_msg;
-				frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) );
+				// translators: %s is the payment error message.
+				// translators: %s is the payment error message.
+				frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) );
 				do_action( 'frm_ab_lite_payment_failed', $error_msg, $entry );
 				return;
 			}
@@ -1088,7 +1090,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 	if ( empty( $nonce ) ) {
 		Frm_AB_Lite_Logger::error( 'Charge FAILED: No nonce — aborting payment.' );
-		frm_ab_lite_add_error( __( 'accept.blue: No payment token received. Please try again.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: No payment token received. Please try again.', 'accept-blue-for-formidable' ) );
 		return;
 	}
 
@@ -1109,7 +1111,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 
 	if ( $amount <= 0 ) {
 		Frm_AB_Lite_Logger::error( 'Charge FAILED: Amount <= 0 — aborting.' );
-		frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: Amount must be greater than zero.', 'accept-blue-for-formidable' ) );
 		return;
 	}
 
@@ -1131,7 +1133,7 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		Frm_AB_Lite_Logger::info( '[Accept.Blue] ℹ️ process_payment: using GLOBAL API credentials.' );
 	}
 	if ( ! $api ) {
-		frm_ab_lite_add_error( __( 'accept.blue: Gateway not configured. Contact site admin.', 'frm-acceptblue-lite' ) );
+		frm_ab_lite_add_error( __( 'accept.blue: Gateway not configured. Contact site admin.', 'accept-blue-for-formidable' ) );
 		return;
 	}
 
@@ -1326,8 +1328,8 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 	// ── 3DS: browser data + verify3DS result ─────────────────────────────────
 	// verify3DS result is the primary 3DS payload (Paay).
 	// browser_info is the fallback / supplemental data for native 3DS.
-	$three_ds_raw    = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_three_ds_data']   ?? '' ) );
-	$three_ds_result = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_three_ds_result'] ?? '' ) );
+	$three_ds_raw    = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_three_ds_data']   ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$three_ds_result = sanitize_text_field( wp_unslash( $_POST['frm_ab_lite_three_ds_result'] ?? '' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 	// If we have a verify3DS result (Paay), attach it directly
 	if ( ! empty( $s['three_ds_enabled'] ) && $three_ds_result ) {
@@ -1429,7 +1431,9 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 			if ( $uid ) set_transient( 'frm_ab_lite_payment_error_' . $uid, $error_msg, 60 );
 			if ( ! session_id() && ! headers_sent() ) { session_start(); }
 			$_SESSION['frm_ab_lite_error'] = $error_msg;
-			frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) );
+			// translators: %s is the payment error message.
+			// translators: %s is the payment error message.
+			frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) );
 			do_action( 'frm_ab_lite_payment_failed', $error_msg, $entry );
 			return;
 		}
@@ -1468,7 +1472,9 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		if ( $uid ) set_transient( 'frm_ab_lite_payment_error_' . $uid, $error_msg, 60 );
 		if ( ! session_id() && ! headers_sent() ) { session_start(); }
 		$_SESSION['frm_ab_lite_error'] = $error_msg;
-		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) );
+		// translators: %s is the payment error message.
+		// translators: %s is the payment error message.
+		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) );
 		do_action( 'frm_ab_lite_payment_failed', $error_msg, $entry );
 		return;
 	}
@@ -1486,7 +1492,8 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		$error_msg = $api_error_msg
 			?: sprintf(
 				/* translators: %s = status string from API */
-				__( 'Payment %s (code: %s)', 'frm-acceptblue-lite' ),
+				// translators: %1$s is the payment status (e.g. failed), %2$s is the status code.
+				__( 'Payment %1$s (code: %2$s)', 'accept-blue-for-formidable' ),
 				ucfirst( $api_status ),
 				$api_status_code
 			);
@@ -1505,7 +1512,9 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		if ( $uid ) set_transient( 'frm_ab_lite_payment_error_' . $uid, $error_msg, 60 );
 		if ( ! session_id() && ! headers_sent() ) { session_start(); }
 		$_SESSION['frm_ab_lite_error'] = $error_msg;
-		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) );
+		// translators: %s is the payment error message.
+		// translators: %s is the payment error message.
+		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) );
 		do_action( 'frm_ab_lite_payment_failed', $error_msg, $entry );
 		return;
 	}
@@ -1760,9 +1769,10 @@ function frm_ab_lite_setup_recurring_then_charge( $api, $nonce, $amount, $settin
 
 	// Persist schedule metadata to payments table for dashboard
 	global $wpdb;
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	$wpdb->update(
 		$wpdb->prefix . 'frm_ab_lite_payments',
-		[ 'meta_value' => wp_json_encode( [
+		[ 'meta_value' => wp_json_encode( [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			'customer_id'       => $customer_id,
 			'payment_method_id' => $payment_method_id,
 			'schedule_id'       => $schedule_id,
@@ -1924,7 +1934,7 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 		'amount'     => $amount,
 		'status'     => $frm_status,
 		'receipt_id' => (string) $charge_id,
-		'meta_value' => wp_json_encode( $result ),
+		'meta_value' => wp_json_encode( $result ), // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		'created_at' => current_time( 'mysql' ),
 	);
 
@@ -1932,7 +1942,7 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 
 	// ── 1. Always write to our own table (wp_frm_ab_lite_payments) ────────────────
 	$our_table = $wpdb->prefix . 'frm_ab_lite_payments';
-	$our_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $our_table ) ) === $our_table;
+	$our_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $our_table ) ) === $our_table; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	if ( ! $our_exists ) {
 		// Table missing — create it on the fly
 		if ( function_exists( 'frm_ab_lite_create_table' ) ) {
@@ -1941,7 +1951,7 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 		}
 	}
 	if ( $our_exists ) {
-		$inserted = $wpdb->insert( $our_table, $data );
+		$inserted = $wpdb->insert( $our_table, $data ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		if ( false === $inserted ) {
 			Frm_AB_Lite_Logger::error( 'Own table insert failed: ' . $wpdb->last_error );
 		} else {
@@ -1952,9 +1962,9 @@ function frm_ab_lite_record_payment( $entry, $action, array $result, float $amou
 
 	// ── 2. Also write to Formidable Pro table if it exists ───────────────────
 	$frm_table = $wpdb->prefix . 'frm_payments';
-	$frm_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $frm_table ) ) === $frm_table;
+	$frm_exists = $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $frm_table ) ) === $frm_table; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 	if ( $frm_exists ) {
-		$wpdb->insert( $frm_table, $data );
+		$wpdb->insert( $frm_table, $data ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		if ( $wpdb->last_error ) {
 			Frm_AB_Lite_Logger::error( 'frm_payments insert error: ' . $wpdb->last_error );
 		}
@@ -2080,7 +2090,8 @@ add_filter( 'frm_ajax_success', function( $return ) {
 
 	$error_html = '<div class="frm_ab_lite_error_msg frm_error" role="alert" style="display:flex;gap:8px;padding:10px 14px;">'
 		. '<span style="flex-shrink:0;font-size:1.1em;">&#9888;</span>'
-		. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) ) . '</span>'
+		// translators: %s is the payment error message.
+		. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) ) . '</span>'
 		. '</div>';
 
 	$return['errors']       = array( 'accept_blue_payment' => $error_msg );
@@ -2113,7 +2124,8 @@ function frm_ab_lite_maybe_override_ajax_response() {
 
 	$error_html = '<div class="frm_ab_lite_error_msg frm_error" role="alert" style="display:flex;gap:8px;padding:10px 14px;">'
 		. '<span style="flex-shrink:0;font-size:1.1em;">&#9888;</span>'
-		. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $error_msg ) ) . '</span>'
+		// translators: %s is the payment error message.
+		. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $error_msg ) ) . '</span>'
 		. '</div>';
 
 	// Discard anything Formidable already buffered and send our clean JSON
@@ -2136,7 +2148,7 @@ function frm_ab_lite_maybe_override_ajax_response() {
 add_filter( 'frm_validate_entry', function( $errors, $values ) {
 	$msg = '';
 	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Recommended
-		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) );
+		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 	if ( ! $msg ) {
 		if ( ! session_id() && ! headers_sent() ) { session_start(); }
@@ -2158,7 +2170,7 @@ add_filter( 'frm_validate_entry', function( $errors, $values ) {
 add_action( 'frm_display_form_action', function( $atts ) {
 	$msg = '';
 	if ( ! empty( $_GET['frm_ab_lite_error'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated,WordPress.Security.NonceVerification.Recommended
-		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) );
+		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 	if ( ! $msg ) {
 		if ( ! session_id() && ! headers_sent() ) { session_start(); }
@@ -2170,7 +2182,8 @@ add_action( 'frm_display_form_action', function( $atts ) {
 	if ( $msg ) {
 		echo '<div class="frm_ab_lite_payment_error_notice">'
 			. '<span class="frm_ab_lite_notice_icon">!</span>'
-			. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'frm-acceptblue-lite' ), $msg ) ) . '</span>'
+			// translators: %s is the payment error message.
+			. '<span>' . esc_html( sprintf( __( 'Payment failed: %s', 'accept-blue-for-formidable' ), $msg ) ) . '</span>'
 			. '</div>';
 	}
 } );

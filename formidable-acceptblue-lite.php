@@ -6,7 +6,7 @@
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://www.patreon.com/RyanPlugins
- * Text Domain:     frm-acceptblue-lite
+ * Text Domain:     accept-blue-for-formidable
  * Domain Path:     /languages
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
@@ -44,13 +44,12 @@ function frm_ab_lite_boot() {
 	global $frm_ab_lite_includes;
 
 	// Load plugin translations.
-	load_plugin_textdomain( 'frm-acceptblue-lite', false, dirname( plugin_basename( FRM_AB_LITE_FILE ) ) . '/languages' );
 
 	if ( ! class_exists( 'FrmHooksController' ) ) {
 		add_action( 'admin_notices', function () {
 			echo '<div class="error"><p>';
-			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'frm-acceptblue-lite' ) . '</strong> ';
-			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'frm-acceptblue-lite' );
+			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'accept-blue-for-formidable' ) . '</strong> ';
+			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'accept-blue-for-formidable' );
 			echo '</p></div>';
 		} );
 		return;

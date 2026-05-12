@@ -2,19 +2,19 @@
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.9
 Requires PHP: 7.4
 Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Accept credit card payments through accept.blue directly inside your Formidable Forms. Free Lite version — upgrade to Pro for recurring billing, refunds, webhooks, fraud protection, and more.
+Accept credit card payments through accept.blue directly inside your Formidable Forms. Free Lite version — upgrade to Pro for recurring billing.
 
 == Description ==
 
 **Payment gateway: accept.blue for Formidable** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
 
-This is the **free Lite version**. Pro features are visible in the admin UI but locked behind an upgrade prompt.
+This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
 = What's Included in Lite =
 

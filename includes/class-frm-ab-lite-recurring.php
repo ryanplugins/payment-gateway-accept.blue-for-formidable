@@ -102,6 +102,7 @@ class Frm_AB_Lite_Recurring {
 		if ( ! $charge_id ) return;
 
 		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->update(
 			$wpdb->prefix . 'frm_ab_lite_payments',
 			[ 'status' => 'complete' ],
@@ -116,6 +117,7 @@ class Frm_AB_Lite_Recurring {
 		if ( ! $charge_id ) return;
 
 		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->update(
 			$wpdb->prefix . 'frm_ab_lite_payments',
 			[ 'status' => 'failed' ],
