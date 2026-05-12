@@ -84,7 +84,7 @@ class Frm_AB_Lite_Settings {
 			<span>
 				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
 				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
-				<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"
+				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
 					&#8599; Pro version
 				</a>.
@@ -253,7 +253,7 @@ class Frm_AB_Lite_Settings {
 					<td>
 						<p class="description">
 							<?php esc_html_e( 'Available in the Pro version.', 'accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
 						</p>
 					</td>
 				</tr>
@@ -279,7 +279,7 @@ class Frm_AB_Lite_Settings {
 					<td>
 						<p class="description">
 							<?php esc_html_e( 'Available in the Pro version.', 'accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373?source=lite" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
+							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'accept-blue-for-formidable' ); ?></a>
 						</p>
 					</td>
 				</tr>

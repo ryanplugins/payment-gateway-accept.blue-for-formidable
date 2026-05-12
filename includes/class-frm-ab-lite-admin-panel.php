@@ -90,7 +90,7 @@ class Frm_AB_Lite_Admin_Panel {
 			return;
 		}
 		$icon = FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg';
-		$pro_url = 'https://www.patreon.com/posts/formidable-blue-157799373?source=lite';
+		$pro_url = 'https://www.patreon.com/posts/formidable-blue-157799373';
 		?>
 		<div class="wrap frm-ab-lite-admin-panel">
 			<h1 style="display:inline-flex;align-items:center;gap:10px;">
