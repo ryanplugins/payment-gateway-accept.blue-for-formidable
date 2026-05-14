@@ -1,4 +1,4 @@
-=== Payment gateway: accept.blue for Formidable ===
+=== RyanPlugins Payments with accept.blue for Formidable ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
@@ -8,11 +8,11 @@ Stable tag: 1.0.0
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Accept credit card payments through accept.blue directly inside your Formidable Forms. Free Lite version — upgrade to Pro for recurring billing.
+Accept credit card payments through accept.blue directly inside your Formidable Forms. Free Lite version — upgrade to Pro for recurring billing and advanced features.
 
 == Description ==
 
-**Payment gateway: accept.blue for Formidable** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
+**RyanPlugins Payments with accept.blue for Formidable** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
 
 This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
@@ -24,6 +24,7 @@ This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 * **Debug logging** — dedicated per-month log file with an in-admin log viewer, gated behind a settings toggle
 * **Processing overlay** — animated spinner shown on form submit while payment processes
 * **Minified assets** — production-ready JS and CSS; source files served automatically when WP_DEBUG is on
+* **Webhook receiver** — REST endpoint keeps payment statuses up to date in real time when charges succeed or fail
 
 = Pro Version Features =
 
@@ -36,7 +37,6 @@ Upgrade to **Payment gateway: accept.blue for Formidable Pro** to unlock:
 * Adjust & Capture — change the amount before capturing an authorisation
 * Refunds & Voids — full and partial refunds, voids of unsettled authorisations, all from the admin
 * Admin Transactions Panel — filterable list of all payments with 30-day revenue stats and CSV export
-* Webhook receiver — HMAC-SHA256 signed REST endpoint keeps payment statuses up to date in real time
 * Fraud Shield — IP velocity, email velocity, country block-list, and per-transaction amount threshold
 * Per-form API credential override — run different forms against different accept.blue merchant accounts
 * Guest subscription cancellation — signed token system lets non-logged-in customers cancel their own subscriptions
@@ -85,7 +85,7 @@ No. Deactivate Lite before activating Pro. All PHP classes, functions, constants
 
 = How is Lite different from Pro? =
 
-Lite handles one-time credit card payments and debug logging. Pro adds recurring billing, installment plans, 3DS2, auth-only/capture, refunds, voids, an admin transactions panel, webhooks, fraud protection, per-form API overrides, and a revenue dashboard.
+Lite handles one-time credit card payments, webhook payment-status updates, and debug logging. Pro adds recurring billing, installment plans, 3DS2, auth-only/capture, refunds, voids, an admin transactions panel, fraud protection, per-form API overrides, and a revenue dashboard.
 
 = Where do I upgrade to Pro? =
 
@@ -107,14 +107,11 @@ This plugin transmits payment data to **accept.blue**, a third-party payment pro
 * **accept.blue Payment API** — used to tokenise and charge credit cards.
   * Service: https://accept.blue
   * Terms of Service: https://accept.blue/terms
-  * Privacy Policy: https://accept.blue/privacy
+  * Privacy Policy: https://accept.blue/legal
 
 * **accept.blue Hosted Tokenization** — a PCI-compliant iFrame embedded on your form that captures card details without them passing through your server.
   * Documentation: https://docs.accept.blue/tokenization/hosted
 
-* **Paay 3DS (Pro only)** — optional EMV 3-D Secure 2 browser-based authentication service.
-  * Service: https://www.paay.co
-  * Privacy Policy: https://www.paay.co/privacy-policy
 
 No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
 
@@ -124,7 +121,7 @@ No card data is stored on your server. All sensitive payment data is handled exc
 2. Sandbox/test mode enabled in the Accept.Blue settings.
 3. Transaction debug log viewer showing request and response entries.
 4. Formidable form with the Accept.Blue card field at checkout.
-5. Recurring payment settings panel on the Accept.Blue form action.
+5. Webhook URL and token configuration in the Accept.Blue settings.
 
 == Changelog ==
 
@@ -132,7 +129,8 @@ No card data is stored on your server. All sensitive payment data is handled exc
 * Initial Lite release based on Pro v1.0.0
 * Core credit card payments via accept.blue Hosted Tokenization iFrame (PCI-minimised)
 * Debug logging with in-admin log viewer and Clear Log function
-* Pro features visible in UI with upgrade prompts (recurring, refunds, admin panel, webhooks, fraud shield, dashboard)
+* Pro features visible in UI with upgrade prompts (recurring, refunds, admin panel, fraud shield, dashboard)
+* Webhook receiver included in Lite — keeps payment statuses current via accept.blue charge events
 * Licensing system fully removed
 * All PHP identifiers prefixed with _lite (classes, functions, constants, options, hooks, DB tables)
 * Plugin entry file renamed to formidable-acceptblue-lite.php

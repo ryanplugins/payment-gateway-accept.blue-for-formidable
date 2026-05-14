@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name:     Payment gateway: accept.blue for Formidable
+ * Plugin Name:     RyanPlugins Payments with accept.blue for Formidable
  * Plugin URI:      https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/
- * Description:     Lite version — integrates accept.blue Hosted Tokenization payments and debug logging with Formidable Forms. Upgrade to Pro for recurring subscriptions, refunds, admin panel, webhooks, fraud shield, and more.
+ * Description:     Lite version — integrates accept.blue Hosted Tokenization payments, webhook payment-status updates, and debug logging with Formidable Forms. Upgrade to Pro for recurring subscriptions, refunds, admin panel, fraud shield, and more.
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://ryanplugins.net/
@@ -62,6 +62,13 @@ add_action( 'plugins_loaded', 'frm_ab_lite_boot', 20 );
 
 register_activation_hook( __FILE__, function() {
 	frm_ab_lite_create_table();
+	// Auto-generate a webhook secret token on first activation.
+	if ( class_exists( 'Frm_AB_Lite_Recurring' ) ) {
+		$settings = get_option( Frm_AB_Lite_Settings::OPTION_KEY, [] );
+		if ( empty( $settings['webhook_token'] ) ) {
+			Frm_AB_Lite_Recurring::generate_webhook_token();
+		}
+	}
 	flush_rewrite_rules();
 } );
 register_deactivation_hook( __FILE__, function() { flush_rewrite_rules(); } );

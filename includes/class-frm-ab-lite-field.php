@@ -144,7 +144,7 @@ class Frm_AB_Lite_Field {
 				if ( ( $fa->post_excerpt ?? '' ) === 'acceptblue' && is_array( $fa->post_content ) ) {
 					$form_action    = $fa; // ← assign so actionId/currency/capture are available below
 					$iframe_style   = $fa->post_content['iframe_style']      ?? 'default';
-					$custom_css     = $fa->post_content['iframe_custom_css'] ?? '';
+					$custom_css     = ''; // Custom CSS input removed in Lite.
 					$show_surcharge = ! empty( $fa->post_content['show_surcharge'] );
 					$show_card_details = isset( $fa->post_content['show_card_details'] ) ? (bool) $fa->post_content['show_card_details'] : true;
 					$surcharge_label   = isset( $fa->post_content['surcharge_label'] ) ? $fa->post_content['surcharge_label'] : 'Surcharge';

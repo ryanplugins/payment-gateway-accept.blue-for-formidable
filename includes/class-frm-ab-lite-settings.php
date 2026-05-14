@@ -62,9 +62,6 @@ class Frm_AB_Lite_Settings {
 	public static function display_form() {
 		$settings = self::get_settings();
 		?>
-		<style id="frm-ab-lite-pro-styles">
-/* Pro feature panels use standard WP notice styling */
-</style>
 		<div class="frm_ab_lite_settings_wrap">
 
 		<div class="frm-ab-lite-pro-notice" style="
@@ -83,7 +80,7 @@ class Frm_AB_Lite_Settings {
 			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
 			<span>
 				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
-				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
+				Recurring billing, refunds, fraud shield, and more are available in the
 				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
 					&#8599; Pro version
@@ -277,10 +274,17 @@ class Frm_AB_Lite_Settings {
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Webhook URL', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
 					<td>
+						<?php
+						$_webhook_url = class_exists( 'Frm_AB_Lite_Recurring' ) ? Frm_AB_Lite_Recurring::get_webhook_url() : '';
+						if ( $_webhook_url ) :
+						?>
+						<code style="font-size:12px;word-break:break-all;"><?php echo esc_html( $_webhook_url ); ?></code>
 						<p class="description">
-							<?php esc_html_e( 'Available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
+							<?php esc_html_e( 'Copy this URL into your accept.blue portal under Control Panel &rarr; Webhooks. The security token is already included in the URL.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 						</p>
+						<?php else : ?>
+						<p class="description"><?php esc_html_e( 'Save your settings to generate the webhook URL.', 'payment-gateway-accept-blue-for-formidable' ); ?></p>
+						<?php endif; ?>
 					</td>
 				</tr>
 				<?php echo '</tbody><tbody></tbody>'; ?>
@@ -329,6 +333,10 @@ class Frm_AB_Lite_Settings {
 			'debug_log'        => ! empty( $raw['debug_log'] ) ? 1 : 0,
 		);
 
+		// Auto-generate a webhook token if one wasn't set yet.
+		if ( empty( $settings['webhook_token'] ) ) {
+			$settings['webhook_token'] = wp_generate_password( 32, false );
+		}
 		update_option( self::OPTION_KEY, $settings, false );
 	}
 

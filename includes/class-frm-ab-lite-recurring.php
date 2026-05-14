@@ -12,6 +12,19 @@ class Frm_AB_Lite_Recurring {
 
 	public static function init(): void {
 		add_action( 'rest_api_init', [ __CLASS__, 'register_webhook_route' ] );
+		// Ensure a webhook token exists. Generates one on first use if the
+		// activation hook did not run (e.g. plugin installed via FTP).
+		add_action( 'plugins_loaded', [ __CLASS__, 'maybe_generate_token' ], 30 );
+	}
+
+	/**
+	 * Generate a webhook token if none has been saved yet.
+	 */
+	public static function maybe_generate_token(): void {
+		$settings = class_exists( 'Frm_AB_Lite_Settings' ) ? Frm_AB_Lite_Settings::get_settings() : [];
+		if ( empty( $settings['webhook_token'] ) ) {
+			self::generate_webhook_token();
+		}
 	}
 
 	// ── Webhook REST endpoint ─────────────────────────────────────────────────
@@ -25,8 +38,33 @@ class Frm_AB_Lite_Recurring {
 		register_rest_route( 'frm-ab-lite/v1', '/webhook', [
 			'methods'             => 'POST',
 			'callback'            => [ __CLASS__, 'handle_webhook' ],
-			'permission_callback' => '__return_true',
+			'permission_callback' => [ __CLASS__, 'verify_webhook_token' ],
 		] );
+	}
+
+	/**
+	 * REST permission callback — verify the secret token in ?token= before
+	 * allowing any data to be processed.  Token is always required; the webhook
+	 * endpoint must not be reachable without a valid token.
+	 */
+	public static function verify_webhook_token( WP_REST_Request $request ): bool {
+		$settings     = class_exists( 'Frm_AB_Lite_Settings' ) ? Frm_AB_Lite_Settings::get_settings() : [];
+		$stored_token = trim( $settings['webhook_token'] ?? '' );
+		$req_token    = sanitize_text_field( wp_unslash( $request->get_param( 'token' ) ?? '' ) );
+
+		if ( empty( $stored_token ) ) {
+			Frm_AB_Lite_Logger::error( 'Webhook rejected: no token configured on this site.' );
+			return false;
+		}
+		if ( empty( $req_token ) ) {
+			Frm_AB_Lite_Logger::error( 'Webhook rejected: missing token parameter.' );
+			return false;
+		}
+		if ( ! hash_equals( $stored_token, $req_token ) ) {
+			Frm_AB_Lite_Logger::error( 'Webhook rejected: invalid token.' );
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -56,22 +94,7 @@ class Frm_AB_Lite_Recurring {
 	 * Authentication: verify secret token in ?token= query param.
 	 */
 	public static function handle_webhook( WP_REST_Request $request ): WP_REST_Response {
-		$settings      = class_exists( 'Frm_AB_Lite_Settings' ) ? Frm_AB_Lite_Settings::get_settings() : [];
-		$stored_token  = isset( $settings['webhook_token'] ) ? trim( $settings['webhook_token'] ) : '';
-		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$request_token = isset( $_GET['token'] ) ? sanitize_text_field( wp_unslash( $_GET['token'] ) ) : '';
-
-		if ( ! empty( $stored_token ) ) {
-			if ( empty( $request_token ) ) {
-				Frm_AB_Lite_Logger::error( 'Webhook rejected: missing token.' );
-				return new WP_REST_Response( [ 'error' => 'Unauthorized' ], 401 );
-			}
-			if ( ! hash_equals( $stored_token, $request_token ) ) {
-				Frm_AB_Lite_Logger::error( 'Webhook rejected: invalid token.' );
-				return new WP_REST_Response( [ 'error' => 'Unauthorized' ], 401 );
-			}
-		}
-
+		// Authentication is handled in verify_webhook_token (permission_callback).
 		$payload = $request->get_json_params();
 		if ( empty( $payload ) || empty( $payload['event_type'] ) ) {
 			return new WP_REST_Response( [ 'error' => 'Invalid payload' ], 400 );
