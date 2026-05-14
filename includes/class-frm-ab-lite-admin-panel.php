@@ -401,13 +401,6 @@ private static function form_action_js(): string {
 		row.style.display = cb.checked ? '' : 'none';
 	}
 
-	function applyIframeStyle() {
-		var sel  = document.getElementById( 'frm_ab_lite_iframe_style_select' );
-		var wrap = document.getElementById( 'frm_ab_lite_custom_style_wrap' );
-		if ( ! sel || ! wrap ) return;
-		wrap.style.display = ( sel.value === 'custom' ) ? '' : 'none';
-	}
-
 	function applyScheduleType() {
 		var sel      = document.getElementById( 'frm_ab_lite_schedule_type' );
 		var rowInst  = document.getElementById( 'frm_ab_lite_row_installment_count' );

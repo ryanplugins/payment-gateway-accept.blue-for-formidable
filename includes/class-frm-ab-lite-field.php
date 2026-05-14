@@ -184,16 +184,7 @@ class Frm_AB_Lite_Field {
 			}
 		}
 
-				// Recurring defaults
-		$recurring_enabled    = false; // Lite: recurring is a Pro-only feature.
-		$recurring_frequency  = isset( $recurring_frequency )  ? $recurring_frequency  : 'monthly';
-		$recurring_title      = isset( $recurring_title )      ? $recurring_title      : '';
-		$recurring_duration   = isset( $recurring_duration )   ? $recurring_duration   : 0;
-		$recurring_start      = isset( $recurring_start )      ? $recurring_start      : '';
-		$schedule_type        = isset( $schedule_type )        ? $schedule_type        : 'subscription';
-		$installment_count    = isset( $installment_count )    ? $installment_count    : 3;
-		$trial_period_type    = isset( $trial_period_type )    ? $trial_period_type    : 'none';
-		$trial_days           = isset( $trial_days )           ? $trial_days           : 0;
+
 		$three_ds_enabled      = isset( $three_ds_enabled )      ? $three_ds_enabled      : false;
 		$three_ds_frictionless = isset( $three_ds_frictionless )  ? $three_ds_frictionless : false;
 		$email_field_id        = isset( $email_field_id )        ? $email_field_id        : '';
@@ -333,49 +324,6 @@ class Frm_AB_Lite_Field {
 						</tr>
 					</table>
 
-									<?php if ( ! empty( $recurring_enabled ) ) :
-						$freq_labels    = [ 'daily'=>'Daily','weekly'=>'Weekly','biweekly'=>'Bi-Weekly','monthly'=>'Monthly','bimonthly'=>'Bi-Monthly','quarterly'=>'Quarterly','biannually'=>'Bi-Annually','annually'=>'Annually' ];
-						$freq_label     = $freq_labels[ $recurring_frequency ] ?? ucfirst( $recurring_frequency );
-						$is_installment = ( $schedule_type === 'installment' );
-						$has_trial      = ( $trial_period_type === 'days' && $trial_days > 0 );
-						// Row style constants
-						$rs  = 'display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(188,212,240,0.5);';
-						$rsl = 'color:#6b7a8d;font-size:0.82em;font-weight:500;text-transform:uppercase;letter-spacing:0.04em;';
-						$rsv = 'color:#1a3a5c;font-weight:600;font-size:0.92em;text-align:right;';
-					?>
-				<?php if ( $is_installment ) : ?>
-				<!-- ── INSTALLMENT NOTICE ── -->
-				<div style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f0fb 100%);border:1px solid #bcd4f0;border-radius:10px;overflow:hidden;margin-bottom:16px;">
-					<div style="background:#1a4a7a;padding:9px 14px;display:flex;align-items:center;gap:8px;">
-						<span style="font-size:1.1em;">&#x1F4C5;</span>
-						<strong style="color:#fff;font-size:0.9em;letter-spacing:0.03em;"><?php esc_html_e( 'INSTALLMENT PLAN', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
-					</div>
-					<div style="padding:4px 14px 0;">
-						<?php if ( $recurring_title ) : ?>
-						<div style="<?php echo esc_attr( $rs ); ?>border-bottom:none;padding-bottom:4px;">
-							<span style="color:#1a3a5c;font-weight:700;font-size:0.97em;"><?php echo esc_html( $recurring_title ); ?></span>
-						</div>
-						<div style="height:1px;background:rgba(188,212,240,0.5);margin-bottom:2px;"></div>
-						<?php endif; ?>
-						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Payments', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
-							<span style="<?php echo esc_attr( $rsv ); ?>"><?php echo esc_html( $installment_count ); ?></span>
-						</div>
-						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Frequency', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
-							<span style="<?php echo esc_attr( $rsv ); ?>"><?php echo esc_html( $freq_label ); ?></span>
-						</div>
-						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Per payment', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
-							<span style="<?php echo esc_attr( $rsv ); ?>"><span id="frm_ab_lite_installment_per_<?php echo esc_attr($field_id); ?>">…</span></span>
-						</div>
-						<?php if ( $has_trial ) : ?>
-						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Trial', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
-							<span style="background:#e8f5e9;color:#2e7d32;font-weight:600;font-size:0.82em;padding:2px 8px;border-radius:20px;"><?php // translators: %d is the number of free trial days.
-								echo esc_html( sprintf( __( '%d days free', 'payment-gateway-accept-blue-for-formidable' ), $trial_days ) ); ?></span>
-						</div>
-						<?php endif; ?>
 						<div style="background:#1a4a7a;margin:8px -14px 0;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;">
 							<span style="color:rgba(255,255,255,0.8);font-size:0.8em;font-weight:500;"><?php esc_html_e( 'Total charged', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
 							<strong style="color:#fff;font-size:1em;"><span id="frm_ab_lite_installment_total_<?php echo esc_attr($field_id); ?>">…</span></strong>
@@ -430,11 +378,7 @@ class Frm_AB_Lite_Field {
 				<?php endif; ?>
 				<?php endif; ?>
 				<p style="font-size:0.84em;color:#888;margin:0 0 20px;line-height:1.5;">
-					<?php if ( ! empty( $recurring_enabled ) ) : ?>
-						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge and the recurring schedule shown above.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-					<?php else : ?>
-						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge to your card. This action cannot be undone.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-					<?php endif; ?>
+					<?php esc_html_e( 'By clicking Pay Now, you authorise this charge to your card. This action cannot be undone.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 				</p>
 					<div style="display:flex;gap:10px;">
 						<button type="button" id="frm_ab_lite_confirm_pay_<?php echo esc_attr($field_id); ?>"
@@ -470,9 +414,9 @@ class Frm_AB_Lite_Field {
 			'showCardDetails'  => $show_card_details,
 			'surchargeLabel'   => $surcharge_label,
 			'debugLog'         => Frm_AB_Lite_Settings::is_debug_enabled(),
-			'recurringEnabled'    => $recurring_enabled,
-			'scheduleType'        => $schedule_type,
-			'installmentCount'    => $installment_count,
+			'recurringEnabled'    => false,
+			'scheduleType'        => 'subscription',
+			'installmentCount'    => 0,
 			'vaultNonceId'     => 'frm_ab_lite_vault_nonce_' . $field_id,
 			'threeDsDataId'    => 'frm_ab_lite_three_ds_data_' . $field_id,
 			'paayEnabled'          => ! empty( $settings['paay_api_key'] ),

@@ -28,7 +28,7 @@ This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
 = Pro Version Features =
 
-Upgrade to **Payment gateway: accept.blue for Formidable Pro** to unlock:
+Upgrade to **RyanPlugins Payments with accept.blue for Formidable Pro** to unlock:
 
 * Recurring subscriptions — daily, weekly, bi-weekly, monthly, bi-monthly, quarterly, bi-annually, and annually
 * Installment plans — split a total into a fixed number of automatic charges

@@ -79,7 +79,7 @@ class Frm_AB_Lite_Settings {
 		">
 			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
 			<span>
-				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
+				<strong style="font-size:14px;">RyanPlugins Payments with accept.blue for Formidable</strong><br>
 				Recurring billing, refunds, fraud shield, and more are available in the
 				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">

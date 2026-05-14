@@ -72,7 +72,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		// Boolean (checkbox) fields — present = true, absent = false
 		$bool_fields = array(
 			'capture', 'show_surcharge', 'show_card_details', 'save_card',
-			'li_enabled', 'recurring_enabled',
+			'li_enabled',
 			'three_ds_enabled', 'three_ds_frictionless',
 		);
 
@@ -124,7 +124,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 			'li_qty_type'      => 'fixed',
 			'li_qty_fixed'     => 1,
 			'li_cost_type'     => 'fixed',
-			'recurring_enabled'   => 0,
+
 			'recurring_frequency' => 'monthly',
 			'recurring_duration'  => 0,
 			'trial_period_type'   => 'none',  // 'none' | 'days'
@@ -167,7 +167,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		">
 			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
 			<span>
-				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
+				<strong style="font-size:14px;">RyanPlugins Payments with accept.blue for Formidable</strong><br>
 				Recurring billing, refunds, fraud shield, and more are available in the
 				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
 				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
