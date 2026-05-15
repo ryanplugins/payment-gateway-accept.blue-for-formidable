@@ -188,6 +188,48 @@ JS;
 	private static function license_js(): string { return ''; /* Lite */ 
 }
 
+	private static function copy_webhook_url_js(): string {
+		return <<<'JS'
+( function() {
+	var btn = document.getElementById( 'frm_ab_lite_copy_webhook_url' );
+	if ( ! btn ) return;
+	btn.addEventListener( 'click', function() {
+		var urlEl = document.getElementById( 'frm_ab_lite_webhook_url' );
+		if ( ! urlEl ) return;
+		var url = urlEl.value || urlEl.textContent || '';
+		if ( ! url ) return;
+		if ( navigator.clipboard && navigator.clipboard.writeText ) {
+			navigator.clipboard.writeText( url ).then( function() {
+				var orig = btn.textContent;
+				btn.textContent = btn.getAttribute( 'data-copied' ) || 'Copied!';
+				setTimeout( function() { btn.textContent = orig; }, 2000 );
+			} ).catch( function() {
+				fallbackCopy( url );
+			} );
+		} else {
+			fallbackCopy( url );
+		}
+	} );
+
+	function fallbackCopy( text ) {
+		var ta = document.createElement( 'textarea' );
+		ta.value = text;
+		ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
+		document.body.appendChild( ta );
+		ta.focus();
+		ta.select();
+		try {
+			document.execCommand( 'copy' );
+			var orig = btn.textContent;
+			btn.textContent = btn.getAttribute( 'data-copied' ) || 'Copied!';
+			setTimeout( function() { btn.textContent = orig; }, 2000 );
+		} catch ( e ) {}
+		document.body.removeChild( ta );
+	}
+} )();
+JS;
+	}
+
 private static function form_action_js(): string {
 		return <<<'JS'
 ( function() {
