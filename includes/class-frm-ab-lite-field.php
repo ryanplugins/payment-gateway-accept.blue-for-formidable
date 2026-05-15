@@ -459,7 +459,12 @@ class Frm_AB_Lite_Field {
 		$field_cfg = array(
 			'fieldId'         => (string) $field_id,
 			'sourceKey'       => $tokenization_key,
-			'scriptUrl'       => $script_url,
+			// Key is intentionally 'sdkUrl' not 'scriptUrl'.
+			// Formidable Forms v1.16+ scans wp_localize_script data for a 'scriptUrl'
+			// key and calls wp_enqueue_style() with its value, treating it as a
+			// payment-gateway stylesheet URL — which produces a MIME-type error and
+			// causes the raw SDK JavaScript source to appear as text in the card div.
+			'sdkUrl'          => $script_url,
 			'containerId'     => '#' . $container_id,
 			'nonceId'         => $nonce_id,
 			'errorId'         => $error_id,
@@ -540,10 +545,49 @@ class Frm_AB_Lite_Field {
 		$css_file  = $is_debug ? 'assets/frm-acceptblue.src.css'      : 'assets/frm-acceptblue.min.css';
 		$js_file   = $is_debug ? 'assets/frm-acceptblue-card.src.js'  : 'assets/frm-acceptblue-card.min.js';
 
+		$settings   = Frm_AB_Lite_Settings::get_settings();
+		$test_mode  = ! empty( $settings['test_mode'] );
+		$sdk_url    = $test_mode
+			? 'https://tokenization.sandbox.accept.blue/tokenization/v0.3/'
+			: 'https://tokenization.accept.blue/tokenization/v0.3/';
+
 		// Only enqueue the frontend stylesheet on the frontend — not in wp-admin.
 		// Admin icon styles are handled by admin_css() in class-frm-ab-lite-admin-panel.php.
+		//
+		// CSS handle uses a unique suffix '-css' to avoid collisions with any asset
+		// pipeline in Formidable Forms or other plugins that might iterate over
+		// handles matching the plugin slug and treat them as payment-gateway scripts.
 		if ( ! is_admin() ) {
-			wp_enqueue_style( 'payment-gateway-accept-blue-for-formidable', FRM_AB_LITE_URL . $css_file, array(), FRM_AB_LITE_VERSION );
+			wp_enqueue_style(
+				'payment-gateway-accept-blue-for-formidable-css',
+				FRM_AB_LITE_URL . $css_file,
+				array(),
+				FRM_AB_LITE_VERSION
+			);
+		}
+
+		// Pre-register the external Accept.Blue tokenization SDK as a SCRIPT handle
+		// before our field JS runs.  This serves two purposes:
+		//
+		//  1. Prevents WordPress's asset deduplication / Formidable's payment-gateway
+		//     asset hooks from treating the SDK URL as a stylesheet (which produces a
+		//     MIME-type error and causes the raw JS source to appear as visible text
+		//     in the card-container div instead of an iframe).
+		//
+		//  2. Allows wp_script_is() checks elsewhere to detect the SDK without
+		//     triggering a second injection.
+		//
+		// We do NOT call wp_enqueue_script() for this handle — our field JS loads it
+		// dynamically via loadScript() so it can skip injection when
+		// window.HostedTokenization is already defined (BFCache, etc.).
+		if ( ! wp_script_is( 'accept-blue-hosted-tokenization', 'registered' ) ) {
+			wp_register_script(
+				'accept-blue-hosted-tokenization',
+				$sdk_url,
+				array(),
+				null,  // no version — external CDN manages its own versioning
+				true   // footer
+			);
 		}
 
 		wp_register_script(

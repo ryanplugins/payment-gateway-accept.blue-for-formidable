@@ -3,6 +3,28 @@
 	'use strict';
 
 	/**
+	 * Module-level registry for the external Accept.Blue tokenization SDK.
+	 *
+	 * Problem: when multiple card fields exist on the same page (or the same
+	 * page is visited after a soft navigation), each initCardField() call
+	 * invokes loadScript(). The original code checked for an existing <script>
+	 * tag and polled for window.HostedTokenization, but it did NOT prevent a
+	 * second <script> tag from being injected if the first had already finished
+	 * loading. The SDK throws "window.HostedTokenization is already defined"
+	 * when executed a second time because it assigns to that global without a
+	 * guard, causing a fatal JS error that breaks all card fields on the page.
+	 *
+	 * Fix: track the SDK load state in a shared closure variable (_sdkState).
+	 * • 'idle'    – not yet requested
+	 * • 'loading' – <script> tag injected, waiting for onload
+	 * • 'ready'   – SDK fully loaded; new callers get cb() synchronously
+	 *
+	 * Callbacks queued while 'loading' are flushed once onload fires.
+	 */
+	var _sdkState     = 'idle';    // 'idle' | 'loading' | 'ready'
+	var _sdkCallbacks = [];        // queued callbacks waiting for SDK load
+
+	/**
 	 * Boot all card field instances declared by PHP via wp_localize_script.
 	 * frmAbCardConfigs is an array - one entry per Accept.Blue card field on the page.
 	 */
@@ -782,33 +804,108 @@
 		}
 
 		// -- Script loader ---------------------------------------------------
+		// Uses the module-level _sdkState / _sdkCallbacks so the external
+		// Accept.Blue SDK is injected into the page exactly once, even when
+		// multiple card fields share the same scriptUrl.
+		//
+		// The SDK at tokenization.accept.blue/tokenization/v0.3/ throws
+		// "window.HostedTokenization is already defined" if it is executed
+		// when that global already exists (it has no internal guard).  This
+		// happens in three scenarios this function must handle:
+		//
+		//   A) Same-page multiple fields: two initCardField() calls race to
+		//      inject the tag.  _sdkState prevents the second injection.
+		//
+		//   B) BFCache / soft navigation: the browser restores the page from
+		//      cache.  Our IIFE re-runs (resetting _sdkState to 'idle') but
+		//      window.HostedTokenization is still defined on the global.
+		//      Without the window check below this would inject the tag again
+		//      and trigger the fatal error.
+		//
+		//   C) Another plugin / theme already loaded the SDK via its own
+		//      <script> tag before our IIFE ran.
+		//
+		// Priority: always test window.HostedTokenization FIRST, before any
+		// state-machine check, so cases B and C are caught even when
+		// _sdkState is 'idle' (fresh IIFE execution).
 		function loadScript(url, cb) {
 			log('Loading:', url);
+
+			// ── Priority 0: global already defined (BFCache / external loader) ──
+			if (typeof window.HostedTokenization !== 'undefined') {
+				log('window.HostedTokenization already defined — skipping injection.');
+				_sdkState = 'ready';
+				cb();
+				return;
+			}
+
+			// ── 1. Shared lock: SDK already loaded in this page lifecycle ───────
+			if (_sdkState === 'ready') {
+				log('SDK already ready (shared lock).');
+				cb();
+				return;
+			}
+
+			// ── 2. Shared lock: another field is loading the SDK right now ──────
+			if (_sdkState === 'loading') {
+				logWarn('SDK load already in progress (shared lock) — queuing callback.');
+				_sdkCallbacks.push(cb);
+				return;
+			}
+
+			// ── 3. Script tag already in DOM but SDK not yet defined ─────────────
+			//    (race: tag injected by a very recent call before state was set)
 			if (document.querySelector('script[src="' + url + '"]')) {
-				logWarn('Script tag already in DOM.');
-				if (typeof window.HostedTokenization !== 'undefined') { cb(); return; }
+				logWarn('Script tag already in DOM — polling for HostedTokenization.');
+				_sdkState = 'loading';
+				_sdkCallbacks.push(cb);
 				var t = setInterval(function() {
-					if (typeof window.HostedTokenization !== 'undefined') { clearInterval(t); cb(); }
+					if (typeof window.HostedTokenization !== 'undefined') {
+						clearInterval(t);
+						_sdkState = 'ready';
+						var pending = _sdkCallbacks.splice(0);
+						pending.forEach(function(fn) { fn(); });
+					}
 				}, 60);
 				return;
 			}
+
+			// ── 4. First caller: inject the script exactly once ──────────────────
+			_sdkState = 'loading';
+			_sdkCallbacks.push(cb);
 			var s     = document.createElement('script');
 			s.src     = url;
 			s.async   = true;
-			s.onload  = function() { log('Script loaded.'); cb(); };
+			s.onload  = function() {
+				log('Script loaded.');
+				_sdkState = 'ready';
+				var pending = _sdkCallbacks.splice(0);
+				pending.forEach(function(fn) { fn(); });
+			};
 			s.onerror = function() {
 				logErr('Script FAILED to load. Ad blocker?');
-				showError(CFG.i18n.scriptBlocked);
+				_sdkState = 'idle'; // allow retry
+				var pending = _sdkCallbacks.splice(0);
+				pending.forEach(function() { showError(CFG.i18n.scriptBlocked); });
 			};
 			document.head.appendChild(s);
 		}
 
 		// -- Boot ------------------------------------------------------------
+		// Note: loadScript() already handles the case where window.HostedTokenization
+		// is defined before the tag is injected (Priority 0 check), so we do not
+		// need a separate pre-check here.  We call loadScript() unconditionally and
+		// let it short-circuit as appropriate.
+		//
+		// CFG.sdkUrl (not 'scriptUrl') is used intentionally — Formidable Forms v1.16+
+		// scans wp_localize_script data for a key named 'scriptUrl' and calls
+		// wp_enqueue_style() with its value, treating it as a payment-gateway stylesheet.
+		// Renaming the key prevents that interception.
 		log('readyState:', document.readyState);
 		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', function() { loadScript(CFG.scriptUrl, initCard); });
+			document.addEventListener('DOMContentLoaded', function() { loadScript(CFG.sdkUrl, initCard); });
 		} else {
-			loadScript(CFG.scriptUrl, initCard);
+			loadScript(CFG.sdkUrl, initCard);
 		}
 
 	} // end initCardField

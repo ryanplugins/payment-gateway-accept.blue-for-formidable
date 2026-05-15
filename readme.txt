@@ -1,4 +1,4 @@
-=== Payment gateway: accept.blue for Formidable ===
+=== Secure Form Checkoute ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Accept credit card payments through accept.blue directly inside your Formidable 
 
 == Description ==
 
-**Payment gateway: accept.blue for Formidable** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
+**Secure Form Checkout** connects your Formidable Forms payment forms to the accept.blue payment processing platform. All card data is handled inside a secure accept.blue Hosted Tokenization iFrame — it never passes through your server, keeping your site PCI-compliant.
 
 This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
@@ -27,7 +27,7 @@ This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
 = Pro Version Features =
 
-Upgrade to **Payment gateway: accept.blue for Formidable Pro** to unlock:
+Upgrade to **Secure Form Checkout Pro** to unlock:
 
 * Recurring subscriptions — daily, weekly, bi-weekly, monthly, bi-monthly, quarterly, bi-annually, and annually
 * Installment plans — split a total into a fixed number of automatic charges
@@ -98,23 +98,6 @@ complete — charge captured and settled; auth — authorised but not yet captur
 = Does debug logging store sensitive data? =
 
 API request and response bodies are logged when debug logging is enabled. Card numbers are never present (they are handled by the accept.blue iFrame and never reach your server), but disable debug logging once you have finished troubleshooting.
-
-
-== Third-party services ==
-
-This plugin transmits payment data to **accept.blue**, a third-party payment processor. By using this plugin you agree to accept.blue's terms of service and privacy policy.
-
-* **accept.blue Payment API** — used to tokenise and charge credit cards.
-  * Service: https://accept.blue
-  * Terms of Service: https://accept.blue/terms
-  * Privacy Policy: https://accept.blue/privacy
-
-* **accept.blue Hosted Tokenization** — a PCI-compliant iFrame embedded on your form that captures card details without them passing through your server.
-  * Documentation: https://docs.accept.blue/tokenization/hosted
-
-* **Paay 3DS (Pro only)** — optional EMV 3-D Secure 2 browser-based authentication service.
-  * Service: https://www.paay.co
-  * Privacy Policy: https://www.paay.co/privacy-policy
 
 No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
 
