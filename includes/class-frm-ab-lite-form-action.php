@@ -152,29 +152,6 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 		// Field type filter for dropdown — card fields only
 		$ab_field_types = array( Frm_AB_Lite_Field::FIELD_TYPE );
 		?>
-				<div class="frm-ab-lite-pro-notice" style="
-			display:flex;
-			align-items:center;
-			gap:14px;
-			background:linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
-			color:#fff;
-			padding:14px 20px;
-			border-radius:8px;
-			margin-bottom:18px;
-			box-shadow:0 3px 12px rgba(0,0,0,.18);
-			font-size:13.5px;
-			line-height:1.5;
-		">
-			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
-			<span>
-				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
-				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
-				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
-				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
-					&#8599; Pro version
-				</a>.
-			</span>
-		</div>
 		<table class="form-table frm-no-margin">
 		<tbody>
 
@@ -193,22 +170,6 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 			</td>
 		</tr>
 
-</tbody>
-<tbody>
-<tr>
-		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Auth-Only / Capture', 'payment-gateway-accept-blue-for-formidable' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable authorise-only payments and manual capture.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-		</td>
-</tr>
-</tbody>
-<tbody>
-<tr>
-		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( '3-D Secure 2 (3DS2)', 'payment-gateway-accept-blue-for-formidable' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable EMV 3DS2 strong customer authentication.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-		</td>
-</tr>
 </tbody>
 <tbody>
 
@@ -553,14 +514,6 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 </tbody>
 <tbody>
-<tr>
-		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Recurring Subscriptions & Installments', 'payment-gateway-accept-blue-for-formidable' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable recurring billing, subscriptions, and instalment plans.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-		</td>
-</tr>
-</tbody>
-<tbody>
 		<!-- ════ OTHER OPTIONS ════ -->
 		<tr>
 			<th><?php esc_html_e( 'Save Card / Account', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
@@ -587,70 +540,6 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 
 </tbody>
 <tbody>
-<tr>
-		<td colspan="2" style="padding:10px 14px;background:#f0f6fc;border-left:3px solid #2271b1;">
-			<strong><?php esc_html_e( 'Per-Form API Credential Override', 'payment-gateway-accept-blue-for-formidable' ); ?></strong> &mdash; 
-			<?php esc_html_e( 'Available in the Pro version. Upgrade to enable per-form accept.blue API key and PIN override.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-		</td>
-</tr>
-</tbody>
-<tbody>
-		<script>
-		(function(){
-			function moveNotice() {
-				var notice = document.querySelector('.frm-ab-lite-pro-notice');
-				if (!notice) return false;
-
-				// Walk up to find the action panel wrapper
-				var el = notice;
-				var panel = null;
-				while (el.parentElement) {
-					el = el.parentElement;
-					// Formidable wraps each action in a div with class containing "frm_action"
-					if (el.className && typeof el.className === 'string' &&
-						(el.className.indexOf('frm_action') !== -1 ||
-						 el.className.indexOf('frm-action') !== -1 ||
-						 el.className.indexOf('postbox') !== -1)) {
-						panel = el;
-						break;
-					}
-				}
-				if (!panel) panel = notice.parentElement;
-
-				// Find the Action Name label row — insert notice before it
-				var labels = panel.querySelectorAll('label, th, .frm_action_name');
-				var actionNameRow = null;
-				for (var i = 0; i < labels.length; i++) {
-					var txt = labels[i].textContent || '';
-					if (txt.indexOf('Action Name') !== -1) {
-						// Go up to the row-level element (tr, div, or direct child of panel)
-						var row = labels[i];
-						while (row.parentElement && row.parentElement !== panel) {
-							row = row.parentElement;
-						}
-						actionNameRow = row;
-						break;
-					}
-				}
-
-				if (actionNameRow && actionNameRow !== notice) {
-					panel.insertBefore(notice, actionNameRow);
-				} else {
-					// Fallback: insert as first child of panel
-					panel.insertBefore(notice, panel.firstChild);
-				}
-				return true;
-			}
-
-			// Try immediately, then retry with delays in case Formidable renders late
-			if (!moveNotice()) {
-				var delays = [100, 300, 700, 1500];
-				delays.forEach(function(ms){
-					setTimeout(moveNotice, ms);
-				});
-			}
-		})();
-		</script>
 
 		</tbody>
 		</table>
