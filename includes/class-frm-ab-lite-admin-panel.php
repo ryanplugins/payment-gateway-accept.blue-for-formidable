@@ -61,25 +61,8 @@ class Frm_AB_Lite_Admin_Panel {
 			echo '</div>';
 			return;
 		}
-		$icon = FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg';
-		$pro_url = 'https://www.patreon.com/posts/formidable-blue-157799373';
 		?>
 		<div class="wrap frm-ab-lite-admin-panel">
-			<h1 style="display:inline-flex;align-items:center;gap:10px;">
-				<img src="<?php echo esc_url( $icon ); ?>" style="width:28px;height:28px;border-radius:5px;" alt="">
-				<?php esc_html_e( 'accept.blue — Transactions', 'payment-gateway-accept-blue-for-formidable' ); ?>
-			</h1>
-			<hr class="wp-header-end">
-
-			<div class="notice notice-info" style="margin:16px 0;padding:12px 16px;">
-				<p>
-					<strong><?php esc_html_e( 'Transactions Panel — Pro feature', 'payment-gateway-accept-blue-for-formidable' ); ?></strong><br>
-					<?php esc_html_e( 'Upgrade to Pro to view all payments, filter by status, export CSV, issue refunds, capture authorisations, and sync with accept.blue in real time.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-					<a href="<?php echo esc_url( $pro_url ); ?>" target="_blank" rel="noopener">
-						<?php esc_html_e( 'Learn more about Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?>
-					</a>
-				</p>
-			</div>
 		</div>
 		<?php
 	}
