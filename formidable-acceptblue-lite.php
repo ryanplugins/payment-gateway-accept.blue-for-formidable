@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Secure Form Checkout
  * Plugin URI:      https://ryanplugins.net/
- * Description:     Lite version — integrates accept.blue Hosted Tokenization payments and debug logging with Formidable Forms. Upgrade to Pro for recurring subscriptions, refunds, admin panel, webhooks, fraud shield, and more.
+ * Description:     Accept.blue Hosted Tokenization payment gateway for Formidable Forms with debug logging. Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://profiles.wordpress.org/ryanplugins/

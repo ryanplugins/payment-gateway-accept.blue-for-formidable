@@ -13,7 +13,7 @@
 
 This plugin integrates the **accept.blue payment gateway** directly into **Formidable Forms**, letting you securely accept online payments inside any WordPress form. It is ideal for donation forms, checkout forms, invoice payments, membership sign-ups, and subscription billing — all powered by accept.blue's PCI-compliant hosted tokenization infrastructure.
 
-**This is the free Lite version.** Recurring billing, refunds, webhooks, fraud protection, and the admin transactions panel are available in [Pro](https://www.patreon.com/posts/formidable-blue-157799373).
+**This is the free Lite version.** Recurring billing, refunds, webhooks, fraud protection, and the admin transactions panel are available in [Pro](https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/).
 
 ---
 
@@ -89,7 +89,7 @@ This plugin integrates the **accept.blue payment gateway** directly into **Formi
 | Fraud Shield (IP / email / country) | — | ✅ |
 | Per-Form API Credential Override | — | ✅ |
 
-[**Upgrade to Pro →**](https://www.patreon.com/posts/formidable-blue-157799373)
+[**Upgrade to Pro →**](https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/)
 
 ---
 
@@ -154,7 +154,7 @@ Built on accept.blue's **hosted tokenization** technology — card data is captu
 - 📄 [accept.blue Hosted Tokenization Docs](https://docs.accept.blue/tokenization/hosted)
 - 🔌 [Formidable Forms](https://formidableforms.com)
 - 🗂️ [WordPress Plugin Directory Listing](https://wordpress.org/plugins/)
-- 👤 [RyanPlugins on Patreon (Pro version)](https://www.patreon.com/RyanPlugins)
+- 👤 [RyanPlugins (Pro version)](https://ryanplugins.net/)
 
 ---
 
@@ -175,7 +175,7 @@ No card data is stored on your server. All sensitive payment data is handled exc
 ## FAQ
 
 **Does this support ACH payments?**  
-ACH / eCheck transactions are available in the [Pro version](https://www.patreon.com/posts/formidable-blue-157799373).
+ACH / eCheck transactions are available in the [Pro version](https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/).
 
 **Does this support recurring billing?**  
 Yes — subscriptions and recurring payments (daily, weekly, monthly, annual and more) are supported in Pro.
@@ -246,4 +246,4 @@ No. Card data is tokenised by accept.blue's iFrame before it reaches your server
 
 ## License
 
-[GPL-2.0-or-later](https://www.gnu.org/licenses/gpl-2.0.html) © [RyanPlugins](https://www.patreon.com/RyanPlugins)
+[GPL-2.0-or-later](https://www.gnu.org/licenses/gpl-2.0.html) © [RyanPlugins](https://ryanplugins.net/)

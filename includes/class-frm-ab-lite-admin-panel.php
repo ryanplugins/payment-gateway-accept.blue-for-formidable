@@ -17,7 +17,6 @@ class Frm_AB_Lite_Admin_Panel {
 
 	public static function init() {
 		add_action( 'admin_menu',            array( __CLASS__, 'register_menu' ), 30 );
-		add_filter( 'plugin_row_meta',       array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_token_notice' ) );
 		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token', array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
@@ -526,17 +525,6 @@ private static function admin_css() {
 
 
 	
-
-	/**
-	 * Add accept.blue icon to plugin row in WP Plugins list.
-	 */
-	public static function plugin_row_meta( $links, $file ) {
-		if ( plugin_basename( FRM_AB_LITE_FILE ) !== $file ) return $links;
-		$links[] = '<img src="' . esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ) . '" '
-			. 'style="width:16px;height:16px;vertical-align:middle;margin-right:4px;" alt=""> accept.blue';
-		return $links;
-	}
-
 
 
 }
