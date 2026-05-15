@@ -62,34 +62,8 @@ class Frm_AB_Lite_Settings {
 	public static function display_form() {
 		$settings = self::get_settings();
 		?>
-		<style id="frm-ab-lite-pro-styles">
-/* Pro feature panels use standard WP notice styling */
-</style>
 		<div class="frm_ab_lite_settings_wrap">
 
-		<div class="frm-ab-lite-pro-notice" style="
-			display:flex;
-			align-items:center;
-			gap:14px;
-			background:linear-gradient(135deg,#1d2327 0%,#2c3a47 100%);
-			color:#fff;
-			padding:14px 20px;
-			border-radius:8px;
-			margin-bottom:18px;
-			box-shadow:0 3px 12px rgba(0,0,0,.18);
-			font-size:13.5px;
-			line-height:1.5;
-		">
-			<span style="font-size:22px;flex-shrink:0;">&#128274;</span>
-			<span>
-				<strong style="font-size:14px;">Payment gateway: accept.blue for Formidable</strong><br>
-				Recurring billing, refunds, webhooks, fraud shield, and more are available in the
-				<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"
-				   style="color:#7dd3fc;font-weight:700;text-decoration:none;">
-					&#8599; Pro version
-				</a>.
-			</span>
-		</div>
 			<h3 style="display:flex;align-items:center;gap:10px;">
 				<img src="<?php echo esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ); ?>"
 					 style="width:28px;height:28px;border-radius:5px;flex-shrink:0;" alt="">
@@ -248,16 +222,6 @@ class Frm_AB_Lite_Settings {
 					</td>
 				</tr>
 
-				<tr>
-					<th scope="row"><?php esc_html_e( '3DS (Paay) API Key', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
-					<td>
-						<p class="description">
-							<?php esc_html_e( 'Available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
-						</p>
-					</td>
-				</tr>
-				<?php echo '</tbody><tbody>'; ?>
 
 				<tr>
 					<th scope="row"><?php esc_html_e( 'Connection Test', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
@@ -273,17 +237,6 @@ class Frm_AB_Lite_Settings {
 					</td>
 				</tr>
 
-				<?php echo '<tbody>'; ?>
-				<tr>
-					<th scope="row"><?php esc_html_e( 'Webhook URL', 'payment-gateway-accept-blue-for-formidable' ); ?></th>
-					<td>
-						<p class="description">
-							<?php esc_html_e( 'Available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-							<a href="https://www.patreon.com/posts/formidable-blue-157799373" target="_blank" rel="noopener"><?php esc_html_e( 'Upgrade to Pro &rarr;', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
-						</p>
-					</td>
-				</tr>
-				<?php echo '</tbody><tbody></tbody>'; ?>
 			</table>
 
 			<hr style="margin:28px 0 20px;">
