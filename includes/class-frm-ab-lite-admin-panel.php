@@ -20,13 +20,7 @@ class Frm_AB_Lite_Admin_Panel {
 		add_filter( 'plugin_row_meta',       array( __CLASS__, 'plugin_row_meta' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_token_notice' ) );
-		add_action( 'wp_ajax_frm_ab_lite_sync_transaction',           array( __CLASS__, 'ajax_sync_transaction' ) );
-		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token',   array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
-		add_action( 'wp_ajax_frm_ab_lite_capture_transaction',        array( __CLASS__, 'ajax_capture_transaction' ) );
-		add_action( 'wp_ajax_frm_ab_lite_adjust_capture_transaction', array( __CLASS__, 'ajax_adjust_capture_transaction' ) );
-		add_action( 'wp_ajax_frm_ab_lite_void_transaction',           array( __CLASS__, 'ajax_void_transaction' ) );
-		add_action( 'wp_ajax_frm_ab_lite_refund_transaction',         array( __CLASS__, 'ajax_refund_transaction' ) );
-		add_action( 'wp_ajax_frm_ab_lite_export_csv',                 array( __CLASS__, 'ajax_export_csv' ) );
+		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token', array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
 	}
 
 	/**
@@ -53,28 +47,6 @@ class Frm_AB_Lite_Admin_Panel {
 			'frm-ab-lite-transactions',
 			array( __CLASS__, 'render_page' )
 		);
-	}
-
-	// -------------------------------------------------------------------------
-	// Helpers
-	// -------------------------------------------------------------------------
-
-	/**
-	 * Check whether the frm_payments table exists (requires Formidable Pro).
-	 */
-	private static function payments_table_exists(): bool {
-		global $wpdb;
-		$our = $wpdb->prefix . 'frm_ab_lite_payments';
-		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $our ) ) === $our ) return true; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		$frm = $wpdb->prefix . 'frm_payments';
-		return $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $frm ) ) === $frm; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-	}
-
-	private static function get_payments_table(): string {
-		global $wpdb;
-		$our = $wpdb->prefix . 'frm_ab_lite_payments';
-		if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $our ) ) === $our ) return $our; // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching
-		return $wpdb->prefix . 'frm_payments';
 	}
 
 	// -------------------------------------------------------------------------
@@ -139,28 +111,7 @@ class Frm_AB_Lite_Admin_Panel {
 		wp_add_inline_style( 'wp-admin', self::license_css() );
 
 		// ── Transactions panel JS ─────────────────────────────────────────────
-		if ( $is_panel ) {
-			$panel_data = array(
-				'ajaxUrl'             => admin_url( 'admin-ajax.php' ),
-				'exportNonce'         => wp_create_nonce( 'frm_ab_lite_export' ),
-				'refreshNonce'        => wp_create_nonce( 'frm_ab_lite_refresh_schedules' ),
-				'refundPrompt'        => __( 'Refund amount (leave blank for full refund):', 'payment-gateway-accept-blue-for-formidable' ),
-				'captureConfirm'      => __( 'Capture the full authorised amount?', 'payment-gateway-accept-blue-for-formidable' ),
-				'adjustCapturePrompt' => __( 'Enter new amount to adjust and capture (required):', 'payment-gateway-accept-blue-for-formidable' ),
-				'voidConfirm'         => __( 'Void this transaction? This cannot be undone.', 'payment-gateway-accept-blue-for-formidable' ),
-				'refreshing'          => __( 'Refreshing...', 'payment-gateway-accept-blue-for-formidable' ),
-			);
-			wp_add_inline_script( 'frm-acceptblue-lite-admin', 'var frmAbPanel = ' . wp_json_encode( $panel_data ) . ';' );
-			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::panel_js() );
-
-			// CSV export POST form script
-			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::csv_export_js() );
-
-			// Dashboard export POST form script (Formidable payments dashboard)
-			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::dash_export_js() );
-
-			// Schedules refresh script
-		}
+		// (Panel shows a Pro upgrade notice in Lite — no action buttons to wire up)
 
 		// ── Settings/Formidable admin pages ───────────────────────────────────
 		if ( $is_formidable ) {
@@ -197,157 +148,6 @@ class Frm_AB_Lite_Admin_Panel {
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::form_action_js() );
 		}
 	}
-
-	private static function panel_js() {
-		return <<<'JS'
-( function() {
-	var ajaxUrl = frmAbPanel.ajaxUrl;
-	var actionMap = {
-		"sync":           "frm_ab_lite_sync_transaction",
-		"capture":        "frm_ab_lite_capture_transaction",
-		"adjust_capture": "frm_ab_lite_adjust_capture_transaction",
-		"void":           "frm_ab_lite_void_transaction",
-		"refund":         "frm_ab_lite_refund_transaction"
-	};
-
-	function wireButtons() {
-		document.querySelectorAll( ".frm-ab-lite-action-btn" ).forEach( function( btn ) {
-			if ( btn._wired ) return;
-			btn._wired = true;
-			btn.addEventListener( "click", function() {
-				var action = btn.dataset.action;
-				var amount = "";
-
-				if ( action === "refund" ) {
-					amount = prompt( frmAbPanel.refundPrompt, btn.dataset.amount || "" );
-					if ( amount === null ) return;
-				} else if ( action === "capture" ) {
-					if ( !confirm( frmAbPanel.captureConfirm ) ) return;
-					// No amount sent — backend captures the full authorised amount
-				} else if ( action === "adjust_capture" ) {
-					amount = prompt( frmAbPanel.adjustCapturePrompt, btn.dataset.amount || "" );
-					if ( amount === null || amount === "" ) return;
-				} else if ( action === "void" ) {
-					if ( !confirm( frmAbPanel.voidConfirm ) ) return;
-				}
-
-				var origText = btn.textContent;
-				var origIcon = btn.innerHTML;
-				btn.disabled  = true;
-				btn.innerHTML = "<span style=\"opacity:.5\">&#x21BB;</span>";
-
-				var fd = new FormData();
-				fd.append( "action",     actionMap[ action ] );
-				fd.append( "nonce",      btn.dataset.nonce );
-				fd.append( "payment_id", btn.dataset.id );
-				fd.append( "charge_id",  btn.dataset.charge );
-				if ( amount !== "" ) fd.append( "amount", amount );
-
-				function resetBtn() {
-					btn.disabled  = false;
-					btn.innerHTML = origIcon;
-				}
-
-				fetch( ajaxUrl, { method: "POST", body: fd } )
-					.then( function(r) { return r.json(); } )
-					.then( function(r) {
-						if ( r.success ) {
-							// Show message then reload — reset not needed since page reloads
-							if ( r.data && r.data.message ) {
-								alert( r.data.message );
-							}
-							location.reload();
-						} else {
-							resetBtn();
-							var msg = ( r.data && r.data.message ) ? r.data.message : ( r.data || "Action failed." );
-							alert( "Error: " + msg );
-						}
-					} )
-					.catch( function(e) {
-						resetBtn();
-						alert( "Request failed: " + e.message );
-					} );
-			} );
-		} );
-	}
-
-	if ( document.readyState === "loading" ) {
-		document.addEventListener( "DOMContentLoaded", wireButtons );
-	} else {
-		wireButtons();
-	}
-} )();
-JS;
-	}
-
-	private static function copy_webhook_url_js(): string {
-		return <<<'JS'
-( function() {
-	var btn = document.getElementById( 'frm_ab_lite_copy_webhook_url' );
-	if ( ! btn ) return;
-	btn.addEventListener( 'click', function() {
-		var url = btn.getAttribute( 'data-url' );
-		if ( navigator.clipboard && navigator.clipboard.writeText ) {
-			navigator.clipboard.writeText( url ).then( function() {
-				var orig = btn.textContent;
-				btn.textContent = '✓ Copied!';
-				setTimeout( function() { btn.textContent = orig; }, 2000 );
-			} );
-		} else {
-			var inp = document.getElementById( 'frm_ab_lite_webhook_url_display' );
-			if ( inp ) { inp.select(); document.execCommand( 'copy' ); }
-		}
-	} );
-} )();
-JS;
-	}
-
-	private static function csv_export_js(): string {
-		return <<<'JS'
-( function() {
-	var btn = document.getElementById( 'frm-ab-lite-export-csv-btn' );
-	if ( ! btn ) return;
-	btn.addEventListener( 'click', function() {
-		var form = document.createElement( 'form' );
-		form.method = 'POST';
-		form.action = frmAbPanel.ajaxUrl;
-		var fields = { action: 'frm_ab_lite_export_csv', nonce: frmAbPanel.exportNonce };
-		Object.keys( fields ).forEach( function( k ) {
-			var i = document.createElement( 'input' );
-			i.type = 'hidden'; i.name = k; i.value = fields[k];
-			form.appendChild( i );
-		} );
-		document.body.appendChild( form );
-		form.submit();
-		document.body.removeChild( form );
-	} );
-} )();
-JS;
-	}
-
-	private static function dash_export_js(): string {
-		return <<<'JS'
-( function() {
-	var btn = document.getElementById( 'frm-ab-lite-dash-export-btn' );
-	if ( ! btn ) return;
-	btn.addEventListener( 'click', function() {
-		var form = document.createElement( 'form' );
-		form.method = 'POST';
-		form.action = frmAbPanel.ajaxUrl;
-		var fields = { action: 'frm_ab_lite_export_csv', nonce: frmAbPanel.exportNonce };
-		Object.keys( fields ).forEach( function( k ) {
-			var i = document.createElement( 'input' );
-			i.type = 'hidden'; i.name = k; i.value = fields[k];
-			form.appendChild( i );
-		} );
-		document.body.appendChild( form );
-		form.submit();
-		document.body.removeChild( form );
-	} );
-} )();
-JS;
-	}
-
 
 	private static function test_connection_js(): string {
 		return <<<'JS'
@@ -596,16 +396,6 @@ private static function admin_css() {
 	}
 
 	// -------------------------------------------------------------------------
-	// AJAX: Sync
-	// -------------------------------------------------------------------------
-
-	public static function ajax_sync_transaction() {
-		wp_send_json_error( __( 'Sync is available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
-
-	// -------------------------------------------------------------------------
 	// AJAX: Regenerate Webhook Token
 	// -------------------------------------------------------------------------
 
@@ -631,56 +421,6 @@ private static function admin_css() {
 		) );
 		exit;
 	}
-
-	// -------------------------------------------------------------------------
-	// AJAX: Export CSV
-	// -------------------------------------------------------------------------
-
-	public static function ajax_export_csv() {
-		wp_send_json_error( __( 'CSV Export is available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
-
-	// -------------------------------------------------------------------------
-	// AJAX: Capture (auth-only -> captured)
-	// -------------------------------------------------------------------------
-
-	public static function ajax_capture_transaction() {
-		wp_send_json_error( __( 'Capture is available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
-
-	// -------------------------------------------------------------------------
-	// AJAX: Adjust + Capture
-	// -------------------------------------------------------------------------
-
-	public static function ajax_adjust_capture_transaction() {
-		wp_send_json_error( __( 'Adjust & Capture is available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
-
-	// -------------------------------------------------------------------------
-	// AJAX: Void
-	// -------------------------------------------------------------------------
-
-	public static function ajax_void_transaction() {
-		wp_send_json_error( __( 'Void is available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
-
-	// -------------------------------------------------------------------------
-	// AJAX: Refund
-	// -------------------------------------------------------------------------
-
-	public static function ajax_refund_transaction() {
-		wp_send_json_error( __( 'Refunds are available in the Pro version.', 'payment-gateway-accept-blue-for-formidable' ) );
-		return; // Lite
-	}
-
 
 	// -------------------------------------------------------------------------
 	// Log Viewer

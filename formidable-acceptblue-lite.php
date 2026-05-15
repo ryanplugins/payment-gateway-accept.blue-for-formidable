@@ -32,7 +32,6 @@ $frm_ab_lite_includes = [
 	'class-frm-ab-lite-form-action.php',
 	'class-frm-ab-lite-gateway.php',
 	'class-frm-ab-lite-admin-panel.php',
-	'class-frm-ab-lite-dashboard.php',
 	'class-frm-ab-lite-fraud.php',
 ];
 

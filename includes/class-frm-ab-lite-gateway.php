@@ -16,15 +16,6 @@ class Frm_AB_Lite_Gateway {
 		// Admin: show gateway name in payments list
 		add_filter( 'frm_payment_gateway_label', [ __CLASS__, 'gateway_label' ], 10, 2 );
 
-		// Admin: add Refund button in payment detail
-		add_action( 'frm_payment_detail_actions', [ __CLASS__, 'payment_detail_actions' ], 10, 1 );
-
-		// Handle refund AJAX
-		add_action( 'wp_ajax_frm_ab_lite_refund', [ __CLASS__, 'ajax_refund' ] );
-
-		// Hook into Formidable's payment status hooks
-		add_action( 'frm_payment_status_complete', [ __CLASS__, 'on_payment_complete' ] );
-
 		// Shortcode: display accept.blue transaction details
 		add_shortcode( 'frm_ab_lite_charge', [ __CLASS__, 'charge_shortcode' ] );
 	}
@@ -38,55 +29,6 @@ class Frm_AB_Lite_Gateway {
 			return 'Accept.Blue';
 		}
 		return $label;
-	}
-
-	public static function payment_detail_actions( $payment ) {
-		if ( ! isset( $payment->paysys ) || $payment->paysys !== 'acceptblue' ) {
-			return;
-		}
-		if ( $payment->status !== 'complete' ) {
-			return;
-		}
-		?>
-		<span class="frm_ab_lite_refund_wrap" style="margin-left:10px;">
-			<input type="number" step="0.01" min="0"
-				id="frm_ab_lite_refund_amount"
-				placeholder="<?php esc_attr_e( 'Amount (blank = full)', 'payment-gateway-accept-blue-for-formidable' ); ?>"
-				style="width:160px;" />
-			<button type="button" class="button button-secondary"
-				onclick="frmAbRefund( <?php echo intval( $payment->id ); ?>, '<?php echo esc_js( $payment->receipt_id ); ?>' )">
-				<?php esc_html_e( 'Refund via Accept.Blue', 'payment-gateway-accept-blue-for-formidable' ); ?>
-			</button>
-		</span>
-		<?php
-	}
-
-	// -------------------------------------------------------------------------
-	// AJAX handlers
-	// -------------------------------------------------------------------------
-
-	public static function ajax_refund() {
-		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Pro stub.
-		wp_send_json_error( 'Refunds are available in the Pro version.' );
-	}
-
-	// -------------------------------------------------------------------------
-	// Hooks
-	// -------------------------------------------------------------------------
-
-	/**
-	 * Runs after every completed accept.blue payment.
-	 * Extend via the frm_ab_lite_payment_complete action instead.
-	 */
-	public static function on_payment_complete( $atts ) {
-		if ( ! isset( $atts['payment'] ) ) {
-			return;
-		}
-		if ( ( $atts['payment']->paysys ?? '' ) !== 'acceptblue' ) {
-			return;
-		}
-		// Placeholder — add custom post-payment logic here or use the
-		// frm_ab_lite_payment_complete action hook in your theme/child plugin.
 	}
 
 	// -------------------------------------------------------------------------

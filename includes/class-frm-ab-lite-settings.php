@@ -50,7 +50,7 @@ class Frm_AB_Lite_Settings {
 		// Formidable calls route() for both display AND after save.
 		// Only attempt to save when it's a POST request.
 		if ( isset( $_SERVER['REQUEST_METHOD'] ) && 'POST' === sanitize_text_field( wp_unslash( $_SERVER['REQUEST_METHOD'] ) ) && isset( $_POST['frm_ab_lite_settings'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			self::process_form();
+			self::save_settings();
 		}
 		self::display_form();
 	}
@@ -256,10 +256,6 @@ class Frm_AB_Lite_Settings {
 	// -------------------------------------------------------------------------
 	// Save
 	// -------------------------------------------------------------------------
-
-	public static function process_form() {
-		self::save_settings();
-	}
 
 	public static function save_settings() {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Formidable verifies nonce before calling this.
