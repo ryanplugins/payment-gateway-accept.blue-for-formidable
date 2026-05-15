@@ -504,7 +504,7 @@ class Frm_AB_Lite_Field {
 			'formId'          => $form_id,
 			'actionId'        => isset( $form_action ) ? $form_action->ID : 0,
 			'currency'        => isset( $form_action->post_content['currency'] ) ? $form_action->post_content['currency'] : 'USD',
-			'capture'         => isset( $form_action->post_content['capture'] ) ? (bool) $form_action->post_content['capture'] : false,
+			'capture'         => isset( $form_action->post_content['capture'] ) ? (bool) $form_action->post_content['capture'] : true,
 			'precheckNonce'   => wp_create_nonce( 'frm_ab_lite_precheck_nonce' ),
 			'i18n'            => array(
 				'loadFailed'    => __( 'Payment form failed to load. Please refresh the page.', 'payment-gateway-accept-blue-for-formidable' ),

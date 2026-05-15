@@ -112,7 +112,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 	 */
 	public function get_defaults() {
 		return array(
-			'capture'              => 1,
+			'capture'              => 0,
 			'three_ds_enabled'     => 0,
 			'three_ds_frictionless'=> 0,
 			'show_card_details'=> 1,
@@ -678,7 +678,7 @@ function frm_ab_lite_precheck_payment_handler() {
 		'source'   => $nonce,
 		'amount'   => $amount,
 		'currency' => $currency,
-		'capture'  => $capture,
+		'capture'  => false, // always auth-only; never capture at pre-check time
 		'transaction_details' => array( 'description' => 'Pre-auth via form #' . $form_id ),
 	);
 
@@ -937,11 +937,10 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		$charge_args['save_card'] = true;
 	}
 
-	// Capture — default true; false = auth-only
-	// The accept.blue API accepts `capture: false` to auth-only
-	$capture = isset( $s['capture'] ) ? (bool) $s['capture'] : true;
-	$charge_args['capture'] = $capture;
-	Frm_AB_Lite_Logger::info( 'Capture: ' . ( $capture ? 'true (immediate)' : 'false (auth-only)' ) );
+	// Capture — always false (auth-only); capture is never done at charge time
+	$capture = false;
+	$charge_args['capture'] = false;
+	Frm_AB_Lite_Logger::info( 'Capture: false (auth-only — hardcoded)' );
 
 	// Description
 	if ( $description ) {
