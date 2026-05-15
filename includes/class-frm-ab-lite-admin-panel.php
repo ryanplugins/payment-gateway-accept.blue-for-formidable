@@ -517,7 +517,7 @@ private static function admin_css() {
 					</option>
 				<?php endforeach; ?>
 			</select>
-			<code style="font-size:11px;color:#666;"><?php echo esc_html( $current ); ?></code>
+			<code style="font-size:11px;color:#666;"><?php echo esc_html( basename( $current ) ); ?></code>
 		</p>
 		<?php endif; ?>
 

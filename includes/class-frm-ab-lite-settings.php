@@ -140,14 +140,14 @@ class Frm_AB_Lite_Settings {
 								<?php esc_html_e( 'All API requests and responses are written to the Accept.Blue log file. Disable when not actively debugging.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 								<br />
 								<strong><?php esc_html_e( 'Log file:', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
-								<code style="font-size:11px;"><?php echo esc_html( $_ab_log_file ?: __( 'Not yet created', 'payment-gateway-accept-blue-for-formidable' ) ); ?></code>
+								<code style="font-size:11px;"><?php echo esc_html( $_ab_log_file ? basename( $_ab_log_file ) : __( 'Not yet created', 'payment-gateway-accept-blue-for-formidable' ) ); ?></code>
 								<?php if ( ! empty( $_ab_log_files ) ) : ?>
 									<br /><a href="<?php echo esc_url( admin_url('admin.php?page=frm-ab-lite-transactions&frm_ab_lite_view_log=1') ); ?>"><?php esc_html_e( 'View Log', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
 								<?php endif; ?>
 							<?php else : ?>
 								<?php esc_html_e( 'When enabled, all Accept.Blue API requests and responses are written to a dedicated log file (separate from debug.log).', 'payment-gateway-accept-blue-for-formidable' ); ?>
 								<?php if ( $_ab_log_file ) : ?>
-									<br /><code style="font-size:11px;color:#555;"><?php echo esc_html( dirname( $_ab_log_file ) ); ?>/accept-blue-YYYY-MM.log</code>
+									<br /><code style="font-size:11px;color:#555;">accept-blue-YYYY-MM.log</code>
 								<?php endif; ?>
 							<?php endif; ?>
 						</p>
