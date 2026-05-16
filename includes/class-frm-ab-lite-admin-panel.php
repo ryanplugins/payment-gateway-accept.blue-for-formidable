@@ -18,21 +18,8 @@ class Frm_AB_Lite_Admin_Panel {
 	public static function init() {
 		add_action( 'admin_menu',            array( __CLASS__, 'register_menu' ), 30 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
-		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_token_notice' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_upsell_notice' ) );
 		add_action( 'wp_ajax_frm_ab_lite_dismiss_upsell',          array( __CLASS__, 'ajax_dismiss_upsell' ) );
-		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token', array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
-	}
-
-	/**
-	 * Show a success notice after webhook token regeneration.
-	 */
-	public static function maybe_show_token_notice() {
-		if ( isset( $_GET['frm_action'] ) && 'acceptblue_token_regenerated' === $_GET['frm_action'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			echo '<div class="notice notice-success is-dismissible"><p>';
-			esc_html_e( 'Webhook token regenerated. Copy the new URL from the Accept.Blue settings and update it in your accept.blue portal.', 'payment-gateway-accept-blue-for-formidable' );
-			echo '</p></div>';
-		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -172,9 +159,6 @@ class Frm_AB_Lite_Admin_Panel {
 
 		// ── Settings/Formidable admin pages ───────────────────────────────────
 		if ( $is_formidable ) {
-			// Copy Webhook URL button
-			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::copy_webhook_url_js() );
-
 			// Test connection script
 			$test_data = array(
 				'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
@@ -244,48 +228,6 @@ JS;
 
 	private static function license_js(): string { return ''; /* Lite */ 
 }
-
-	private static function copy_webhook_url_js(): string {
-		return <<<'JS'
-( function() {
-	var btn = document.getElementById( 'frm_ab_lite_copy_webhook_url' );
-	if ( ! btn ) return;
-	btn.addEventListener( 'click', function() {
-		var urlEl = document.getElementById( 'frm_ab_lite_webhook_url' );
-		if ( ! urlEl ) return;
-		var url = urlEl.value || urlEl.textContent || '';
-		if ( ! url ) return;
-		if ( navigator.clipboard && navigator.clipboard.writeText ) {
-			navigator.clipboard.writeText( url ).then( function() {
-				var orig = btn.textContent;
-				btn.textContent = btn.getAttribute( 'data-copied' ) || 'Copied!';
-				setTimeout( function() { btn.textContent = orig; }, 2000 );
-			} ).catch( function() {
-				fallbackCopy( url );
-			} );
-		} else {
-			fallbackCopy( url );
-		}
-	} );
-
-	function fallbackCopy( text ) {
-		var ta = document.createElement( 'textarea' );
-		ta.value = text;
-		ta.style.cssText = 'position:fixed;top:-9999px;left:-9999px;opacity:0;';
-		document.body.appendChild( ta );
-		ta.focus();
-		ta.select();
-		try {
-			document.execCommand( 'copy' );
-			var orig = btn.textContent;
-			btn.textContent = btn.getAttribute( 'data-copied' ) || 'Copied!';
-			setTimeout( function() { btn.textContent = orig; }, 2000 );
-		} catch ( e ) {}
-		document.body.removeChild( ta );
-	}
-} )();
-JS;
-	}
 
 private static function form_action_js(): string {
 		return <<<'JS'
@@ -492,33 +434,6 @@ private static function admin_css() {
 		.frm-ab-lite-admin-panel .tablenav-pages span.current,
 
 		';
-	}
-
-	// -------------------------------------------------------------------------
-	// AJAX: Regenerate Webhook Token
-	// -------------------------------------------------------------------------
-
-	public static function ajax_regenerate_webhook_token() {
-		if ( ! isset( $_GET['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), 'frm_ab_lite_regenerate_token' ) ) {
-			wp_die( esc_html__( 'Invalid nonce. Please refresh and try again.', 'payment-gateway-accept-blue-for-formidable' ), 403 );
-		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'Unauthorized.', 'payment-gateway-accept-blue-for-formidable' ), 403 );
-		}
-
-		if ( class_exists( 'Frm_AB_Lite_Recurring' ) ) {
-			Frm_AB_Lite_Recurring::generate_webhook_token();
-		}
-
-		// Redirect back to the Accept.Blue settings tab
-		wp_safe_redirect( add_query_arg(
-			array(
-				'page'        => 'formidable-settings',
-				'frm_action'  => 'acceptblue_token_regenerated',
-			),
-			admin_url( 'admin.php' )
-		) );
-		exit;
 	}
 
 	// -------------------------------------------------------------------------

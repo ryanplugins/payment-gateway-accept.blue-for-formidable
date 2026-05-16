@@ -1134,14 +1134,6 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		}
 	}
 
-	$charge_args = apply_filters( 'frm_ab_lite_charge_args', $charge_args, $entry, $form, $action );
-
-	// Abort if fraud shield blocked the transaction
-	if ( apply_filters( 'frm_ab_lite_abort_payment', false ) ) {
-		Frm_AB_Lite_Logger::error( 'Charge FAILED: Payment aborted by fraud shield.' );
-		return;
-	}
-
 	Frm_AB_Lite_Logger::request( 'POST transactions/charge', array_merge( $charge_args, [ 'source' => substr( $charge_args['source'], 0, 15 ) . '[redacted]' ] ) );
 
 	// ── 6. Create charge ─────────────────────────────────────────────────────

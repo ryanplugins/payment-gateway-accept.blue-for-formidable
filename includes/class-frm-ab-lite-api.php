@@ -473,7 +473,7 @@ class Frm_AB_Lite_API {
 
 	/**
 	 * Public wrapper around the internal request method.
-	 * Allows extension classes (e.g. Frm_AB_Lite_Recurring) to call arbitrary endpoints
+	 * Allows extension classes to call arbitrary endpoints
 	 * without duplicating auth logic.
 	 *
 	 * @param string     $method

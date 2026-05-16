@@ -28,11 +28,9 @@ $frm_ab_lite_includes = [
 	'class-frm-ab-lite-settings.php',
 	'class-frm-ab-lite-field.php',
 	'class-frm-ab-lite-field-mapper.php',
-	'class-frm-ab-lite-recurring.php',
 	'class-frm-ab-lite-form-action.php',
 	'class-frm-ab-lite-gateway.php',
 	'class-frm-ab-lite-admin-panel.php',
-	'class-frm-ab-lite-fraud.php',
 ];
 
 

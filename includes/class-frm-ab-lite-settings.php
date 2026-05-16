@@ -273,7 +273,6 @@ class Frm_AB_Lite_Settings {
 			'pin'              => sanitize_text_field( isset( $raw['pin'] )              ? $raw['pin']              : '' ),
 			'paay_api_key'     => sanitize_text_field( isset( $raw['paay_api_key'] )     ? $raw['paay_api_key']     : '' ),
 			'tokenization_key' => sanitize_text_field( isset( $raw['tokenization_key'] ) ? $raw['tokenization_key'] : '' ),
-			'webhook_token'    => sanitize_text_field( isset( $raw['webhook_token'] )    ? $raw['webhook_token']    : '' ),
 			'test_mode'        => ! empty( $raw['test_mode'] ) ? 1 : 0,
 			'debug_log'        => ! empty( $raw['debug_log'] ) ? 1 : 0,
 		);
@@ -294,7 +293,6 @@ class Frm_AB_Lite_Settings {
 			'pin'              => '',
 			'paay_api_key'     => '',
 			'tokenization_key' => '',
-			'webhook_token'    => '',
 			'test_mode'        => 1,
 			'debug_log'        => 0,
 		);
