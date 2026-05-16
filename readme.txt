@@ -1,4 +1,4 @@
-=== Secure Form Checkout by Ryan ===
+=== RyanPay Card Payments with accept.blue for Formidable ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
