@@ -97,7 +97,7 @@ This plugin integrates the **accept.blue payment gateway** directly into **Formi
 
 > **How to integrate accept.blue with Formidable Forms in WordPress**
 
-1. Download the plugin zip from the [WordPress Plugin Directory](https://wordpress.org/plugins/) or the [Releases](https://github.com/ryanplugins/formidable-acceptblue-lite/releases) page.
+1. Download the plugin zip from the [Releases](https://github.com/ryanplugins/formidable-acceptblue-lite/releases) page.
 2. In your WordPress admin go to **Plugins → Add New → Upload Plugin**.
 3. Upload the zip file and click **Install Now**, then **Activate Plugin**.
 4. Open **Formidable → Global Settings → accept.blue**.
@@ -153,7 +153,6 @@ Built on accept.blue's **hosted tokenization** technology — card data is captu
 - 📄 [accept.blue API Documentation](https://docs.accept.blue)
 - 📄 [accept.blue Hosted Tokenization Docs](https://docs.accept.blue/tokenization/hosted)
 - 🔌 [Formidable Forms](https://formidableforms.com)
-- 🗂️ [WordPress Plugin Directory Listing](https://wordpress.org/plugins/)
 - 👤 [RyanPlugins (Pro version)](https://ryanplugins.net/)
 
 ---
