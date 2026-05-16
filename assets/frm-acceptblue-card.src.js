@@ -101,6 +101,7 @@
 
 		// log3ds() - always-on 3DS diagnostic logger (ignores CFG.debugLog)
 		function log3ds(event, data) {
+			return; // 3DS console labels suppressed
 			var badges = {
 				INIT:          'background:#1a4a7a;color:#fff;padding:2px 6px;border-radius:3px;font-weight:bold;',
 				READY:         'background:#166534;color:#fff;padding:2px 6px;border-radius:3px;font-weight:bold;',
