@@ -1,18 +1,18 @@
 <?php
 /**
- * Plugin Name:     Secure Form Checkout by Ryan
+ * Plugin Name:     RyanPay Card Payments with accept.blue for Formidable
  * Plugin URI:      https://ryanplugins.net/
  * Description:     Accept.blue Hosted Tokenization payment gateway for Formidable Forms with debug logging. Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://profiles.wordpress.org/ryanplugins/
- * Text Domain:     payment-gateway-accept-blue-for-formidable
+ * Text Domain:     ryanpay-accept-blue-formidable
  * Domain Path:     /languages
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Requires PHP:    7.4
  * Requires at least: 6.0
- * @package         Formidable_AcceptBlue_Lite
+ * 
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -45,8 +45,8 @@ function frm_ab_lite_boot() {
 	if ( ! class_exists( 'FrmHooksController' ) ) {
 		add_action( 'admin_notices', function () {
 			echo '<div class="error"><p>';
-			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'payment-gateway-accept-blue-for-formidable' ) . '</strong> ';
-			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'payment-gateway-accept-blue-for-formidable' );
+			echo '<strong>' . esc_html__( 'Accept.Blue for Formidable Forms', 'ryanpay-accept-blue-formidable' ) . '</strong> ';
+			echo esc_html__( 'requires Formidable Forms to be installed and active.', 'ryanpay-accept-blue-formidable' );
 			echo '</p></div>';
 		} );
 		return;

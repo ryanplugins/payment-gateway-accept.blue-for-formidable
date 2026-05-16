@@ -45,7 +45,7 @@ class Frm_AB_Lite_Field {
 
 	public static function register_field( $fields ) {
 		$fields[ self::FIELD_TYPE ] = array(
-			'name' => __( 'Accept.Blue — Card Payment', 'payment-gateway-accept-blue-for-formidable' ),
+			'name' => __( 'Accept.Blue — Card Payment', 'ryanpay-accept-blue-formidable' ),
 			'icon' => 'frm_icon_font frm_credit_card_icon',
 		);
 		return $fields;
@@ -194,7 +194,7 @@ class Frm_AB_Lite_Field {
 				'<div id="%s" class="frm_ab_lite_error_msg frm_error" style="margin:0 0 8px;display:block;">⚠ %s</div>
 				<input type="hidden" name="%s" id="%s" value="" />',
 				esc_attr( $error_id ),
-				esc_html__( 'Accept.Blue: Hosted Tokenization Key not configured. Go to Formidable → Global Settings → Accept.Blue.', 'payment-gateway-accept-blue-for-formidable' ),
+				esc_html__( 'Accept.Blue: Hosted Tokenization Key not configured. Go to Formidable → Global Settings → Accept.Blue.', 'ryanpay-accept-blue-formidable' ),
 				esc_attr( $field_name ),
 				esc_attr( $nonce_id )
 			);
@@ -214,10 +214,10 @@ class Frm_AB_Lite_Field {
 
 			<?php if ( $test_mode ) : ?>
 				<div class="frm_ab_lite_test_badge">
-					⚠ <?php esc_html_e( 'SANDBOX / TEST MODE — No real charges will be made', 'payment-gateway-accept-blue-for-formidable' ); ?>
+					⚠ <?php esc_html_e( 'SANDBOX / TEST MODE — No real charges will be made', 'ryanpay-accept-blue-formidable' ); ?>
 					<?php if ( $three_ds_enabled ) : ?>
 						<span style="display:block;margin-top:5px;font-weight:600;color:#92400e;">
-							🔒 <?php esc_html_e( '3DS Test Cards:', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							🔒 <?php esc_html_e( '3DS Test Cards:', 'ryanpay-accept-blue-formidable' ); ?>
 						</span>
 						<span style="font-weight:400;display:block;margin-top:2px;">
 							Visa: <code>4012 0000 3333 0026</code>
@@ -225,7 +225,7 @@ class Frm_AB_Lite_Field {
 						</span>
 					<?php else : ?>
 						<span style="font-weight:400;">
-							<?php esc_html_e( 'Test cards:', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Test cards:', 'ryanpay-accept-blue-formidable' ); ?>
 							Visa: <code>4761 5300 0111 1118</code>
 							&nbsp; Discover: <code>6011 2087 0111 7775</code>
 						</span>
@@ -242,10 +242,10 @@ class Frm_AB_Lite_Field {
 				            text-align:center;box-shadow:0 8px 32px rgba(0,0,0,0.25);min-width:220px;">
 					<div class="frm_ab_lite_spinner"></div>
 					<p style="margin:16px 0 4px;font-weight:600;color:#1a3a5c;font-size:0.95em;">
-						<?php esc_html_e( 'Verifying your card…', 'payment-gateway-accept-blue-for-formidable' ); ?>
+						<?php esc_html_e( 'Verifying your card…', 'ryanpay-accept-blue-formidable' ); ?>
 					</p>
 					<p style="margin:0;font-size:0.8em;color:#6b7280;">
-						<?php esc_html_e( 'Your bank is being contacted. Please wait.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+						<?php esc_html_e( 'Your bank is being contacted. Please wait.', 'ryanpay-accept-blue-formidable' ); ?>
 					</p>
 				</div>
 			</div>
@@ -255,8 +255,8 @@ class Frm_AB_Lite_Field {
 			<div id="frm_ab_lite_submit_loader_<?php echo esc_attr( $field_id ); ?>" class="frm-ab-lite-submit-overlay" style="display:none;" aria-live="assertive" role="status">
 				<div class="frm-ab-lite-submit-overlay__card">
 					<div class="frm_ab_lite_spinner frm_ab_lite_spinner--lg"></div>
-					<p class="frm-ab-lite-submit-overlay__title"><?php esc_html_e( 'Processing payment…', 'payment-gateway-accept-blue-for-formidable' ); ?></p>
-					<p class="frm-ab-lite-submit-overlay__sub"><?php esc_html_e( 'Please wait and do not close this page.', 'payment-gateway-accept-blue-for-formidable' ); ?></p>
+					<p class="frm-ab-lite-submit-overlay__title"><?php esc_html_e( 'Processing payment…', 'ryanpay-accept-blue-formidable' ); ?></p>
+					<p class="frm-ab-lite-submit-overlay__sub"><?php esc_html_e( 'Please wait and do not close this page.', 'ryanpay-accept-blue-formidable' ); ?></p>
 				</div>
 			</div>
 
@@ -287,17 +287,17 @@ class Frm_AB_Lite_Field {
 				 class="frm_ab_lite_modal_overlay"
 				 style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:99999;align-items:center;justify-content:center;">
 				<div class="frm_ab_lite_modal_box" style="background:#fff;border-radius:12px;padding:28px 30px;max-width:420px;width:90%;box-shadow:0 12px 48px rgba(0,0,0,.22);">
-					<h3 style="margin:0 0 20px;font-size:1.25em;font-weight:700;color:#1a1a2e;"><?php esc_html_e( 'Confirm Payment', 'payment-gateway-accept-blue-for-formidable' ); ?></h3>
+					<h3 style="margin:0 0 20px;font-size:1.25em;font-weight:700;color:#1a1a2e;"><?php esc_html_e( 'Confirm Payment', 'ryanpay-accept-blue-formidable' ); ?></h3>
 
 					<!-- Card details populated by getData() -->
 					<div id="frm_ab_lite_confirm_card_<?php echo esc_attr($field_id); ?>"
 						 style="display:flex;align-items:center;gap:8px;background:#f4f6fa;border:1px solid #e0e4ef;border-radius:8px;padding:11px 14px;margin-bottom:16px;font-size:0.95em;color:#333;">
-						<?php esc_html_e( 'Card details secured by accept.blue', 'payment-gateway-accept-blue-for-formidable' ); ?>
+						<?php esc_html_e( 'Card details secured by accept.blue', 'ryanpay-accept-blue-formidable' ); ?>
 					</div>
 
 					<table style="width:100%;border-collapse:collapse;margin-bottom:20px;font-size:0.97em;">
 						<tr>
-							<td style="padding:7px 0;color:#555;font-weight:500;"><?php esc_html_e( 'Amount', 'payment-gateway-accept-blue-for-formidable' ); ?></td>
+							<td style="padding:7px 0;color:#555;font-weight:500;"><?php esc_html_e( 'Amount', 'ryanpay-accept-blue-formidable' ); ?></td>
 							<td id="frm_ab_lite_confirm_amount_<?php echo esc_attr($field_id); ?>" style="text-align:right;font-weight:600;color:#1a1a2e;"></td>
 						</tr>
 						<tr id="frm_ab_lite_confirm_surcharge_row_<?php echo esc_attr($field_id); ?>" style="display:none;">
@@ -308,7 +308,7 @@ class Frm_AB_Lite_Field {
 							<td colspan="2" style="padding:0;"><div style="height:1px;background:#e8e8e8;margin:6px 0;"></div></td>
 						</tr>
 						<tr id="frm_ab_lite_confirm_total_row2_<?php echo esc_attr($field_id); ?>" style="display:none;">
-							<td style="padding:7px 0 0;font-weight:700;font-size:1.05em;color:#1a1a2e;"><?php esc_html_e( 'Total', 'payment-gateway-accept-blue-for-formidable' ); ?></td>
+							<td style="padding:7px 0 0;font-weight:700;font-size:1.05em;color:#1a1a2e;"><?php esc_html_e( 'Total', 'ryanpay-accept-blue-formidable' ); ?></td>
 							<td id="frm_ab_lite_confirm_total_<?php echo esc_attr($field_id); ?>" style="text-align:right;font-weight:700;font-size:1.15em;color:#1a1a2e;padding-top:7px;"></td>
 						</tr>
 					</table>
@@ -328,7 +328,7 @@ class Frm_AB_Lite_Field {
 				<div style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f0fb 100%);border:1px solid #bcd4f0;border-radius:10px;overflow:hidden;margin-bottom:16px;">
 					<div style="background:#1a4a7a;padding:9px 14px;display:flex;align-items:center;gap:8px;">
 						<span style="font-size:1.1em;">&#x1F4C5;</span>
-						<strong style="color:#fff;font-size:0.9em;letter-spacing:0.03em;"><?php esc_html_e( 'INSTALLMENT PLAN', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+						<strong style="color:#fff;font-size:0.9em;letter-spacing:0.03em;"><?php esc_html_e( 'INSTALLMENT PLAN', 'ryanpay-accept-blue-formidable' ); ?></strong>
 					</div>
 					<div style="padding:4px 14px 0;">
 						<?php if ( $recurring_title ) : ?>
@@ -338,26 +338,26 @@ class Frm_AB_Lite_Field {
 						<div style="height:1px;background:rgba(188,212,240,0.5);margin-bottom:2px;"></div>
 						<?php endif; ?>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Payments', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Payments', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>"><?php echo esc_html( $installment_count ); ?></span>
 						</div>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Frequency', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Frequency', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>"><?php echo esc_html( $freq_label ); ?></span>
 						</div>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Per payment', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Per payment', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>"><span id="frm_ab_lite_installment_per_<?php echo esc_attr($field_id); ?>">…</span></span>
 						</div>
 						<?php if ( $has_trial ) : ?>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Trial', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Trial', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="background:#e8f5e9;color:#2e7d32;font-weight:600;font-size:0.82em;padding:2px 8px;border-radius:20px;"><?php // translators: %d is the number of free trial days.
-								echo esc_html( sprintf( __( '%d days free', 'payment-gateway-accept-blue-for-formidable' ), $trial_days ) ); ?></span>
+								echo esc_html( sprintf( __( '%d days free', 'ryanpay-accept-blue-formidable' ), $trial_days ) ); ?></span>
 						</div>
 						<?php endif; ?>
 						<div style="background:#1a4a7a;margin:8px -14px 0;padding:9px 14px;display:flex;justify-content:space-between;align-items:center;">
-							<span style="color:rgba(255,255,255,0.8);font-size:0.8em;font-weight:500;"><?php esc_html_e( 'Total charged', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="color:rgba(255,255,255,0.8);font-size:0.8em;font-weight:500;"><?php esc_html_e( 'Total charged', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<strong style="color:#fff;font-size:1em;"><span id="frm_ab_lite_installment_total_<?php echo esc_attr($field_id); ?>">…</span></strong>
 						</div>
 					</div>
@@ -368,7 +368,7 @@ class Frm_AB_Lite_Field {
 				<div style="background:linear-gradient(135deg,#f0f7ff 0%,#e8f0fb 100%);border:1px solid #bcd4f0;border-radius:10px;overflow:hidden;margin-bottom:16px;">
 					<div style="background:#0073aa;padding:9px 14px;display:flex;align-items:center;gap:8px;">
 						<span style="font-size:1.1em;">&#x1F501;</span>
-						<strong style="color:#fff;font-size:0.9em;letter-spacing:0.03em;"><?php esc_html_e( 'RECURRING PAYMENT', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+						<strong style="color:#fff;font-size:0.9em;letter-spacing:0.03em;"><?php esc_html_e( 'RECURRING PAYMENT', 'ryanpay-accept-blue-formidable' ); ?></strong>
 					</div>
 					<div style="padding:4px 14px 10px;">
 						<?php if ( $recurring_title ) : ?>
@@ -378,31 +378,31 @@ class Frm_AB_Lite_Field {
 						<div style="height:1px;background:rgba(188,212,240,0.5);margin-bottom:2px;"></div>
 						<?php endif; ?>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Amount', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Amount', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>"><span id="frm_ab_lite_sub_amount_<?php echo esc_attr($field_id); ?>">…</span> / <?php echo esc_html( strtolower( $freq_label ) ); ?></span>
 						</div>
 						<div style="<?php echo esc_attr( $rs ); ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Frequency', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Frequency', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>"><?php echo esc_html( $freq_label ); ?></span>
 						</div>
 						<div style="<?php echo esc_attr( $rs ); ?><?php echo $has_trial ? '' : 'border-bottom:none;'; ?>">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Duration', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Duration', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="<?php echo esc_attr( $rsv ); ?>">
 								<?php if ( $recurring_duration > 0 ) : ?>
 									<?php
 									// translators: %d is the number of payments in the recurring schedule.
-								echo esc_html( sprintf( _n( '%d payment', '%d payments', $recurring_duration, 'payment-gateway-accept-blue-for-formidable' ), $recurring_duration ) );
+								echo esc_html( sprintf( _n( '%d payment', '%d payments', $recurring_duration, 'ryanpay-accept-blue-formidable' ), $recurring_duration ) );
 									?>
 								<?php else : ?>
-									<?php esc_html_e( 'Until cancelled', 'payment-gateway-accept-blue-for-formidable' ); ?>
+									<?php esc_html_e( 'Until cancelled', 'ryanpay-accept-blue-formidable' ); ?>
 								<?php endif; ?>
 							</span>
 						</div>
 						<?php if ( $has_trial ) : ?>
 						<div style="<?php echo esc_attr( $rs ); ?>border-bottom:none;">
-							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Trial', 'payment-gateway-accept-blue-for-formidable' ); ?></span>
+							<span style="<?php echo esc_attr( $rsl ); ?>"><?php esc_html_e( 'Trial', 'ryanpay-accept-blue-formidable' ); ?></span>
 							<span style="background:#e8f5e9;color:#2e7d32;font-weight:600;font-size:0.82em;padding:2px 8px;border-radius:20px;"><?php // translators: %d is the number of free trial days.
-								echo esc_html( sprintf( __( '%d days free', 'payment-gateway-accept-blue-for-formidable' ), $trial_days ) ); ?></span>
+								echo esc_html( sprintf( __( '%d days free', 'ryanpay-accept-blue-formidable' ), $trial_days ) ); ?></span>
 						</div>
 						<?php endif; ?>
 					</div>
@@ -411,19 +411,19 @@ class Frm_AB_Lite_Field {
 				<?php endif; ?>
 				<p style="font-size:0.84em;color:#888;margin:0 0 20px;line-height:1.5;">
 					<?php if ( ! empty( $recurring_enabled ) ) : ?>
-						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge and the recurring schedule shown above.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge and the recurring schedule shown above.', 'ryanpay-accept-blue-formidable' ); ?>
 					<?php else : ?>
-						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge to your card. This action cannot be undone.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+						<?php esc_html_e( 'By clicking Pay Now, you authorise this charge to your card. This action cannot be undone.', 'ryanpay-accept-blue-formidable' ); ?>
 					<?php endif; ?>
 				</p>
 					<div style="display:flex;gap:10px;">
 						<button type="button" id="frm_ab_lite_confirm_pay_<?php echo esc_attr($field_id); ?>"
 							style="flex:1;background:#0073aa;color:#fff;border:none;border-radius:7px;padding:12px;font-size:1em;cursor:pointer;font-weight:600;letter-spacing:0.02em;">
-							<?php esc_html_e( '🔒 Pay Now', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( '🔒 Pay Now', 'ryanpay-accept-blue-formidable' ); ?>
 						</button>
 						<button type="button" id="frm_ab_lite_confirm_cancel_<?php echo esc_attr($field_id); ?>"
 							style="flex:1;background:#fff;color:#555;border:1px solid #d0d0d0;border-radius:7px;padding:12px;font-size:1em;cursor:pointer;font-weight:500;">
-							<?php esc_html_e( 'Cancel', 'payment-gateway-accept-blue-for-formidable' ); ?>
+							<?php esc_html_e( 'Cancel', 'ryanpay-accept-blue-formidable' ); ?>
 						</button>
 					</div>
 				</div>
@@ -487,13 +487,13 @@ class Frm_AB_Lite_Field {
 			'capture'         => isset( $form_action->post_content['capture'] ) ? (bool) $form_action->post_content['capture'] : true,
 			'precheckNonce'   => wp_create_nonce( 'frm_ab_lite_precheck_nonce' ),
 			'i18n'            => array(
-				'loadFailed'    => __( 'Payment form failed to load. Please refresh the page.', 'payment-gateway-accept-blue-for-formidable' ),
-				'notReady'      => __( 'Payment form not ready. Please refresh the page.', 'payment-gateway-accept-blue-for-formidable' ),
-				'noToken'       => __( 'Could not connect to payment processor. Please check your API key in Accept.Blue settings.', 'payment-gateway-accept-blue-for-formidable' ),
-				'cardFailed'    => __( 'Card validation failed. Please check your card details and try again.', 'payment-gateway-accept-blue-for-formidable' ),
-				'formError'     => __( 'Payment form error. Please refresh and try again.', 'payment-gateway-accept-blue-for-formidable' ),
-				'scriptBlocked' => __( 'Payment script blocked. Please disable your ad blocker and refresh.', 'payment-gateway-accept-blue-for-formidable' ),
-				'cardSecured'   => __( 'Card details secured by accept.blue', 'payment-gateway-accept-blue-for-formidable' ),
+				'loadFailed'    => __( 'Payment form failed to load. Please refresh the page.', 'ryanpay-accept-blue-formidable' ),
+				'notReady'      => __( 'Payment form not ready. Please refresh the page.', 'ryanpay-accept-blue-formidable' ),
+				'noToken'       => __( 'Could not connect to payment processor. Please check your API key in Accept.Blue settings.', 'ryanpay-accept-blue-formidable' ),
+				'cardFailed'    => __( 'Card validation failed. Please check your card details and try again.', 'ryanpay-accept-blue-formidable' ),
+				'formError'     => __( 'Payment form error. Please refresh and try again.', 'ryanpay-accept-blue-formidable' ),
+				'scriptBlocked' => __( 'Payment script blocked. Please disable your ad blocker and refresh.', 'ryanpay-accept-blue-formidable' ),
+				'cardSecured'   => __( 'Card details secured by accept.blue', 'ryanpay-accept-blue-formidable' ),
 			),
 		);
 
@@ -539,7 +539,7 @@ class Frm_AB_Lite_Field {
 		// handles matching the plugin slug and treat them as payment-gateway scripts.
 		if ( ! is_admin() ) {
 			wp_enqueue_style(
-				'payment-gateway-accept-blue-for-formidable-css',
+				'ryanpay-accept-blue-formidable-css',
 				FRM_AB_LITE_URL . $css_file,
 				array(),
 				FRM_AB_LITE_VERSION

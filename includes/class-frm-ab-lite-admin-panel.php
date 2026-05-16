@@ -53,12 +53,12 @@ class Frm_AB_Lite_Admin_Panel {
 			<img src="<?php echo esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ); ?>"
 				style="width:36px;height:36px;border-radius:6px;flex-shrink:0;" alt="accept.blue">
 			<p style="margin:0;">
-				<strong><?php esc_html_e( 'Unlock the full power of accept.blue for Formidable Forms', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+				<strong><?php esc_html_e( 'Unlock the full power of accept.blue for Formidable Forms', 'ryanpay-accept-blue-formidable' ); ?></strong>
 				&mdash;
-				<?php esc_html_e( 'Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+				<?php esc_html_e( 'Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.', 'ryanpay-accept-blue-formidable' ); ?>
 				&nbsp;
 				<a href="<?php echo esc_url( $pro_url ); ?>" target="_blank" rel="noopener" class="button button-primary" style="margin-left:6px;">
-					<?php esc_html_e( 'Upgrade to Pro →', 'payment-gateway-accept-blue-for-formidable' ); ?>
+					<?php esc_html_e( 'Upgrade to Pro →', 'ryanpay-accept-blue-formidable' ); ?>
 				</a>
 			</p>
 		</div>
@@ -145,8 +145,8 @@ class Frm_AB_Lite_Admin_Panel {
 			$test_data = array(
 				'ajaxUrl'          => admin_url( 'admin-ajax.php' ),
 				'nonce'            => wp_create_nonce( 'frm_ab_lite_test' ),
-				'testing'          => __( 'Testing...', 'payment-gateway-accept-blue-for-formidable' ),
-				'connectionFailed' => __( 'Connection failed.', 'payment-gateway-accept-blue-for-formidable' ),
+				'testing'          => __( 'Testing...', 'ryanpay-accept-blue-formidable' ),
+				'connectionFailed' => __( 'Connection failed.', 'ryanpay-accept-blue-formidable' ),
 			);
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', 'var frmAbSettings = ' . wp_json_encode( $test_data ) . ';' );
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::test_connection_js() );
@@ -154,15 +154,15 @@ class Frm_AB_Lite_Admin_Panel {
 			// License section script
 			$lic_data = array(
 				'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
-				'enterCode'          => __( 'Please enter your purchase code.', 'payment-gateway-accept-blue-for-formidable' ),
-				'verifying'          => __( 'Verifying...', 'payment-gateway-accept-blue-for-formidable' ),
-				'verifyBtn'          => __( 'Verify License', 'payment-gateway-accept-blue-for-formidable' ),
-				'verifyShort'        => __( 'Verify', 'payment-gateway-accept-blue-for-formidable' ),
-				'networkError'       => __( 'Network error. Please check your connection and try again.', 'payment-gateway-accept-blue-for-formidable' ),
-				'verifyFailed'       => __( 'Verification failed. Please check your purchase code and try again.', 'payment-gateway-accept-blue-for-formidable' ),
-				'deactivating'       => __( 'Deactivating...', 'payment-gateway-accept-blue-for-formidable' ),
-				'deactivateBtn'      => __( 'Deactivate License', 'payment-gateway-accept-blue-for-formidable' ),
-				'deactivateConfirm'  => __( 'Are you sure you want to deactivate this license?', 'payment-gateway-accept-blue-for-formidable' ),
+				'enterCode'          => __( 'Please enter your purchase code.', 'ryanpay-accept-blue-formidable' ),
+				'verifying'          => __( 'Verifying...', 'ryanpay-accept-blue-formidable' ),
+				'verifyBtn'          => __( 'Verify License', 'ryanpay-accept-blue-formidable' ),
+				'verifyShort'        => __( 'Verify', 'ryanpay-accept-blue-formidable' ),
+				'networkError'       => __( 'Network error. Please check your connection and try again.', 'ryanpay-accept-blue-formidable' ),
+				'verifyFailed'       => __( 'Verification failed. Please check your purchase code and try again.', 'ryanpay-accept-blue-formidable' ),
+				'deactivating'       => __( 'Deactivating...', 'ryanpay-accept-blue-formidable' ),
+				'deactivateBtn'      => __( 'Deactivate License', 'ryanpay-accept-blue-formidable' ),
+				'deactivateConfirm'  => __( 'Are you sure you want to deactivate this license?', 'ryanpay-accept-blue-formidable' ),
 			);
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', 'var frmAbLicense = ' . wp_json_encode( $lic_data ) . ';' );
 			wp_add_inline_script( 'frm-acceptblue-lite-admin', self::license_js() );
@@ -445,24 +445,24 @@ private static function admin_css() {
 		$log_content = $current ? Frm_AB_Lite_Logger::tail( 500 ) : '';
 
 		?>
-		<h2><?php esc_html_e( 'Accept.Blue Log Viewer', 'payment-gateway-accept-blue-for-formidable' ); ?></h2>
+		<h2><?php esc_html_e( 'Accept.Blue Log Viewer', 'ryanpay-accept-blue-formidable' ); ?></h2>
 		<?php if ( $cleared ) : ?>
-		<div class="notice notice-success inline"><p><?php esc_html_e( 'Log cleared.', 'payment-gateway-accept-blue-for-formidable' ); ?></p></div>
+		<div class="notice notice-success inline"><p><?php esc_html_e( 'Log cleared.', 'ryanpay-accept-blue-formidable' ); ?></p></div>
 		<?php endif; ?>
 		<p>
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=frm-ab-lite-transactions' ) ); ?>" class="button">&larr; <?php esc_html_e( 'Back to Transactions', 'payment-gateway-accept-blue-for-formidable' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=frm-ab-lite-transactions' ) ); ?>" class="button">&larr; <?php esc_html_e( 'Back to Transactions', 'ryanpay-accept-blue-formidable' ); ?></a>
 			<?php if ( $current ) : ?>
 			<form method="post" action="<?php echo esc_url( add_query_arg( array( 'page' => 'frm-ab-lite-transactions', 'frm_ab_lite_view_log' => '1' ), admin_url( 'admin.php' ) ) ); ?>" style="display:inline;margin-left:8px;">
 				<?php wp_nonce_field( 'frm_ab_lite_clear_log' ); ?>
 				<button type="submit" name="frm_ab_lite_clear_log" value="1" class="button button-secondary"
-					onclick="return confirm('<?php esc_attr_e( 'Clear this log file?', 'payment-gateway-accept-blue-for-formidable' ); ?>')"><?php esc_html_e( 'Clear Log', 'payment-gateway-accept-blue-for-formidable' ); ?></button>
+					onclick="return confirm('<?php esc_attr_e( 'Clear this log file?', 'ryanpay-accept-blue-formidable' ); ?>')"><?php esc_html_e( 'Clear Log', 'ryanpay-accept-blue-formidable' ); ?></button>
 			</form>
 			<?php endif; ?>
 		</p>
 
 		<?php if ( ! empty( $files ) ) : ?>
 		<p>
-			<strong><?php esc_html_e( 'Log file:', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+			<strong><?php esc_html_e( 'Log file:', 'ryanpay-accept-blue-formidable' ); ?></strong>
 			<select onchange="location.href=this.value">
 				<?php foreach ( $files as $f ) : ?>
 					<option value="<?php echo esc_url( add_query_arg( array( 'frm_ab_lite_view_log' => 1, 'log_file' => $f ), admin_url( 'admin.php?page=frm-ab-lite-transactions' ) ) ); ?>"
@@ -485,7 +485,7 @@ private static function admin_css() {
 				$colored = preg_replace( '/\[INFO\]/',    '<span style="color:#ffd43b;">[INFO]</span>',    $colored );
 				echo $colored; // phpcs:ignore
 			 else : ?>
-				<em style="color:#aaa;"><?php esc_html_e( 'Log is empty. Enable Debug Logging in Settings > Accept.Blue to start capturing logs.', 'payment-gateway-accept-blue-for-formidable' ); ?></em>
+				<em style="color:#aaa;"><?php esc_html_e( 'Log is empty. Enable Debug Logging in Settings > Accept.Blue to start capturing logs.', 'ryanpay-accept-blue-formidable' ); ?></em>
 			<?php endif; ?>
 		</div>
 		<?php
