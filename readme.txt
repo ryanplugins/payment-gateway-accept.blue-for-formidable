@@ -1,4 +1,4 @@
-=== Secure Form Checkout by RyanPlugins ===
+=== Secure Form Checkout by Ryan ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
@@ -27,7 +27,7 @@ This is the **free Lite version**. Upgrade to Pro to unlock additional features.
 
 = Pro Version Features =
 
-Upgrade to **Secure Form Checkout Pro by RyanPlugins** to unlock:
+Upgrade to **Secure Form Checkout Pro by Ryan** to unlock:
 
 * Recurring subscriptions — daily, weekly, bi-weekly, monthly, bi-monthly, quarterly, bi-annually, and annually
 * Installment plans — split a total into a fixed number of automatic charges

@@ -565,7 +565,7 @@ class Frm_AB_Lite_Field {
 				'accept-blue-hosted-tokenization',
 				$sdk_url,
 				array(),
-				null,  // no version — external CDN manages its own versioning
+				FRM_AB_LITE_VERSION,
 				true   // footer
 			);
 		}

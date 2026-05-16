@@ -58,7 +58,7 @@ class Frm_AB_Lite_Admin_Panel {
 				&mdash;
 				<?php esc_html_e( 'Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.', 'payment-gateway-accept-blue-for-formidable' ); ?>
 				&nbsp;
-				<a href="<?php echo $pro_url; ?>" target="_blank" rel="noopener" class="button button-primary" style="margin-left:6px;">
+				<a href="<?php echo esc_url( $pro_url ); ?>" target="_blank" rel="noopener" class="button button-primary" style="margin-left:6px;">
 					<?php esc_html_e( 'Upgrade to Pro →', 'payment-gateway-accept-blue-for-formidable' ); ?>
 				</a>
 			</p>
