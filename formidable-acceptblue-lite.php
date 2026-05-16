@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name:     RyanPay — accept.blue Checkout for Formidable
+ * Plugin Name:     Secure Form Checkout by RyanPlugins
  * Plugin URI:      https://ryanplugins.net/
  * Description:     Accept.blue Hosted Tokenization payment gateway for Formidable Forms with debug logging. Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.
  * Version:         1.0.0
  * Author:          RyanPlugins
  * Author URI:      https://profiles.wordpress.org/ryanplugins/
- * Text Domain:     secure-form-checkout
+ * Text Domain:     secure-form-checkout-by-ryanplugins
  * Domain Path:     /languages
  * License:         GPL-2.0-or-later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html

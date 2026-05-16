@@ -1,4 +1,4 @@
-# RyanPay — accept.blue Checkout for Formidable
+# Secure Form Checkout by RyanPlugins
 
 > Accept credit card payments in WordPress using Formidable Forms and the accept.blue payment gateway — with PCI-friendly hosted tokenization, sandbox mode, and a seamless checkout experience.
 
