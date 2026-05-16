@@ -50,7 +50,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 			'payment_field', 'amount_type', 'amount_field', 'currency',
 			'name_field', 'email_field', 'customer_identifier_field',
 			'customer_number_field', 'avs_address_field', 'avs_zip_field',
-			'iframe_style', 'iframe_custom_css', 'description', 'surcharge_label',
+			'iframe_style', 'description', 'surcharge_label',
 			'billing_first_name', 'billing_last_name', 'billing_street',
 			'billing_street2', 'billing_city', 'billing_state', 'billing_zip',
 			'billing_country', 'billing_phone',
@@ -346,26 +346,7 @@ class Frm_AB_Lite_Form_Action extends FrmFormAction {
 					<option value="default" <?php selected( $g('iframe_style','default'), 'default' ); ?>><?php esc_html_e( 'Default (accept.blue)', 'payment-gateway-accept-blue-for-formidable' ); ?></option>
 					<option value="light"   <?php selected( $g('iframe_style','default'), 'light'   ); ?>><?php esc_html_e( 'Light',  'payment-gateway-accept-blue-for-formidable' ); ?></option>
 					<option value="dark"    <?php selected( $g('iframe_style','default'), 'dark'    ); ?>><?php esc_html_e( 'Dark',   'payment-gateway-accept-blue-for-formidable' ); ?></option>
-					<option value="custom"  <?php selected( $g('iframe_style','default'), 'custom'  ); ?>><?php esc_html_e( 'Custom CSS', 'payment-gateway-accept-blue-for-formidable' ); ?></option>
 				</select>
-
-				<div id="frm_ab_lite_custom_style_wrap" style="margin-top:10px;<?php echo $g('iframe_style') === 'custom' ? '' : 'display:none;'; ?>">
-					<p class="description" style="margin-bottom:5px;">
-						<?php esc_html_e( 'Enter CSS for the card iFrame container. Supported keys: card, input, label, number, expiry, cvv, zip, error.', 'payment-gateway-accept-blue-for-formidable' ); ?>
-					</p>
-					<textarea
-						name="<?php echo esc_attr( $ac->get_field_name( 'iframe_custom_css' ) ); ?>"
-						rows="6"
-						class="large-text code"
-						placeholder="<?php esc_attr_e( 'card: background: #fff; border: 1px solid #ccc; border-radius: 6px; padding: 12px;', 'payment-gateway-accept-blue-for-formidable' ); ?>"
-						><?php echo esc_textarea( $g('iframe_custom_css') ); ?></textarea>
-					<p class="description">
-						<?php esc_html_e( 'Format: key: css-value; — one rule per line. Example:', 'payment-gateway-accept-blue-for-formidable' ); ?><br>
-						<code>card: background:#f9f9f9; border:1px solid #ddd; border-radius:8px;</code><br>
-						<code>input: border:1px solid #aaa; border-radius:4px; color:#333;</code>
-					</p>
-				</div>
-			</td>
 		</tr>
 		<tr><th colspan="2"><strong><?php esc_html_e( 'Billing Information', 'payment-gateway-accept-blue-for-formidable' ); ?></strong></th></tr>
 		<?php
@@ -1148,8 +1129,6 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		$frm_ab_lite_payment_error = $error_msg;
 		$uid = get_current_user_id() ?: session_id();
 		if ( $uid ) set_transient( 'frm_ab_lite_payment_error_' . $uid, $error_msg, 60 );
-		if ( ! session_id() && ! headers_sent() ) { session_start(); }
-		$_SESSION['frm_ab_lite_error'] = $error_msg;
 		// translators: %s is the payment error message.
 		// translators: %s is the payment error message.
 		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'payment-gateway-accept-blue-for-formidable' ), $error_msg ) );
@@ -1188,8 +1167,6 @@ function frm_ab_lite_process_payment( $action, $entry, $form, $event ) {
 		// Store in transient as fallback in case global is lost across hook scopes
 		$uid = get_current_user_id() ?: session_id();
 		if ( $uid ) set_transient( 'frm_ab_lite_payment_error_' . $uid, $error_msg, 60 );
-		if ( ! session_id() && ! headers_sent() ) { session_start(); }
-		$_SESSION['frm_ab_lite_error'] = $error_msg;
 		// translators: %s is the payment error message.
 		// translators: %s is the payment error message.
 		frm_ab_lite_add_error( sprintf( __( 'Payment failed: %s', 'payment-gateway-accept-blue-for-formidable' ), $error_msg ) );
@@ -1570,10 +1547,13 @@ add_filter( 'frm_validate_entry', function( $errors, $values ) {
 		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 	if ( ! $msg ) {
-		if ( ! session_id() && ! headers_sent() ) { session_start(); }
-		if ( ! empty( $_SESSION['frm_ab_lite_error'] ) ) {
-			$msg = sanitize_text_field( $_SESSION['frm_ab_lite_error'] );
-			unset( $_SESSION['frm_ab_lite_error'] );
+		$uid = get_current_user_id() ?: ( session_id() ?: '' );
+		if ( $uid ) {
+			$stored = get_transient( 'frm_ab_lite_payment_error_' . $uid );
+			if ( $stored ) {
+				$msg = sanitize_text_field( $stored );
+				delete_transient( 'frm_ab_lite_payment_error_' . $uid );
+			}
 		}
 	}
 	if ( $msg ) {
@@ -1592,10 +1572,13 @@ add_action( 'frm_display_form_action', function( $atts ) {
 		$msg = sanitize_text_field( rawurldecode( wp_unslash( $_GET['frm_ab_lite_error'] ) ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 	}
 	if ( ! $msg ) {
-		if ( ! session_id() && ! headers_sent() ) { session_start(); }
-		if ( ! empty( $_SESSION['frm_ab_lite_error'] ) ) {
-			$msg = sanitize_text_field( $_SESSION['frm_ab_lite_error'] );
-			unset( $_SESSION['frm_ab_lite_error'] );
+		$uid = get_current_user_id() ?: ( session_id() ?: '' );
+		if ( $uid ) {
+			$stored = get_transient( 'frm_ab_lite_payment_error_' . $uid );
+			if ( $stored ) {
+				$msg = sanitize_text_field( $stored );
+				delete_transient( 'frm_ab_lite_payment_error_' . $uid );
+			}
 		}
 	}
 	if ( $msg ) {

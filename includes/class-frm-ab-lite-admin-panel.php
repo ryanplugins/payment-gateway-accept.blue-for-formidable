@@ -63,24 +63,22 @@ class Frm_AB_Lite_Admin_Panel {
 				</a>
 			</p>
 		</div>
-		<script>
-		( function() {
-			var notice = document.getElementById( 'frm-ab-lite-upsell-notice' );
-			if ( ! notice ) return;
-			notice.addEventListener( 'click', function( e ) {
-				if ( ! e.target.classList.contains( 'notice-dismiss' ) ) return;
-				var data = new FormData();
-				data.append( 'action', 'frm_ab_lite_dismiss_upsell' );
-				data.append( 'nonce',  <?php echo wp_json_encode( $nonce ); ?> );
-				fetch( <?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>, {
-					method      : 'POST',
-					body        : data,
-					credentials : 'same-origin',
-				} );
-			} );
-		} )();
-		</script>
 		<?php
+		wp_add_inline_script( 'frm-acceptblue-lite-admin', sprintf(
+			'( function() {
+				var notice = document.getElementById( "frm-ab-lite-upsell-notice" );
+				if ( ! notice ) return;
+				notice.addEventListener( "click", function( e ) {
+					if ( ! e.target.classList.contains( "notice-dismiss" ) ) return;
+					var data = new FormData();
+					data.append( "action", "frm_ab_lite_dismiss_upsell" );
+					data.append( "nonce", %s );
+					fetch( %s, { method: "POST", body: data, credentials: "same-origin" } );
+				} );
+			} )();',
+			wp_json_encode( $nonce ),
+			wp_json_encode( admin_url( 'admin-ajax.php' ) )
+		) );
 	}
 
 	/**

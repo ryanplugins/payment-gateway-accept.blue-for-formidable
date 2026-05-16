@@ -63,7 +63,7 @@ class Frm_AB_Lite_Field {
 	 *   card, expiryMonth, expiryYear, cvv2
 	 * NO other keys (input, label, error, number etc.) are supported.
 	 */
-	public static function get_style_object( string $preset, string $custom_raw = '' ): array {
+	public static function get_style_object( string $preset ): array {
 		switch ( $preset ) {
 
 			case 'light':
@@ -81,24 +81,6 @@ class Frm_AB_Lite_Field {
 					'expiryYear'  => 'background-color:#1c1c2e;border:2px solid #3a3a5c;padding:10px;font-size:16px;color:#e8e8ff;border-radius:5px;',
 					'cvv2'        => 'background-color:#1c1c2e;border:2px solid #3a3a5c;padding:10px;font-size:16px;color:#e8e8ff;border-radius:5px;',
 				];
-
-			case 'custom':
-				// Parse textarea — one "key: css-value" per line.
-				// Only card, expiryMonth, expiryYear, cvv2 are valid keys.
-				$valid  = [ 'card', 'expiryMonth', 'expiryYear', 'cvv2' ];
-				$styles = [];
-				foreach ( explode( "\n", trim( $custom_raw ) ) as $line ) {
-					$line = trim( $line );
-					if ( $line === '' ) continue;
-					$pos = strpos( $line, ':' );
-					if ( false === $pos ) continue;
-					$k = trim( substr( $line, 0, $pos ) );
-					$v = rtrim( trim( substr( $line, $pos + 1 ) ), ';' ) . ';';
-					if ( in_array( $k, $valid, true ) ) {
-						$styles[ $k ] = $v;
-					}
-				}
-				return $styles;
 
 			default: // 'default' — use accept.blue built-in look (no override)
 				return [
@@ -131,7 +113,6 @@ class Frm_AB_Lite_Field {
 
 		// ── Read action settings for this form ───────────────────────────────
 		$iframe_style      = 'default';
-		$custom_css        = '';
 		$show_surcharge    = false;
 		$show_card_details = true;   // default ON
 		$surcharge_label   = 'Surcharge';
@@ -144,7 +125,6 @@ class Frm_AB_Lite_Field {
 				if ( ( $fa->post_excerpt ?? '' ) === 'acceptblue' && is_array( $fa->post_content ) ) {
 					$form_action    = $fa; // ← assign so actionId/currency/capture are available below
 					$iframe_style   = $fa->post_content['iframe_style']      ?? 'default';
-					$custom_css     = $fa->post_content['iframe_custom_css'] ?? '';
 					$show_surcharge = ! empty( $fa->post_content['show_surcharge'] );
 					$show_card_details = isset( $fa->post_content['show_card_details'] ) ? (bool) $fa->post_content['show_card_details'] : true;
 					$surcharge_label   = isset( $fa->post_content['surcharge_label'] ) ? $fa->post_content['surcharge_label'] : 'Surcharge';
@@ -207,7 +187,7 @@ class Frm_AB_Lite_Field {
 		$billing_state_id      = isset( $billing_state_id )      ? $billing_state_id      : '';
 		$billing_zip_id        = isset( $billing_zip_id )        ? $billing_zip_id        : '';
 
-		$style_obj = self::get_style_object( $iframe_style, $custom_css );
+		$style_obj = self::get_style_object( $iframe_style );
 
 		if ( empty( $tokenization_key ) ) {
 			printf(

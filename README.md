@@ -1,4 +1,4 @@
-# Secure Form Checkout
+# RyanPay — accept.blue Checkout for Formidable
 
 > Accept credit card payments in WordPress using Formidable Forms and the accept.blue payment gateway — with PCI-friendly hosted tokenization, sandbox mode, and a seamless checkout experience.
 
@@ -163,9 +163,8 @@ This plugin transmits payment data to **accept.blue**, a third-party payment pro
 
 | Service | Purpose | Links |
 |---|---|---|
-| accept.blue API | Card tokenisation & charging | [Site](https://accept.blue) · [Terms](https://accept.blue/terms) · [Privacy](https://accept.blue/privacy) |
+| accept.blue API | Card tokenisation & charging | [Site](https://accept.blue) · [Terms](https://accept.blue/terms-of-service) · [Privacy](https://accept.blue/privacy-policy) |
 | accept.blue Hosted Tokenization | PCI-friendly iFrame on your form | [Docs](https://docs.accept.blue/tokenization/hosted) |
-| Paay 3DS *(Pro only)* | EMV 3DS2 authentication | [Site](https://www.paay.co) · [Privacy](https://www.paay.co/privacy-policy) |
 
 No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
 

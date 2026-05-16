@@ -1,4 +1,4 @@
-=== Secure Form Checkoute ===
+=== RyanPay — accept.blue Checkout for Formidable ===
 Contributors: ryanplugins
 Tags: formidable, payment, accept.blue, gateway, credit card
 Requires at least: 6.0
@@ -48,6 +48,16 @@ Upgrade to **Secure Form Checkout Pro** to unlock:
 * PHP 7.4 or higher
 * Formidable Forms Pro (required for payment fields)
 * An active accept.blue merchant account (sign up at https://accept.blue)
+
+== Third-party Services ==
+
+This plugin transmits payment data to accept.blue, a third-party payment processor. Card data is captured inside an accept.blue Hosted Tokenization iFrame and never passes through your server.
+
+* accept.blue website: https://accept.blue
+* accept.blue Terms of Service: https://accept.blue/terms-of-service
+* accept.blue Privacy Policy: https://accept.blue/privacy-policy
+
+No card data is stored on your server. All sensitive payment data is handled exclusively by accept.blue's PCI-compliant infrastructure.
 
 == Source code ==
 
