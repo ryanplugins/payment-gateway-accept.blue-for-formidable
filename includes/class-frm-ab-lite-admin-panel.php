@@ -15,8 +15,7 @@ defined( 'ABSPATH' ) || exit;
 
 class Frm_AB_Lite_Admin_Panel {
 
-	public static function init() {
-		add_action( 'admin_menu',            array( __CLASS__, 'register_menu' ), 30 );
+	public static function init() {		
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_upsell_notice' ) );
 		add_action( 'wp_ajax_frm_ab_lite_dismiss_upsell',          array( __CLASS__, 'ajax_dismiss_upsell' ) );
@@ -91,21 +90,6 @@ class Frm_AB_Lite_Admin_Panel {
 		}
 		set_transient( self::UPSELL_TRANSIENT, '1', 7 * DAY_IN_SECONDS );
 		wp_send_json_success();
-	}
-
-	// -------------------------------------------------------------------------
-	// Menu
-	// -------------------------------------------------------------------------
-
-	public static function register_menu() {
-		add_submenu_page(
-			'formidable',
-			__( 'Accept.Blue Transactions', 'payment-gateway-accept-blue-for-formidable' ),
-			__( 'Accept.Blue', 'payment-gateway-accept-blue-for-formidable' ),
-			'manage_options',
-			'frm-ab-lite-transactions',
-			array( __CLASS__, 'render_page' )
-		);
 	}
 
 	// -------------------------------------------------------------------------
