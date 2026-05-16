@@ -19,6 +19,8 @@ class Frm_AB_Lite_Admin_Panel {
 		add_action( 'admin_menu',            array( __CLASS__, 'register_menu' ), 30 );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
 		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_token_notice' ) );
+		add_action( 'admin_notices',         array( __CLASS__, 'maybe_show_upsell_notice' ) );
+		add_action( 'wp_ajax_frm_ab_lite_dismiss_upsell',          array( __CLASS__, 'ajax_dismiss_upsell' ) );
 		add_action( 'wp_ajax_frm_ab_lite_regenerate_webhook_token', array( __CLASS__, 'ajax_regenerate_webhook_token' ) );
 	}
 
@@ -31,6 +33,79 @@ class Frm_AB_Lite_Admin_Panel {
 			esc_html_e( 'Webhook token regenerated. Copy the new URL from the Accept.Blue settings and update it in your accept.blue portal.', 'payment-gateway-accept-blue-for-formidable' );
 			echo '</p></div>';
 		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Pro Upsell Notice (dismissible for 7 days, Formidable pages only)
+	// -------------------------------------------------------------------------
+
+	const UPSELL_TRANSIENT = 'frm_ab_lite_upsell_dismissed';
+	const PRO_URL          = 'https://ryanplugins.net/product/formidable-accept-blue-payment-gateway/';
+
+	/**
+	 * Display the upsell notice on Formidable-related admin pages only.
+	 * Follows WordPress guidelines:
+	 *  - manage_options cap check
+	 *  - standard .notice.notice-info.is-dismissible markup
+	 *  - dismiss stored as a site transient (7 days), not per-user meta,
+	 *    so admins on the same site share the dismissed state
+	 *  - AJAX dismiss with nonce verification
+	 */
+	public static function maybe_show_upsell_notice() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		if ( get_transient( self::UPSELL_TRANSIENT ) ) {
+			return;
+		}
+
+		$nonce   = wp_create_nonce( 'frm_ab_lite_dismiss_upsell' );
+		$pro_url = esc_url( self::PRO_URL );
+		?>
+		<div class="notice notice-info is-dismissible" id="frm-ab-lite-upsell-notice" style="display:flex;align-items:center;gap:12px;padding:12px 16px;">
+			<img src="<?php echo esc_url( FRM_AB_LITE_URL . 'assets/accept-blue-icon.svg' ); ?>"
+				style="width:36px;height:36px;border-radius:6px;flex-shrink:0;" alt="accept.blue">
+			<p style="margin:0;">
+				<strong><?php esc_html_e( 'Unlock the full power of accept.blue for Formidable Forms', 'payment-gateway-accept-blue-for-formidable' ); ?></strong>
+				&mdash;
+				<?php esc_html_e( 'Upgrade to Pro for 3D Secure, force capture, recurring subscriptions, refunds, webhooks, fraud shield, and more.', 'payment-gateway-accept-blue-for-formidable' ); ?>
+				&nbsp;
+				<a href="<?php echo $pro_url; ?>" target="_blank" rel="noopener" class="button button-primary" style="margin-left:6px;">
+					<?php esc_html_e( 'Upgrade to Pro →', 'payment-gateway-accept-blue-for-formidable' ); ?>
+				</a>
+			</p>
+		</div>
+		<script>
+		( function() {
+			var notice = document.getElementById( 'frm-ab-lite-upsell-notice' );
+			if ( ! notice ) return;
+			notice.addEventListener( 'click', function( e ) {
+				if ( ! e.target.classList.contains( 'notice-dismiss' ) ) return;
+				var data = new FormData();
+				data.append( 'action', 'frm_ab_lite_dismiss_upsell' );
+				data.append( 'nonce',  <?php echo wp_json_encode( $nonce ); ?> );
+				fetch( <?php echo wp_json_encode( admin_url( 'admin-ajax.php' ) ); ?>, {
+					method      : 'POST',
+					body        : data,
+					credentials : 'same-origin',
+				} );
+			} );
+		} )();
+		</script>
+		<?php
+	}
+
+	/**
+	 * AJAX handler: store the 7-day dismissal transient.
+	 */
+	public static function ajax_dismiss_upsell() {
+		check_ajax_referer( 'frm_ab_lite_dismiss_upsell', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( 'Unauthorized', 403 );
+		}
+		set_transient( self::UPSELL_TRANSIENT, '1', 7 * DAY_IN_SECONDS );
+		wp_send_json_success();
 	}
 
 	// -------------------------------------------------------------------------
