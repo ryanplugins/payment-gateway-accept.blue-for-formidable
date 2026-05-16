@@ -1,11 +1,11 @@
-# Formidable accept.blue Payment Gateway - Translation Template
+# RyanPay Card Payments with accept.blue for Formidable - Translation Template
 # Copyright (C) 2026 RyanPlugins
 # This file is distributed under the GPL-2.0-or-later license.
-# RyanPlugins <https://codecanyon.net/user/ryanplugins>, 2026.
+# RyanPlugins <https://ryanplugins.net>, 2026.
 msgid ""
 msgstr ""
-"Project-Id-Version: Formidable accept.blue Payment Gateway 1.0.0\n"
-"Report-Msgid-Bugs-To: https://codecanyon.net/user/ryanplugins\n"
+"Project-Id-Version: RyanPay Card Payments with accept.blue for Formidable 1.0.0\n"
+"Report-Msgid-Bugs-To: https://ryanplugins.net\n"
 "POT-Creation-Date: 2026-05-08 23:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
